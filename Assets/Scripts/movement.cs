@@ -29,16 +29,5 @@ public class movement : MonoBehaviour
         transform.Rotate(0f, 0f, rotationZ*rotationAngle);
         transform.Translate(0f, translationY, 0f);
     }
-
-    // TODO: Delete this function to keep movement according to rotation instead
-    private void simpleMoveWithArrows()
-    {
-        float translationY = Input.GetAxis("Vertical") * speed;
-        float translationX = Input.GetAxis("Horizontal") * speed;
-
-        translationY *= Time.deltaTime;
-        translationX *= Time.deltaTime;
-
-        transform.Translate(translationX, translationY, 0f);
-    }
+        
 }
