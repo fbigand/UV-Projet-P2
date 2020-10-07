@@ -4,25 +4,42 @@ using UnityEngine;
 
 public class Snake : MonoBehaviour
 {
-    private LineRenderer line;
-    public Color color;
-    public float widthLine = 1f;
+    public Tail queuePrefab;
+    private List<Tail> listQueue;
+    private Tail currentTail;
+    private bool isDrawingTail;
     // Start is called before the first frame update
     void Start()
     {
-        line = GetComponent<LineRenderer>();
-        line.startColor = color;
-        line.endColor = color;
-        line.positionCount = 1;
-        line.SetPosition(0, transform.position);
-        line.startWidth = widthLine;
-        line.endWidth = widthLine;
+        isDrawingTail = true;
+        listQueue = new List<Tail>();
+        createTail();
+        StartCoroutine(Run());
     }
 
+    private IEnumerator Run()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(3);
+            isDrawingTail = !isDrawingTail;
+            yield return new WaitForSeconds(0.1f);
+            createTail();
+            isDrawingTail = !isDrawingTail;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
-        line.positionCount++;
-        line.SetPosition(line.positionCount-1, transform.position);
+        if (isDrawingTail)
+        {
+            currentTail.updateTailVertex(transform.position);
+        }
+    }
+
+    private void createTail()
+    {
+        currentTail = Instantiate(queuePrefab);
+        listQueue.Add(currentTail);
     }
 }
