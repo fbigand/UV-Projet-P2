@@ -23,7 +23,7 @@ public class movement : MonoBehaviour
         if(rotationZ != 0)
         {
             //On inverse le signe pour avoir un sens de rotation cohérent
-            rotationZ = -1f * Mathf.Sign(rotationZ) ;
+            rotationZ = -0.5f * Mathf.Sign(rotationZ) ;
         }
 
         transform.Rotate(0f, 0f, rotationZ*rotationAngle);
