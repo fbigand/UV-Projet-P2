@@ -8,6 +8,12 @@ public class Snake : MonoBehaviour
     private List<Tail> listQueue;
     private Tail currentTail;
     private bool isDrawingTail;
+
+    public float minTimeTail = 1f;
+    public float minTimeBreakInTail = 1f;
+    public float maxTimeTail = 1.5f;
+    public float maxTimeBreakInTail = 1.5f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,9 +27,9 @@ public class Snake : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(Random.Range(minTimeTail,maxTimeTail));
             isDrawingTail = !isDrawingTail;
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(Random.Range(minTimeBreakInTail, maxTimeBreakInTail));
             createTail();
             isDrawingTail = !isDrawingTail;
         }
