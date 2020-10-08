@@ -270,6 +270,49 @@ Transform:
   m_Father: {fileID: 659390178}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1614632072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3856980144845684525, guid: a629d2b5ed7f02b4a95b36467250b9fd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2486326227241067164}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1614632078
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614632072}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &1614632079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614632072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0b42680d5e7f5142a3beb92044c849c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootPoint: {fileID: 810709665}
+  rocketSpeed: 3
+  rocketPrefab: {fileID: 1172813776220868439, guid: be454c947ff2b7d47bcfd4be2a229433,
+    type: 3}
 --- !u!1001 &2486326227241067164
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,19 +322,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 382068295, guid: a629d2b5ed7f02b4a95b36467250b9fd, type: 3}
       propertyPath: m_Offset.x
-      value: -0.00013113022
+      value: 0.011153221
       objectReference: {fileID: 0}
     - target: {fileID: 382068295, guid: a629d2b5ed7f02b4a95b36467250b9fd, type: 3}
       propertyPath: m_Size.x
-      value: 3.0578089
+      value: 2.177782
       objectReference: {fileID: 0}
     - target: {fileID: 382068295, guid: a629d2b5ed7f02b4a95b36467250b9fd, type: 3}
       propertyPath: m_Offset.y
-      value: -0.17653942
+      value: 0.5785109
       objectReference: {fileID: 0}
     - target: {fileID: 382068295, guid: a629d2b5ed7f02b4a95b36467250b9fd, type: 3}
       propertyPath: m_Size.y
-      value: 4.2520037
+      value: 2.787031
       objectReference: {fileID: 0}
     - target: {fileID: 3856980145007407976, guid: a629d2b5ed7f02b4a95b36467250b9fd,
         type: 3}
@@ -352,6 +395,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Spaceship
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856980146180969475, guid: a629d2b5ed7f02b4a95b36467250b9fd,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4646168970345083295, guid: a629d2b5ed7f02b4a95b36467250b9fd,
         type: 3}
@@ -432,5 +480,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 44410468, guid: ff0f5603156bfe14fb5b952b3977db02, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ff0f5603156bfe14fb5b952b3977db02, type: 3}
