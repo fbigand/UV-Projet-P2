@@ -21,6 +21,7 @@ public class Snake : MonoBehaviour
     //Pour les collisions
     public Transform positionHotSpotFront;
     public GameObject dieAnimation;
+    public float radiusExplosionDeath = 1f;
 
     void Start()
     {
@@ -67,11 +68,14 @@ public class Snake : MonoBehaviour
     /**
      * Collisions
      */
-    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall") || collision.CompareTag("Tail"))
+        if (collision.CompareTag("Wall"))
         {
+            Die();
+        }else if (collision.CompareTag("Tail"))
+        {
+            collideTail(collision.GetComponent<Tail>());
             Die();
         }
     }
@@ -81,5 +85,28 @@ public class Snake : MonoBehaviour
         GameObject effect = Instantiate(dieAnimation, transform.position, Quaternion.identity);
         Destroy(effect, 0.3f);
         Destroy(gameObject);
+    }
+
+    //on crée 2 queues supplémentaires qui vont chacun représenter les moities restantes de la queue
+    private void collideTail(Tail collidedTail)
+    {
+        bool isInImpactArea = false;
+        listQueue.Remove(collidedTail);
+        createTail();
+        for(int i = 0; i < collidedTail.line.positionCount; i++)
+        {
+            Vector2 currentPoint = collidedTail.line.GetPosition(i);
+            if (Vector2.Distance(currentPoint, positionHotSpotFront.position) > radiusExplosionDeath)
+            {
+                currentTail.updateTailVertex(new Vector3(currentPoint.x,currentPoint.y,-0.1f));
+            }
+            else if(!isInImpactArea)
+            {
+                createTail();
+                isInImpactArea = true;
+            }
+        }
+        collidedTail.gameObject.SetActive(false);
+        //Destroy(collidedTail.gameObject);
     }
 }
