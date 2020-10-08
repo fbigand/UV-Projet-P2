@@ -8,13 +8,9 @@ public class collision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall"))
+        if (collision.CompareTag("Wall") || collision.CompareTag("Tail"))
         {
-            if (collision.isTrigger)
-            {
-                Die();
-            }
-            
+            Die();
         }
     }
 
