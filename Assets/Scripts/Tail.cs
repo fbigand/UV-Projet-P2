@@ -5,7 +5,8 @@ using UnityEngine;
 public class Tail : MonoBehaviour
 {
     //Dessine la ligne
-    private LineRenderer line;
+    [HideInInspector]
+    public LineRenderer line;
     //contient les points pour le edgeCollider
     private List<Vector2> listPointsEdgeCollider;
     //couleur de la ligne
@@ -14,8 +15,10 @@ public class Tail : MonoBehaviour
     public float widthLine = 1f;
     //le composant collider pour les collisions de la ligne
     private EdgeCollider2D edgeCollider;
+
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         listPointsEdgeCollider = new List<Vector2>();
         line = GetComponent<LineRenderer>();
@@ -35,7 +38,7 @@ public class Tail : MonoBehaviour
         line.SetPosition(line.positionCount - 1, position);
 
         //on ajoute le point à notre liste de point pour le collider de la ligne
-        listPointsEdgeCollider.Add(new Vector2(position.x, position.y));
+        listPointsEdgeCollider.Add(new Vector2(position.x,position.y));
 
         //et si on a plus d'un seul point
         if (line.positionCount > 1)
@@ -44,5 +47,4 @@ public class Tail : MonoBehaviour
             edgeCollider.points = listPointsEdgeCollider.ToArray();
         }
     }
-
 }
