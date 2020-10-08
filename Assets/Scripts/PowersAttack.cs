@@ -8,12 +8,13 @@ public class PowersAttack : MonoBehaviour
     public Transform shootPoint;
 
     // Floats
-    public float rocketSpeed = 3f;
+    public float rocketSpeed = 1f;
 
     //Objets à faire spawn
     public GameObject rocketPrefab;
 
     // Update is called once per frame
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) == true)
@@ -27,7 +28,7 @@ public class PowersAttack : MonoBehaviour
         if (attacking)
         {
             GameObject rocket = Instantiate(rocketPrefab, shootPoint.transform.position, shootPoint.transform.rotation) as GameObject;
-            rocket.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.position.x,transform.position.y) * rocketSpeed;
+            rocket.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.forward.x,transform.forward.y) * rocketSpeed;
         }
         
     }
