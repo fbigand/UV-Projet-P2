@@ -228,7 +228,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 641718727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.85, z: 0}
+  m_LocalPosition: {x: 0, y: -2.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 659390178}
@@ -395,6 +395,11 @@ PrefabInstance:
       propertyPath: positionHotSpotFront
       value: 
       objectReference: {fileID: 810709665}
+    - target: {fileID: 4646168970345083295, guid: a629d2b5ed7f02b4a95b36467250b9fd,
+        type: 3}
+      propertyPath: radiusExplosionDeath
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a629d2b5ed7f02b4a95b36467250b9fd, type: 3}
 --- !u!1001 &5919657098102844788
