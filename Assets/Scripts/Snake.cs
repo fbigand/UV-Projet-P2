@@ -13,10 +13,9 @@ public class Snake : MonoBehaviour
     public Transform positionHotSpotEnd;
 
     //Generer des trous dans la queue du serpent
-    public float minTimeTail = 1f;
-    public float minTimeBreakInTail = 1f;
-    public float maxTimeTail = 1.5f;
-    public float maxTimeBreakInTail = 1.5f;
+    public float minDistanceTail = 100f;
+    public float maxDistanceTail = 120f;
+    public float distanceBreakInTail = 25f;
 
     //Pour les collisions
     public Transform positionHotSpotFront;
@@ -27,7 +26,6 @@ public class Snake : MonoBehaviour
     {
         isDrawingTail = true;
         listQueue = new List<Tail>();
-        createTail();
         StartCoroutine(DrawCurrentTail());
     }
 
@@ -40,10 +38,11 @@ public class Snake : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(minTimeTail,maxTimeTail));
-            isDrawingTail = !isDrawingTail;
-            yield return new WaitForSeconds(Random.Range(minTimeBreakInTail, maxTimeBreakInTail));
             createTail();
+            float distanceTail = Random.Range(minDistanceTail, maxDistanceTail);
+            yield return new WaitForSeconds(distanceTail * Time.deltaTime);
+            isDrawingTail = !isDrawingTail;
+            yield return new WaitForSeconds(distanceBreakInTail * Time.deltaTime);
             isDrawingTail = !isDrawingTail;
         }
     }
@@ -73,7 +72,8 @@ public class Snake : MonoBehaviour
         if (collision.CompareTag("Wall"))
         {
             Die();
-        }else if (collision.CompareTag("Tail"))
+        }
+        else if (collision.CompareTag("Tail"))
         {
             collideTail(collision.GetComponent<Tail>());
             Die();
@@ -93,20 +93,19 @@ public class Snake : MonoBehaviour
         bool isInImpactArea = false;
         listQueue.Remove(collidedTail);
         createTail();
-        for(int i = 0; i < collidedTail.line.positionCount; i++)
+        for (int i = 0; i < collidedTail.line.positionCount; i++)
         {
             Vector2 currentPoint = collidedTail.line.GetPosition(i);
             if (Vector2.Distance(currentPoint, positionHotSpotFront.position) > radiusExplosionDeath)
             {
-                currentTail.updateTailVertex(new Vector3(currentPoint.x,currentPoint.y,-0.1f));
+                currentTail.updateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
             }
-            else if(!isInImpactArea)
+            else if (!isInImpactArea)
             {
                 createTail();
                 isInImpactArea = true;
             }
         }
         collidedTail.gameObject.SetActive(false);
-        //Destroy(collidedTail.gameObject);
     }
 }
