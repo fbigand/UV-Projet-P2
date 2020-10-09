@@ -26,8 +26,8 @@ public class movement : MonoBehaviour
             rotationZ = -0.5f * Mathf.Sign(rotationZ) ;
         }
 
-        transform.Rotate(0f, 0f, rotationZ*rotationAngle);
-        transform.Translate(0f, translationY, 0f);
+        transform.Rotate(0f, 0f, rotationZ * rotationAngle * Time.deltaTime);
+        transform.Translate(0f, translationY * Time.deltaTime, 0f);
     }
         
 }
