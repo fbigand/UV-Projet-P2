@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 809645585716053732}
   - component: {fileID: 809645585716053733}
   - component: {fileID: 4339970233082804958}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: queue
   m_TagString: Tail
   m_Icon: {fileID: 0}
