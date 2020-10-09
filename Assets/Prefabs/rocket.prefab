@@ -4766,6 +4766,8 @@ GameObject:
   - component: {fileID: 1172813776220868438}
   - component: {fileID: 5403074956387304613}
   - component: {fileID: -7821369238425556338}
+  - component: {fileID: 4389567316502708591}
+  - component: {fileID: -6208989000018133535}
   m_Layer: 10
   m_Name: rocket
   m_TagString: Untagged
@@ -4879,3 +4881,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!70 &4389567316502708591
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172813776220868439}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0034243427, y: 0.09588242}
+  m_Size: {x: 0.14600022, y: 0.21823524}
+  m_Direction: 0
+--- !u!114 &-6208989000018133535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172813776220868439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 776424eaf6616b248a292410e1ef4ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
