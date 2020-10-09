@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ceed4f839cac744807142bdba23b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  line: {fileID: 0}
   color: {r: 0.9150943, g: 0.11222854, b: 0.11222854, a: 0}
   widthLine: 0.1
 --- !u!120 &809645585716053733
@@ -159,6 +160,4 @@ EdgeCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
+  m_Points: []

@@ -12,12 +12,18 @@ public class PowersAttack : MonoBehaviour
 
     //Objets à faire spawn
     public GameObject rocketPrefab;
+    private Controller controller;
+
+    private void Start()
+    {
+        controller = GetComponent<Controller>();
+    }
 
     // Update is called once per frame
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) == true)
+        if (controller.isAttacking())
         {
             SimpleRocket(true);
         }

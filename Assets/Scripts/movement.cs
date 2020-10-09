@@ -6,10 +6,12 @@ public class movement : MonoBehaviour
 {
     public float speed = 0.01f;
     public float rotationAngle = 1f;
+
+    private Controller controller;
     // Start is called before the first frame update
     void Start()
     {
-        
+        controller = GetComponent<Controller>();
     }
 
     // Update is called once per frame
@@ -17,7 +19,7 @@ public class movement : MonoBehaviour
     {
         float translationY = speed;
 
-        float rotationZ = Input.GetAxis("Horizontal");
+        float rotationZ = controller.isRotating();
 
         //The player want to turn
         if(rotationZ != 0)

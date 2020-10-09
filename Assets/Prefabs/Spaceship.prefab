@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 4646168970345083295}
   - component: {fileID: 1315395764}
   - component: {fileID: 3938207759958328092}
+  - component: {fileID: 1798906436365901076}
   m_Layer: 10
   m_Name: Head
   m_TagString: Untagged
@@ -258,6 +259,20 @@ MonoBehaviour:
   rocketSpeed: 3
   rocketPrefab: {fileID: 1172813776220868439, guid: be454c947ff2b7d47bcfd4be2a229433,
     type: 3}
+--- !u!114 &1798906436365901076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3856980144845684525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c90225aa68c0cb4fadf566ee08ea9fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveAxis: Arrow
+  attackAxis: ArrowUp
 --- !u!1 &3856980145007407979
 GameObject:
   m_ObjectHideFlags: 0
