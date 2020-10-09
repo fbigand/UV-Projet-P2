@@ -162,8 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40d8f7480052ab43be80eba5012b167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
-  rotationAngle: 1
+  speed: 1.3
+  rotationAngle: 330
 --- !u!95 &3856980144845684521
 Animator:
   serializedVersion: 3
@@ -214,10 +214,9 @@ MonoBehaviour:
   queuePrefab: {fileID: 809645585716053732, guid: d90644adae1519c4faa49ae98855aba2,
     type: 3}
   positionHotSpotEnd: {fileID: 641718728}
-  minTimeTail: 0.5
-  minTimeBreakInTail: 0.05
-  maxTimeTail: 5
-  maxTimeBreakInTail: 1
+  minDistanceTail: 130
+  maxDistanceTail: 220
+  distanceBreakInTail: 30
   positionHotSpotFront: {fileID: 810709665}
   dieAnimation: {fileID: 8399138910015373975, guid: f21a769d319876e4bb36db6848c4ae5b,
     type: 3}
