@@ -1,36 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 public class PowersAttack : MonoBehaviour
 { 
-    //Point de tir
     public Transform shootPoint;
-
-    // Floats
-    public float rocketSpeed = 1f;
-
-    //Objets à faire spawn
     public GameObject rocketPrefab;
+    public int rocketCooldownMillis; // in millis
+    private Stopwatch cooldownCounter = new Stopwatch();
 
-    // Update is called once per frame
+    private void Start()
+    {
+        cooldownCounter.Start();
+    }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow) == true)
+        if (Input.GetKeyDown(KeyCode.UpArrow) == true 
+            && cooldownCounter.Elapsed.TotalMilliseconds > rocketCooldownMillis)
         {
-            SimpleRocket(true);
+            LaunchRocket();
+            cooldownCounter.Restart();
         }
     }
 
-    void SimpleRocket(bool attacking)
+    void LaunchRocket()
     {
-        if (attacking)
-        {
-            GameObject rocket = Instantiate(rocketPrefab, shootPoint.transform.position, shootPoint.transform.rotation) as GameObject;
-            rocket.GetComponent<Rigidbody2D>().velocity = new Vector2(transform.forward.x,transform.forward.y) * rocketSpeed;
-        }
-        
+        GameObject rocket = Instantiate(rocketPrefab, shootPoint.transform.position, shootPoint.transform.rotation) as GameObject;        
     }
-
 }

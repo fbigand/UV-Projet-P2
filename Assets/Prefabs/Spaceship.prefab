@@ -255,9 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 810709665}
-  rocketSpeed: 3
   rocketPrefab: {fileID: 1172813776220868439, guid: be454c947ff2b7d47bcfd4be2a229433,
     type: 3}
+  rocketCooldown: 1000
 --- !u!1 &3856980145007407979
 GameObject:
   m_ObjectHideFlags: 0
