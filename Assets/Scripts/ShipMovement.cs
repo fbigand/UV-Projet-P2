@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class ShipMovement : MonoBehaviour
 {
     public float speed = 0.01f;
     public float rotationAngle = 1f;
