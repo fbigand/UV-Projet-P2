@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowersAttack : MonoBehaviour
 { 
@@ -9,6 +10,8 @@ public class PowersAttack : MonoBehaviour
     public GameObject rocketPrefab;
     public int rocketCooldownMillis; // in millis
     private Stopwatch cooldownCounter = new Stopwatch();
+    private int compteAReboursRocket;
+    public Text textCDRocket;
 
     private void Start()
     {
@@ -23,6 +26,19 @@ public class PowersAttack : MonoBehaviour
             LaunchRocket();
             cooldownCounter.Restart();
         }
+
+        compteAReboursRocket = (rocketCooldownMillis / 1000) - cooldownCounter.Elapsed.Seconds;
+
+        if (compteAReboursRocket <= 0)
+        {
+            textCDRocket.text = "Ready";
+        }
+
+        else
+        {
+            textCDRocket.text = compteAReboursRocket.ToString();
+        }
+        
     }
 
     void LaunchRocket()
