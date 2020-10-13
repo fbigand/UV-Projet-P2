@@ -10,7 +10,7 @@ public class PowersAttack : MonoBehaviour
     public GameObject rocketPrefab;
     public int rocketCooldownMillis; // in millis
     private Stopwatch cooldownCounter = new Stopwatch();
-    private int compteAReboursRocket;
+    
     public Text textCDRocket;
 
     private void Start()
@@ -20,6 +20,7 @@ public class PowersAttack : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetKeyDown(KeyCode.UpArrow) == true 
             && cooldownCounter.Elapsed.TotalMilliseconds > rocketCooldownMillis)
         {
@@ -27,7 +28,7 @@ public class PowersAttack : MonoBehaviour
             cooldownCounter.Restart();
         }
 
-        compteAReboursRocket = (rocketCooldownMillis / 1000) - cooldownCounter.Elapsed.Seconds;
+        int compteAReboursRocket = (rocketCooldownMillis / 1000) - cooldownCounter.Elapsed.Seconds;
 
         if (compteAReboursRocket <= 0)
         {
