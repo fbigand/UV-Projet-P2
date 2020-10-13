@@ -9,13 +9,13 @@ public class Snake : MonoBehaviour
     private List<Tail> listQueue;
     private Tail currentTail;
     //determine si on est sur un trou ou si on dessine la queue
-    private bool isDrawingTail;
+    public bool isDrawingTail;
     public Transform positionHotSpotEnd;
 
     //Generer des trous dans la queue du serpent
-    public float minDistanceTail = 100f;
-    public float maxDistanceTail = 120f;
-    public float distanceBreakInTail = 25f;
+    public float minDistanceTail = 450f;
+    public float maxDistanceTail = 500f;
+    public float distanceBreakInTail = 45f;
 
     //Pour les collisions
     public Transform positionHotSpotFront;
@@ -40,9 +40,11 @@ public class Snake : MonoBehaviour
         {
             createTail();
             float distanceTail = Random.Range(minDistanceTail, maxDistanceTail);
-            yield return new WaitForSeconds(distanceTail * Time.deltaTime);
+            yield return new WaitForSeconds(distanceTail);
+            print("queue :" + distanceTail);
             isDrawingTail = !isDrawingTail;
-            yield return new WaitForSeconds(distanceBreakInTail * Time.deltaTime);
+            yield return new WaitForSeconds(distanceBreakInTail);
+            print("Trou :" + distanceBreakInTail);
             isDrawingTail = !isDrawingTail;
         }
     }
@@ -57,7 +59,7 @@ public class Snake : MonoBehaviour
     }
 
     //Crée le bout de queue suivant
-    private void createTail()
+    public void createTail()
     {
         currentTail = Instantiate(queuePrefab);
         listQueue.Add(currentTail);

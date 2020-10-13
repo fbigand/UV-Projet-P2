@@ -195,10 +195,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 4475309868173804219}
+  durationCooldownPowerUp: 5
+  durationCooldownPowerDown: 3
+  textCooldownUp: {fileID: 0}
+  textCooldownDown: {fileID: 0}
   rocketPrefab: {fileID: 1172813776220868439, guid: be454c947ff2b7d47bcfd4be2a229433,
     type: 3}
-  rocketCooldownMillis: 1000
-  textCDRocket: {fileID: 0}
 --- !u!1 &837037985391666200
 GameObject:
   m_ObjectHideFlags: 0

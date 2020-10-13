@@ -45,7 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40ceed4f839cac744807142bdba23b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.9150943, g: 0.11222854, b: 0.11222854, a: 0}
+  line: {fileID: 0}
+  color: {r: 0.058823586, g: 1, b: 0, a: 0}
   widthLine: 0.1
 --- !u!120 &809645585716053733
 LineRenderer:
@@ -55,8 +56,8 @@ LineRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 809645585716053736}
   m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 0
   m_MotionVectors: 2
   m_LightProbeUsage: 0
@@ -109,15 +110,15 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0.48235294}
+      key1: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 0.48235294}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
       key7: {r: 0, g: 0, b: 0, a: 0}
-      ctime0: 0
+      ctime0: 64764
       ctime1: 65535
       ctime2: 0
       ctime3: 0
