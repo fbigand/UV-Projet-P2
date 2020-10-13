@@ -7,10 +7,12 @@ public class Tail : MonoBehaviour
     //Dessine la ligne
     [HideInInspector]
     public LineRenderer line;
+
+    [HideInInspector]
+    public Color color;
     //contient les points pour le edgeCollider
     private List<Vector2> listPointsEdgeCollider;
-    //couleur de la ligne
-    public Color color;
+
     //largeur de la ligne
     public float widthLine = 1f;
     //le composant collider pour les collisions de la ligne
@@ -22,12 +24,12 @@ public class Tail : MonoBehaviour
     {
         listPointsEdgeCollider = new List<Vector2>();
         line = GetComponent<LineRenderer>();
-        line.startColor = color;
-        line.endColor = color;
+        
         line.positionCount = 0;
         line.startWidth = widthLine;
         line.endWidth = widthLine;
         edgeCollider = GetComponent<EdgeCollider2D>();
+        
     }
 
     //a chaque fois qu'on a un nouveau point à ajouter à la ligne
@@ -46,5 +48,11 @@ public class Tail : MonoBehaviour
             //on met a jour notre collider avec les points constituant la ligne
             edgeCollider.points = listPointsEdgeCollider.ToArray();
         }
+    }
+
+    public void SetColor(Color color)
+    {
+        this.color = color;
+        line.material.color = color;
     }
 }

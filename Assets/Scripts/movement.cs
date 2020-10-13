@@ -19,7 +19,7 @@ public class movement : MonoBehaviour
     {
         float translationY = speed;
 
-        float rotationZ = controller.isRotating();
+        float rotationZ = controller.GetRotation();
 
         //The player want to turn
         if(rotationZ != 0)

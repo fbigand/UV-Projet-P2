@@ -8,12 +8,12 @@ public class Controller : MonoBehaviour
     public string attackAxis;
 
     //return -1 for left, 1 for right and 0 equals forward
-    public float isRotating()
+    public float GetRotation()
     {
         return Input.GetAxis(moveAxis);
     }
 
-    public bool isAttacking()
+    public bool IsAttacking()
     {
         return Input.GetAxis(attackAxis)>0;
     }

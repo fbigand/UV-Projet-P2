@@ -23,7 +23,7 @@ public class PowersAttack : MonoBehaviour
 
     void Update()
     {
-        if (controller.isAttacking())
+        if (controller.IsAttacking())
         {
             SimpleRocket(true);
         }
