@@ -8,6 +8,7 @@ public class Snake : MonoBehaviour
     public Tail queuePrefab;
     private List<Tail> listQueue;
     private Tail currentTail;
+    public Color colorTail;
     //determine si on est sur un trou ou si on dessine la queue
     private bool isDrawingTail;
     public Transform positionHotSpotEnd;
@@ -59,9 +60,11 @@ public class Snake : MonoBehaviour
     //Crée le bout de queue suivant
     private void createTail()
     {
-        currentTail = Instantiate(queuePrefab);
+        currentTail = Instantiate(queuePrefab) as Tail;
+        currentTail.SetColor(colorTail);
         listQueue.Add(currentTail);
     }
+
 
 
     /**
@@ -91,8 +94,8 @@ public class Snake : MonoBehaviour
     private void collideTail(Tail collidedTail)
     {
         bool isInImpactArea = false;
-        listQueue.Remove(collidedTail);
         createTail();
+        currentTail.SetColor(collidedTail.color);
         for (int i = 0; i < collidedTail.line.positionCount; i++)
         {
             Vector2 currentPoint = collidedTail.line.GetPosition(i);
@@ -103,6 +106,7 @@ public class Snake : MonoBehaviour
             else if (!isInImpactArea)
             {
                 createTail();
+                currentTail.SetColor(collidedTail.color);
                 isInImpactArea = true;
             }
         }

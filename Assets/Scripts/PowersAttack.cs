@@ -8,6 +8,10 @@ public class PowersAttack : MonoBehaviour
 { 
     public Transform shootPoint;
     public GameObject rocketPrefab;
+    private Controller controller;
+
+
+    // Update is called once per frame
     public int rocketCooldownMillis; // in millis
     private Stopwatch cooldownCounter = new Stopwatch();
     
@@ -15,13 +19,15 @@ public class PowersAttack : MonoBehaviour
 
     private void Start()
     {
+        controller = GetComponent<Controller>();
         cooldownCounter.Start();
     }
 
     void Update()
     {
+       
 
-        if (Input.GetKeyDown(KeyCode.UpArrow) == true 
+        if (controller.IsAttacking()
             && cooldownCounter.Elapsed.TotalMilliseconds > rocketCooldownMillis)
         {
             LaunchRocket();
