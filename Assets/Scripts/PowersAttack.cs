@@ -20,7 +20,8 @@ public class PowersAttack : MonoBehaviour
     public GameObject rocketPrefab;
     private Animator anim;
     private CapsuleCollider2D spaceshipCollider;
-
+    private Controller controller;
+    public Text textCDRocket;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class PowersAttack : MonoBehaviour
 
         anim = gameObject.GetComponent<Animator>();
         spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
+        controller = GetComponent<Controller>();
     }
 
     void Update()
