@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class ManagePlayers : MonoBehaviour
 {
     public GameObject[] usableSpaceships;
 
     public int numberPlayers = 1;
+    public int countdownTime; // in seconds
+    public Text countdownText;
+    public string startMessage;
+    public int startMessageDuration; // in seconds
 
+    private bool wasCalledStartCountdown;
     private GameObject[] activePlayers;
     // Start is called before the first frame update
     void Start()
@@ -22,14 +28,15 @@ public class ManagePlayers : MonoBehaviour
                 if (i < numberPlayers)
                 {
                     activePlayers[i] = usableSpaceships[i];
+                    activePlayers[i].SetActive(false);
                 }
                 else
                 {
                     Destroy(usableSpaceships[i].gameObject);
                 }
             }
-
             placePlayers();
+            StartCoroutine(Countdown());
         }
     }
 
@@ -66,5 +73,29 @@ public class ManagePlayers : MonoBehaviour
 
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
         spaceship.rotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+    }
+
+    private IEnumerator Countdown()
+    {
+        while (countdownTime > 0)
+        {
+            countdownText.text = countdownTime.ToString();
+            yield return new WaitForSeconds(1);
+            countdownTime--;
+        }
+        countdownText.text = startMessage;
+        yield return new WaitForSeconds(startMessageDuration);
+        countdownText.gameObject.SetActive(false);
+        StartGame();
+
+        yield return null;
+    }
+
+    private void StartGame()
+    {
+        foreach (GameObject spaceship in activePlayers)
+        {
+            spaceship.SetActive(true);
+        }
     }
 }
