@@ -367,6 +367,21 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: distanceBreakInTail
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: minDistanceTail
+      value: 450
+      objectReference: {fileID: 0}
+    - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: maxDistanceTail
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5ff2fe6fc457684aa8222886f8db0e3, type: 3}
 --- !u!1001 &5477055260998079194
