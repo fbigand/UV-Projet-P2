@@ -28,16 +28,16 @@ public class PowersAttack : MonoBehaviour
             cooldownCounter.Restart();
         }
 
-        int compteAReboursRocket = (rocketCooldownMillis / 1000) - cooldownCounter.Elapsed.Seconds;
+        int remainingCooldownRocket = (rocketCooldownMillis / 1000) - cooldownCounter.Elapsed.Seconds;
 
-        if (compteAReboursRocket <= 0)
+        if (remainingCooldownRocket <= 0)
         {
             textCDRocket.text = "Ready";
         }
 
         else
         {
-            textCDRocket.text = compteAReboursRocket.ToString();
+            textCDRocket.text = remainingCooldownRocket.ToString();
         }
         
     }
