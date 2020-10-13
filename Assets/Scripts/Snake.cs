@@ -22,11 +22,16 @@ public class Snake : MonoBehaviour
     public GameObject dieAnimation;
     public float radiusExplosionDeath = 1f;
 
+    //Autres
+    private Animator anim;
+
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
         isDrawingTail = true;
         listQueue = new List<Tail>();
         StartCoroutine(DrawCurrentTail());
+        anim.SetBool("Free", false);
     }
 
 
@@ -41,11 +46,13 @@ public class Snake : MonoBehaviour
             createTail();
             float distanceTail = Random.Range(minDistanceTail, maxDistanceTail);
             yield return new WaitForSeconds(distanceTail);
-            isDrawingTail = !isDrawingTail;
+            isDrawingTail = false;
             gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            anim.SetBool("Free", true);
             yield return new WaitForSeconds(distanceBreakInTail);
-            isDrawingTail = !isDrawingTail;
+            isDrawingTail = true;
             gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+            anim.SetBool("Free", false);
         }
     }
 
