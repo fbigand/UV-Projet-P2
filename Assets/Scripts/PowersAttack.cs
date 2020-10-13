@@ -21,7 +21,6 @@ public class PowersAttack : MonoBehaviour
     private Animator anim;
     private CapsuleCollider2D spaceshipCollider;
     private Controller controller;
-    public Text textCDRocket;
 
     private void Start()
     {
