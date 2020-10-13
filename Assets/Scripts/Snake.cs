@@ -14,9 +14,9 @@ public class Snake : MonoBehaviour
     public Transform positionHotSpotEnd;
 
     //Generer des trous dans la queue du serpent
-    public float minDistanceTail = 450f;
-    public float maxDistanceTail = 500f;
-    public float distanceBreakInTail = 45f;
+    public float minDistanceTail = 4.5f;
+    public float maxDistanceTail = 5f;
+    public float distanceBreakInTail = 0.25f;
 
     //Pour les collisions
     public Transform positionHotSpotFront;
@@ -32,7 +32,6 @@ public class Snake : MonoBehaviour
         isDrawingTail = true;
         listQueue = new List<Tail>();
         StartCoroutine(DrawCurrentTail());
-        anim.SetBool("Free", false);
     }
 
 
