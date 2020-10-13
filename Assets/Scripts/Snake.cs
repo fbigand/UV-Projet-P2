@@ -41,11 +41,11 @@ public class Snake : MonoBehaviour
             createTail();
             float distanceTail = Random.Range(minDistanceTail, maxDistanceTail);
             yield return new WaitForSeconds(distanceTail);
-            print("queue :" + distanceTail);
             isDrawingTail = !isDrawingTail;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
             yield return new WaitForSeconds(distanceBreakInTail);
-            print("Trou :" + distanceBreakInTail);
             isDrawingTail = !isDrawingTail;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
         }
     }
 
