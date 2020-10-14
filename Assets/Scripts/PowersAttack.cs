@@ -7,49 +7,86 @@ using UnityEngine.UI;
 public class PowersAttack : MonoBehaviour
 { 
     public Transform shootPoint;
+
+    private Stopwatch counterCooldownUp = new Stopwatch();
+    private Stopwatch counterCooldownDown = new Stopwatch();
+
+    public int durationCooldownPowerUp; // in millis
+    public int durationCooldownPowerDown; // in millis
+
+    public Text textCooldownUp;
+    public Text textCooldownDown;
+
     public GameObject rocketPrefab;
+    private Animator anim;
+    private CapsuleCollider2D spaceshipCollider;
     private Controller controller;
-
-
-    // Update is called once per frame
-    public int rocketCooldownMillis; // in millis
-    private Stopwatch cooldownCounter = new Stopwatch();
-    
-    public Text textCDRocket;
 
     private void Start()
     {
+        counterCooldownUp.Start();
+        counterCooldownDown.Start();
+
+        anim = gameObject.GetComponent<Animator>();
+        spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
         controller = GetComponent<Controller>();
-        cooldownCounter.Start();
     }
 
     void Update()
     {
-       
+        int remainingCooldownUp = durationCooldownPowerUp - counterCooldownUp.Elapsed.Seconds;
+        int remainingCooldownDown = durationCooldownPowerDown - counterCooldownDown.Elapsed.Seconds;
 
-        if (controller.IsAttacking()
-            && cooldownCounter.Elapsed.TotalMilliseconds > rocketCooldownMillis)
+        bool upIsReady = remainingCooldownUp <= 0;
+        bool downIsReady = remainingCooldownDown <= 0;
+
+        textCooldownUp.text = remainingCooldownUp.ToString();
+        textCooldownDown.text = remainingCooldownDown.ToString();
+
+        if (upIsReady)
         {
-            LaunchRocket();
-            cooldownCounter.Restart();
+            textCooldownUp.text = "Ready";
+
+            if (Input.GetKeyDown(KeyCode.UpArrow) == true)
+            {
+                LaunchRocket();
+                counterCooldownUp.Restart();
+            }
         }
 
-        int remainingCooldownRocket = (rocketCooldownMillis / 1000) - cooldownCounter.Elapsed.Seconds;
-
-        if (remainingCooldownRocket <= 0)
+        if (downIsReady)
         {
-            textCDRocket.text = "Ready";
-        }
+            textCooldownDown.text = "Ready";
 
-        else
-        {
-            textCDRocket.text = remainingCooldownRocket.ToString();
+            if (Input.GetKeyDown(KeyCode.DownArrow) == true)
+            {
+                Jump();
+                counterCooldownDown.Restart();
+            }
         }
-        
     }
 
     void LaunchRocket()
     {
         GameObject rocket = Instantiate(rocketPrefab, shootPoint.transform.position, shootPoint.transform.rotation) as GameObject;        
     }
+
+    void Jump()
+    {
+        anim.SetTrigger("Jump");
+        anim.SetBool("OntheAir", true);
+        spaceshipCollider.enabled = false;
+        StartCoroutine(WaitAndReset(0.5f));
+        gameObject.GetComponent<Snake>().isDrawingTail = false;
+
+        IEnumerator WaitAndReset(float waitTime)
+        {
+            yield return new WaitForSeconds(waitTime);
+            anim.SetBool("OntheAir", false);
+            spaceshipCollider.enabled = true;
+            gameObject.GetComponent<Snake>().createTail();
+            gameObject.GetComponent<Snake>().isDrawingTail = true;
+        }
+    }
 }
+

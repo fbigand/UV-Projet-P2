@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 629428120803242758}
   m_Layer: 10
   m_Name: Spaceship
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,8 +30,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837037984596119351}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_Children:
   - {fileID: 4475309868173804219}
@@ -160,10 +160,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   queuePrefab: {fileID: 809645585716053732, guid: d90644adae1519c4faa49ae98855aba2,
     type: 3}
+  colorTail: {r: 0, g: 0, b: 0, a: 0}
+  isDrawingTail: 0
   positionHotSpotEnd: {fileID: 4475309868540062162}
-  minDistanceTail: 450
-  maxDistanceTail: 500
-  distanceBreakInTail: 50
+  minDistanceTail: 4
+  maxDistanceTail: 4.5
+  distanceBreakInTail: 0.25
   positionHotSpotFront: {fileID: 4475309868173804219}
   dieAnimation: {fileID: 8399138910015373975, guid: f21a769d319876e4bb36db6848c4ae5b,
     type: 3}
@@ -195,10 +197,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 4475309868173804219}
+  durationCooldownPowerUp: 5
+  durationCooldownPowerDown: 3
+  textCooldownUp: {fileID: 0}
+  textCooldownDown: {fileID: 0}
   rocketPrefab: {fileID: 1172813776220868439, guid: be454c947ff2b7d47bcfd4be2a229433,
     type: 3}
-  rocketCooldownMillis: 1000
-  textCDRocket: {fileID: 0}
 --- !u!1 &837037985391666200
 GameObject:
   m_ObjectHideFlags: 0
