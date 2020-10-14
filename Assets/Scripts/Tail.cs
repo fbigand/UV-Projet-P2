@@ -11,10 +11,12 @@ public class Tail : MonoBehaviour
     [HideInInspector]
     public Color color;
     //contient les points pour le edgeCollider
-    private List<Vector2> listPointsEdgeCollider;
+    [HideInInspector]
+    public List<Vector2> listPointsEdgeCollider;
 
     //largeur de la ligne
     public float widthLine = 1f;
+
     //le composant collider pour les collisions de la ligne
     private EdgeCollider2D edgeCollider;
 
@@ -54,5 +56,12 @@ public class Tail : MonoBehaviour
     {
         this.color = color;
         line.material.color = color;
+    }
+
+    public void Reset()
+    {
+        line.positionCount = 0;
+        edgeCollider.Reset();
+        listPointsEdgeCollider.Clear();
     }
 }
