@@ -41,8 +41,8 @@ InputManager:
     m_Name: Move2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: w
-    positiveButton: c
+    negativeButton: v
+    positiveButton: n
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -57,8 +57,8 @@ InputManager:
     m_Name: Power2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: x
+    negativeButton: space
+    positiveButton: b
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -73,7 +73,7 @@ InputManager:
     m_Name: Move3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: z
+    negativeButton: a
     positiveButton: e
     altNegativeButton: 
     altPositiveButton: 
@@ -89,8 +89,8 @@ InputManager:
     m_Name: Power3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: a
+    negativeButton: s
+    positiveButton: z
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -105,7 +105,7 @@ InputManager:
     m_Name: Move4
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: o
+    negativeButton: i
     positiveButton: p
     altNegativeButton: 
     altPositiveButton: 
@@ -121,8 +121,8 @@ InputManager:
     m_Name: Power4
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: i
+    negativeButton: l
+    positiveButton: o
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

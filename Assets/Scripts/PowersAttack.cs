@@ -47,7 +47,7 @@ public class PowersAttack : MonoBehaviour
         {
             textCooldownUp.text = "Ready";
 
-            if (Input.GetKeyDown(KeyCode.UpArrow) == true)
+            if (controller.IsUsingPrimaryBonus())
             {
                 LaunchRocket();
                 counterCooldownUp.Restart();
@@ -58,7 +58,7 @@ public class PowersAttack : MonoBehaviour
         {
             textCooldownDown.text = "Ready";
 
-            if (Input.GetKeyDown(KeyCode.DownArrow) == true)
+            if (controller.IsUsingSecondaryBonus())
             {
                 Jump();
                 counterCooldownDown.Restart();
