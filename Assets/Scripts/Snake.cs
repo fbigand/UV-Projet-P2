@@ -10,21 +10,25 @@ public class Snake : MonoBehaviour
     private Tail currentTail;
     public Color colorTail;
     //determine si on est sur un trou ou si on dessine la queue
-    private bool isDrawingTail;
+    public bool isDrawingTail;
     public Transform positionHotSpotEnd;
 
     //Generer des trous dans la queue du serpent
-    public float minDistanceTail = 100f;
-    public float maxDistanceTail = 120f;
-    public float distanceBreakInTail = 25f;
+    public float minDistanceTail = 4.5f;
+    public float maxDistanceTail = 5f;
+    public float distanceBreakInTail = 0.25f;
 
     //Pour les collisions
     public Transform positionHotSpotFront;
     public GameObject dieAnimation;
     public float radiusExplosionDeath = 1f;
 
+    //Autres
+    private Animator anim;
+
     void Start()
     {
+        anim = gameObject.GetComponent<Animator>();
         isDrawingTail = true;
         listQueue = new List<Tail>();
         StartCoroutine(DrawCurrentTail());
@@ -41,10 +45,14 @@ public class Snake : MonoBehaviour
         {
             createTail();
             float distanceTail = Random.Range(minDistanceTail, maxDistanceTail);
-            yield return new WaitForSeconds(distanceTail * Time.deltaTime);
-            isDrawingTail = !isDrawingTail;
-            yield return new WaitForSeconds(distanceBreakInTail * Time.deltaTime);
-            isDrawingTail = !isDrawingTail;
+            yield return new WaitForSeconds(distanceTail);
+            isDrawingTail = false;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+            anim.SetBool("Free", true);
+            yield return new WaitForSeconds(distanceBreakInTail);
+            isDrawingTail = true;
+            gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+            anim.SetBool("Free", false);
         }
     }
 
@@ -58,7 +66,7 @@ public class Snake : MonoBehaviour
     }
 
     //Crée le bout de queue suivant
-    private void createTail()
+    public void createTail()
     {
         currentTail = Instantiate(queuePrefab) as Tail;
         currentTail.SetColor(colorTail);
