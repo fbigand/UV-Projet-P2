@@ -139,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c90225aa68c0cb4fadf566ee08ea9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAxis: Arrow
-  attackAxis: ArrowUp
+  moveAxis: Move1
+  attackAxis: Power1
 --- !u!114 &11958537 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5856756592164980268, guid: 09e8edbeb26d9ea4db0fa64d0534587e,
@@ -171,8 +171,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c90225aa68c0cb4fadf566ee08ea9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAxis: wx
-  attackAxis: Chevron
+  moveAxis: Move2
+  attackAxis: Power2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c90225aa68c0cb4fadf566ee08ea9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAxis: po
-  attackAxis: i
+  moveAxis: Move4
+  attackAxis: Power4
 --- !u!1 &894355399 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
@@ -294,8 +294,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c90225aa68c0cb4fadf566ee08ea9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAxis: ez
-  attackAxis: a
+  moveAxis: Move3
+  attackAxis: Power3
 --- !u!224 &1213436235 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6648906485755688600, guid: 09e8edbeb26d9ea4db0fa64d0534587e,
@@ -353,7 +353,7 @@ PrefabInstance:
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: numberPlayers
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
