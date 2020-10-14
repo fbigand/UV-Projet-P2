@@ -98,7 +98,6 @@ public class Snake : MonoBehaviour
         Destroy(gameObject);
     }
 
-    //on crée 2 queues supplémentaires qui vont chacun représenter les moities restantes de la queue
     private void collideTail(Tail collidedTail)
     {
         //en premier on enregistre tous les points de la queue percutée
@@ -106,8 +105,8 @@ public class Snake : MonoBehaviour
         collidedTail.listPointsEdgeCollider.CopyTo(listPointsCollidedTail);
 
         //on crée une nouvelle queue pour dessiner le bout avant le trou
-        createTail();
-        currentTail.SetColor(collidedTail.color);
+        Tail partBeforeHole = Instantiate(queuePrefab) as Tail;
+        partBeforeHole.SetColor(collidedTail.color);
         int i = 0;
         while(i < listPointsCollidedTail.Length)
         {
@@ -115,17 +114,23 @@ public class Snake : MonoBehaviour
             // on parcours les points et on les ajoute à la ligne tant qu'on arrive pas au trou
             if (Vector2.Distance(currentPoint, positionHotSpotFront.position) > radiusExplosionDeath)
             {
-                currentTail.updateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
+                partBeforeHole.updateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
+                i++;
             }
             else
             {
                 break;
             }
-            i++;
         }
 
-        //on reset la ligne qu'on a percuté
+        //si il n'y avait pas de points avant l'explosion on detruit la queue prevue pour ça
+        if(i == 0)
+        {
+            partBeforeHole.gameObject.SetActive(false);
+        }
+
         collidedTail.Reset();
+        bool isTherePointAfterHole = false;
         while (i < listPointsCollidedTail.Length)
         {
             //on ajoute a la ligne percutee les points a partir de l'explosion
@@ -133,8 +138,14 @@ public class Snake : MonoBehaviour
             if (Vector2.Distance(currentPoint, positionHotSpotFront.position) > radiusExplosionDeath)
             {
                 collidedTail.updateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
+                isTherePointAfterHole = true;
             }
             i++;
+        }
+
+        if (!isTherePointAfterHole)
+        {
+            collidedTail.gameObject.SetActive(false);
         }
     }
 }

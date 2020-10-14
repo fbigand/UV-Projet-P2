@@ -18,7 +18,7 @@ public class Tail : MonoBehaviour
     public float widthLine = 1f;
 
     //le composant collider pour les collisions de la ligne
-    private EdgeCollider2D edgeCollider;
+    public EdgeCollider2D edgeCollider;
 
 
     // Start is called before the first frame update
