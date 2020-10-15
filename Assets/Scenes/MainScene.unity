@@ -725,7 +725,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 1.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -735,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -860,7 +860,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 0.35
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -870,7 +870,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 5
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -995,7 +995,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 0.35
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -1005,7 +1005,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 5
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -1130,7 +1130,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 0.35
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -1140,7 +1140,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 5
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}

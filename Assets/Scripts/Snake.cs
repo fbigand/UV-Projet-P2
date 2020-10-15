@@ -36,30 +36,7 @@ public class Snake : MonoBehaviour
         lastDistance = 0f;
         lastPoint = positionHotSpotEnd.position;
         createTail();
-        //StartCoroutine(DrawCurrentTail());
     }
-
-
-    /*
-     * Créer la queue du serpent
-     */
-    //détermine si on dessine la queue ou si on fait un trou
-    /*private IEnumerator DrawCurrentTail()
-    {
-        while (true)
-        {
-            createTail();
-            float distanceTail = Random.Range(minDistanceTail, maxDistanceTail);
-            yield return new WaitForSeconds(distanceTail);
-            isDrawingTail = false;
-            gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
-            anim.SetBool("Free", true);
-            yield return new WaitForSeconds(distanceBreakInTail);
-            isDrawingTail = true;
-            gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
-            anim.SetBool("Free", false);
-        }
-    }*/
 
     void Update()
     {
