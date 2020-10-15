@@ -43,7 +43,7 @@ public class Snake : MonoBehaviour
         lastDistance += Vector3.Distance(lastPoint, new Vector2(positionHotSpotEnd.position.x, positionHotSpotEnd.position.y));
         if (isDrawingTail)
         {
-            currentTail.updateTailVertex(positionHotSpotEnd.position);
+            currentTail.UpdateTailVertex(positionHotSpotEnd.position);
             if(lastDistance > maxDistanceTail)
             {
                 isDrawingTail = false;
@@ -120,7 +120,7 @@ public class Snake : MonoBehaviour
             // on parcours les points et on les ajoute à la ligne tant qu'on arrive pas au trou
             if (Vector2.Distance(currentPoint, positionHotSpotFront.position) > radiusExplosionDeath)
             {
-                partBeforeHole.updateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
+                partBeforeHole.UpdateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
                 i++;
             }
             else
@@ -143,7 +143,7 @@ public class Snake : MonoBehaviour
             Vector2 currentPoint = listPointsCollidedTail[i];
             if (Vector2.Distance(currentPoint, positionHotSpotFront.position) > radiusExplosionDeath)
             {
-                collidedTail.updateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
+                collidedTail.UpdateTailVertex(new Vector3(currentPoint.x, currentPoint.y, -0.1f));
                 isTherePointAfterHole = true;
             }
             i++;
