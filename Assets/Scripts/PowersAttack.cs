@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +19,7 @@ public class PowersAttack : MonoBehaviour
     public Text textCooldownDown;
 
     public GameObject rocketPrefab;
+    private GameObject fire;
     private Animator anim;
     private CapsuleCollider2D spaceshipCollider;
     private Controller controller;
@@ -30,6 +32,8 @@ public class PowersAttack : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
         controller = GetComponent<Controller>();
+
+        fire = GameObject.Find("Fire");
     }
 
     void Update()
@@ -78,14 +82,17 @@ public class PowersAttack : MonoBehaviour
         spaceshipCollider.enabled = false;
         StartCoroutine(WaitAndReset(0.5f));
         gameObject.GetComponent<Snake>().isDrawingTail = false;
+        fire.SetActive(false);
 
         IEnumerator WaitAndReset(float waitTime)
         {
             yield return new WaitForSeconds(waitTime);
             anim.SetBool("OntheAir", false);
             spaceshipCollider.enabled = true;
+            fire.SetActive(true);
             gameObject.GetComponent<Snake>().createTail();
             gameObject.GetComponent<Snake>().isDrawingTail = true;
+            
         }
     }
 }
