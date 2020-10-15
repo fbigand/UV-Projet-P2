@@ -28,7 +28,6 @@ public class ManagePlayers : MonoBehaviour
                 if (i < numberPlayers)
                 {
                     activePlayers[i] = usableSpaceships[i];
-                    activePlayers[i].SetActive(false);
                 }
                 else
                 {
