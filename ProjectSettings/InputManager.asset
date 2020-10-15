@@ -73,8 +73,8 @@ InputManager:
     m_Name: Move3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: a
-    positiveButton: e
+    negativeButton: q
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

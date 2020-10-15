@@ -732,6 +732,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
@@ -876,6 +881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -1022,6 +1032,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
@@ -1166,6 +1181,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}

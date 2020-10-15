@@ -20,7 +20,7 @@ public class Controller : MonoBehaviour
 
     public bool IsUsingSecondaryBonus()
     {
-        return Input.GetAxis(attackAxis) < 0;
+        return Input.GetAxis(attackAxis)<0;
     }
 
 }
