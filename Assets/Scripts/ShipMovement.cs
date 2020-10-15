@@ -15,8 +15,9 @@ public class ShipMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
         float translationY = speed;
 
         float rotationZ = controller.GetRotation();
@@ -28,8 +29,13 @@ public class ShipMovement : MonoBehaviour
             rotationZ = -0.5f * Mathf.Sign(rotationZ) ;
         }
 
-        transform.Rotate(0f, 0f, rotationZ * rotationAngle * Time.deltaTime);
-        transform.Translate(0f, translationY * Time.deltaTime, 0f);
+        transform.Rotate(0f, 0f, rotationZ * rotationAngle );
+        transform.Translate(0f, translationY , 0f);
     }
-        
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
 }
