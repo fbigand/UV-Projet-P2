@@ -165,7 +165,7 @@ MonoBehaviour:
   positionHotSpotEnd: {fileID: 4475309868540062162}
   minDistanceTail: 4
   maxDistanceTail: 4.5
-  distanceBreakInTail: 0.25
+  distanceBreakInTail: 3
   positionHotSpotFront: {fileID: 4475309868173804219}
   dieAnimation: {fileID: 8399138910015373975, guid: f21a769d319876e4bb36db6848c4ae5b,
     type: 3}
