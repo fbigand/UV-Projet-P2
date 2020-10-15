@@ -35,7 +35,7 @@ public class Tail : MonoBehaviour
     }
 
     //a chaque fois qu'on a un nouveau point à ajouter à la ligne
-    public void updateTailVertex(Vector3 position)
+    public void UpdateTailVertex(Vector3 position)
     {
         //On ajoute le point pour le dessin de la ligne
         line.positionCount++;
