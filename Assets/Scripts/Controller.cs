@@ -2,25 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Controller : MonoBehaviour
+abstract public class Controller : MonoBehaviour
 {
-    public string moveAxis;
-    public string attackAxis;
+    // Start is called before the first frame update
+    abstract public float GetRotation();
 
-    //return -1 for left, 1 for right and 0 equals forward
-    public float GetRotation()
-    {
-        return Input.GetAxis(moveAxis);
-    }
+    abstract public bool IsUsingPrimaryBonus();
 
-    public bool IsUsingPrimaryBonus()
-    {
-        return Input.GetAxis(attackAxis)>0;
-    }
-
-    public bool IsUsingSecondaryBonus()
-    {
-        return Input.GetAxis(attackAxis) < 0;
-    }
-
+    abstract public bool IsUsingSecondaryBonus();
 }
