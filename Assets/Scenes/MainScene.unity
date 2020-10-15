@@ -393,7 +393,7 @@ PrefabInstance:
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: countdownTime
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965267, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
@@ -712,6 +712,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: speed
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: rotationAngle
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: m_Name
@@ -725,7 +735,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -735,7 +745,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 18
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -847,6 +857,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: speed
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: rotationAngle
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: m_Name
@@ -860,7 +880,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -870,7 +890,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 18
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -982,6 +1002,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: speed
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: rotationAngle
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: m_Name
@@ -995,7 +1025,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -1005,7 +1035,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 18
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -1117,6 +1147,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: speed
+      value: 0.025
+      objectReference: {fileID: 0}
+    - target: {fileID: 837037984596119346, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: rotationAngle
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: m_Name
@@ -1130,7 +1170,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: distanceBreakInTail
-      value: 4
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
@@ -1140,7 +1180,7 @@ PrefabInstance:
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}
       propertyPath: maxDistanceTail
-      value: 18
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 9106837629739123077, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}

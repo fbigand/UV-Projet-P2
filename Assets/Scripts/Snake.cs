@@ -14,7 +14,6 @@ public class Snake : MonoBehaviour
     public Transform positionHotSpotEnd;
 
     //Generer des trous dans la queue du serpent
-    public float minDistanceTail = 4.5f;
     public float maxDistanceTail = 5f;
     public float distanceBreakInTail = 0.25f;
     private Vector2 lastPoint;
@@ -41,27 +40,35 @@ public class Snake : MonoBehaviour
     void Update()
     {
         //dessine la queue
+        lastDistance += Vector3.Distance(lastPoint, new Vector2(positionHotSpotEnd.position.x, positionHotSpotEnd.position.y));
         if (isDrawingTail)
         {
             currentTail.updateTailVertex(positionHotSpotEnd.position);
-            lastDistance+= Vector3.Distance(lastPoint,positionHotSpotEnd.position);
             if(lastDistance > maxDistanceTail)
             {
                 isDrawingTail = false;
-                lastDistance = 0f;
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
+                anim.SetBool("Free", true);
+                resetLastDistance();
             }
         }
         else
         {
-            lastDistance += Vector3.Distance(lastPoint, positionHotSpotEnd.position);
             if (lastDistance > distanceBreakInTail)
             {
-                lastDistance = 0f;
+                gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
+                anim.SetBool("Free", false);
                 isDrawingTail = true;
+                resetLastDistance();
                 createTail();
             }
         }
         lastPoint = positionHotSpotEnd.position;
+    }
+
+    public void resetLastDistance()
+    {
+        lastDistance = 0f;
     }
 
     //Crée le bout de queue suivant

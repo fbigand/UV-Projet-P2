@@ -76,16 +76,16 @@ public class PowersAttack : MonoBehaviour
         anim.SetTrigger("Jump");
         anim.SetBool("OntheAir", true);
         spaceshipCollider.enabled = false;
-        StartCoroutine(WaitAndReset(0.5f));
+        StartCoroutine(WaitAndReset());
         gameObject.GetComponent<Snake>().isDrawingTail = false;
+        gameObject.GetComponent<Snake>().resetLastDistance();
 
-        IEnumerator WaitAndReset(float waitTime)
+
+        IEnumerator WaitAndReset()
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(GetComponent<Snake>().distanceBreakInTail* Time.fixedDeltaTime / gameObject.GetComponent<ShipMovement>().speed);
             anim.SetBool("OntheAir", false);
             spaceshipCollider.enabled = true;
-            gameObject.GetComponent<Snake>().createTail();
-            gameObject.GetComponent<Snake>().isDrawingTail = true;
         }
     }
 }
