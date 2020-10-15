@@ -34,7 +34,7 @@ public class Snake : MonoBehaviour
         listQueue = new List<Tail>();
         lastDistance = 0f;
         lastPoint = positionHotSpotEnd.position;
-        createTail();
+        CreateTail();
     }
 
     void Update()
@@ -49,7 +49,7 @@ public class Snake : MonoBehaviour
                 isDrawingTail = false;
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
                 anim.SetBool("Free", true);
-                resetLastDistance();
+                ResetLastDistance();
             }
         }
         else
@@ -59,20 +59,20 @@ public class Snake : MonoBehaviour
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
                 anim.SetBool("Free", false);
                 isDrawingTail = true;
-                resetLastDistance();
-                createTail();
+                ResetLastDistance();
+                CreateTail();
             }
         }
         lastPoint = positionHotSpotEnd.position;
     }
 
-    public void resetLastDistance()
+    public void ResetLastDistance()
     {
         lastDistance = 0f;
     }
 
     //Crée le bout de queue suivant
-    public void createTail()
+    public void CreateTail()
     {
         currentTail = Instantiate(queuePrefab) as Tail;
         currentTail.SetColor(colorTail);
@@ -92,7 +92,7 @@ public class Snake : MonoBehaviour
         }
         else if (collision.CompareTag("Tail"))
         {
-            collideTail(collision.GetComponent<Tail>());
+            CollideTail(collision.GetComponent<Tail>());
             Die();
         }
     }
@@ -104,7 +104,7 @@ public class Snake : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void collideTail(Tail collidedTail)
+    private void CollideTail(Tail collidedTail)
     {
         //en premier on enregistre tous les points de la queue percutée
         Vector2[] listPointsCollidedTail = new Vector2[collidedTail.listPointsEdgeCollider.Count];
@@ -129,7 +129,7 @@ public class Snake : MonoBehaviour
             }
         }
 
-        //si il n'y avait pas de points avant l'explosion on detruit la queue prevue pour ça
+        //s'il n'y avait pas de points avant l'explosion on detruit la queue prevue pour ça
         if(i == 0)
         {
             partBeforeHole.gameObject.SetActive(false);

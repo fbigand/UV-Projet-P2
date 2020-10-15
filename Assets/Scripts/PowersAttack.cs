@@ -78,7 +78,7 @@ public class PowersAttack : MonoBehaviour
         spaceshipCollider.enabled = false;
         StartCoroutine(WaitAndReset());
         gameObject.GetComponent<Snake>().isDrawingTail = false;
-        gameObject.GetComponent<Snake>().resetLastDistance();
+        gameObject.GetComponent<Snake>().ResetLastDistance();
 
 
         IEnumerator WaitAndReset()
