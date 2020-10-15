@@ -17,6 +17,8 @@ public class Snake : MonoBehaviour
     public float minDistanceTail = 4.5f;
     public float maxDistanceTail = 5f;
     public float distanceBreakInTail = 0.25f;
+    private Vector2 lastPoint;
+    private float lastDistance;
 
     //Pour les collisions
     public Transform positionHotSpotFront;
@@ -31,7 +33,10 @@ public class Snake : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         isDrawingTail = true;
         listQueue = new List<Tail>();
-        StartCoroutine(DrawCurrentTail());
+        lastDistance = 0f;
+        lastPoint = positionHotSpotEnd.position;
+        createTail();
+        //StartCoroutine(DrawCurrentTail());
     }
 
 
@@ -39,7 +44,7 @@ public class Snake : MonoBehaviour
      * Créer la queue du serpent
      */
     //détermine si on dessine la queue ou si on fait un trou
-    private IEnumerator DrawCurrentTail()
+    /*private IEnumerator DrawCurrentTail()
     {
         while (true)
         {
@@ -54,7 +59,7 @@ public class Snake : MonoBehaviour
             gameObject.GetComponent<CapsuleCollider2D>().enabled = true;
             anim.SetBool("Free", false);
         }
-    }
+    }*/
 
     void Update()
     {
@@ -62,7 +67,24 @@ public class Snake : MonoBehaviour
         if (isDrawingTail)
         {
             currentTail.updateTailVertex(positionHotSpotEnd.position);
+            lastDistance+= Vector3.Distance(lastPoint,positionHotSpotEnd.position);
+            if(lastDistance > maxDistanceTail)
+            {
+                isDrawingTail = false;
+                lastDistance = 0f;
+            }
         }
+        else
+        {
+            lastDistance += Vector3.Distance(lastPoint, positionHotSpotEnd.position);
+            if (lastDistance > distanceBreakInTail)
+            {
+                lastDistance = 0f;
+                isDrawingTail = true;
+                createTail();
+            }
+        }
+        lastPoint = positionHotSpotEnd.position;
     }
 
     //Crée le bout de queue suivant
