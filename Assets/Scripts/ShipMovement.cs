@@ -31,5 +31,10 @@ public class ShipMovement : MonoBehaviour
         transform.Rotate(0f, 0f, rotationZ * rotationAngle * Time.deltaTime);
         transform.Translate(0f, translationY * Time.deltaTime, 0f);
     }
-        
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
 }

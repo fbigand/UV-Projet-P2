@@ -25,8 +25,14 @@ public class Rocket : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall"))
+        if (collision.CompareTag("Wall") || collision.CompareTag("Rocket"))
         {
+            Die();
+        }
+
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<ShipMovement>().Die();
             Die();
         }
     }
