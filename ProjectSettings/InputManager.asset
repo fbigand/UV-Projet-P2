@@ -6,7 +6,7 @@ InputManager:
   serializedVersion: 2
   m_Axes:
   - serializedVersion: 3
-    m_Name: Arrow
+    m_Name: Move1
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: left
@@ -22,10 +22,10 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: ArrowUp
+    m_Name: Power1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: down
     positiveButton: up
     altNegativeButton: 
     altPositiveButton: 
@@ -38,11 +38,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: wx
+    m_Name: Move2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: w
-    positiveButton: c
+    negativeButton: v
+    positiveButton: n
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -54,11 +54,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Chevron
+    m_Name: Power2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: x
+    negativeButton: space
+    positiveButton: b
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -70,11 +70,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: ez
+    m_Name: Move3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: z
-    positiveButton: e
+    negativeButton: q
+    positiveButton: d
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -86,11 +86,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: a
+    m_Name: Power3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: a
+    negativeButton: s
+    positiveButton: z
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000
@@ -102,10 +102,10 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: po
+    m_Name: Move4
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: o
+    negativeButton: i
     positiveButton: p
     altNegativeButton: 
     altPositiveButton: 
@@ -118,11 +118,11 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: i
+    m_Name: Power4
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: i
+    negativeButton: l
+    positiveButton: o
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

@@ -13,9 +13,14 @@ public class Controller : MonoBehaviour
         return Input.GetAxis(moveAxis);
     }
 
-    public bool IsAttacking()
+    public bool IsUsingPrimaryBonus()
     {
         return Input.GetAxis(attackAxis)>0;
+    }
+
+    public bool IsUsingSecondaryBonus()
+    {
+        return Input.GetAxis(attackAxis)<0;
     }
 
 }
