@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ControllerIA : Controller
+public class ControllerRandom : MonoBehaviour, IController
 {
-    
-    override public float GetRotation()
+    float IController.GetRotation()
     {
         return Random.Range(-1f, 1f);
     }
 
-    override public bool IsUsingPrimaryBonus()
+    bool IController.IsUsingPrimaryBonus()
     {
         return false;
     }
 
-    override public bool IsUsingSecondaryBonus()
+    bool IController.IsUsingSecondaryBonus()
     {
         return false;
     }
