@@ -90,6 +90,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3826736801564901029}
+  - component: {fileID: 6101829773439258636}
   m_Layer: 5
   m_Name: Player1HUD
   m_TagString: Untagged
@@ -121,6 +122,18 @@ RectTransform:
   m_AnchoredPosition: {x: -450, y: 300}
   m_SizeDelta: {x: 530, y: 200}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6101829773439258636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3826736801564901028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18255d1ef7b606343a096376b2ca5e8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3826736802030546271
 GameObject:
   m_ObjectHideFlags: 0

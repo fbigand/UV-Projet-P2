@@ -4,36 +4,36 @@ using UnityEngine.UI;
 
 public class HudPlayer : MonoBehaviour
 {
-    private Text textCooldownUp;
-    private Text textCooldownDown;
+    private Text textBonusPrimary;
+    private Text textBonusSecondary;
     private Text playerName;
 
     // Start is called before the first frame update
     void Start()
     {
-        textCooldownDown = transform.Find("DownBonusText").gameObject.GetComponent<Text>();
-        textCooldownUp = transform.Find("UpBonusText").GetComponent<Text>();
+        textBonusSecondary = transform.Find("DownBonusText").gameObject.GetComponent<Text>();
+        textBonusPrimary = transform.Find("UpBonusText").GetComponent<Text>();
         playerName = transform.Find("PlayerName").GetComponent<Text>();
     }
 
-    public void setNamePLayer()
+    public void setNamePLayer(string name)
     {
-
+        playerName.text = name;
     }
 
-    public void setTextBonusUp()
+    public void SetTextBonus(string countDownPrimaryBonus, string countDownSecondaryBonus)
     {
-
+        textBonusPrimary.text = countDownPrimaryBonus;
+        textBonusSecondary.text = countDownSecondaryBonus;
     }
 
-    public void setBonusDown()
+    public void SetPrimaryToReady()
     {
-
+        textBonusPrimary.text = "Ready";
+    }
+    public void SetSecondaryToReady()
+    {
+        textBonusSecondary.text = "Ready";
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
