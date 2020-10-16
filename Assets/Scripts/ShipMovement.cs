@@ -7,11 +7,11 @@ public class ShipMovement : MonoBehaviour
     public float speed = 0.01f;
     public float rotationAngle = 1f;
 
-    private Controller controller;
+    private IController controller;
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<Controller>();
+        controller = GetComponent<IController>();
     }
 
     // Update is called once per frame
