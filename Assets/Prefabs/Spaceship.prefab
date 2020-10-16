@@ -163,7 +163,6 @@ MonoBehaviour:
   colorTail: {r: 0, g: 0, b: 0, a: 0}
   isDrawingTail: 0
   positionHotSpotEnd: {fileID: 4475309868540062162}
-  minDistanceTail: 4
   maxDistanceTail: 15
   distanceBreakInTail: 1.5
   positionHotSpotFront: {fileID: 4475309868173804219}
@@ -201,6 +200,7 @@ MonoBehaviour:
   durationCooldownPowerDown: 3
   textCooldownUp: {fileID: 0}
   textCooldownDown: {fileID: 0}
+  prefabTexts: {fileID: 0}
   rocketPrefab: {fileID: 1172813776220868439, guid: be454c947ff2b7d47bcfd4be2a229433,
     type: 3}
 --- !u!1 &837037985391666200

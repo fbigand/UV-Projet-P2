@@ -353,7 +353,7 @@ PrefabInstance:
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: numberPlayers
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
@@ -398,6 +398,11 @@ PrefabInstance:
     - target: {fileID: 2174080881887965267, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: m_Name
+      value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2174080881887965267, guid: 034d1985ad73d5e4788ace0786adebbf,
+        type: 3}
+      propertyPath: m_TagString
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965269, guid: 034d1985ad73d5e4788ace0786adebbf,
@@ -547,6 +552,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520129463}
   m_CullTransparentMesh: 0
+--- !u!1 &1537445480 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2174080881887965267, guid: 034d1985ad73d5e4788ace0786adebbf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1342716880}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1537445481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537445480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067cf42c4747c844f9ed536543e6b8d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1577070678 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5856756593397047180, guid: 09e8edbeb26d9ea4db0fa64d0534587e,

@@ -15,11 +15,17 @@ public class ManagePlayers : MonoBehaviour
     public string startMessage;
     public int startMessageDuration; // in seconds
 
-    private bool wasCalledStartCountdown;
     private GameObject[] activePlayers;
+
+    //Manage scores
+    private static int[] scores;
+    private int nbrPlayerDead = 0;
+    private int nbrPointByRank = 10;
+
     // Start is called before the first frame update
     void Start()
     {
+        scores = new int[numberPlayers];
         activePlayers = new GameObject[numberPlayers];
         if(usableSpaceships != null && usableSpaceships.Length > 0)
         {
@@ -28,6 +34,7 @@ public class ManagePlayers : MonoBehaviour
                 if (i < numberPlayers)
                 {
                     activePlayers[i] = usableSpaceships[i];
+                    usableSpaceships[i].gameObject.GetComponent<Player>().init(i,scores[i]);
                 }
                 else
                 {
@@ -96,5 +103,12 @@ public class ManagePlayers : MonoBehaviour
         {
             spaceship.SetActive(true);
         }
+    }
+
+    public int playerFinishGame(int id)
+    {
+        scores[id] += nbrPointByRank * nbrPlayerDead;
+        nbrPlayerDead++;
+        return scores[id];
     }
 }

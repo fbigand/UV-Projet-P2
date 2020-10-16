@@ -17,6 +17,8 @@ public class PowersAttack : MonoBehaviour
     public Text textCooldownUp;
     public Text textCooldownDown;
 
+    public GameObject prefabTexts;
+
     public GameObject rocketPrefab;
     private Animator anim;
     private CapsuleCollider2D spaceshipCollider;
@@ -26,6 +28,11 @@ public class PowersAttack : MonoBehaviour
     {
         counterCooldownUp.Start();
         counterCooldownDown.Start();
+
+        textCooldownDown = prefabTexts.transform.Find("DownBonusText").GetComponent<Text>();
+        textCooldownUp = prefabTexts.transform.Find("UpBonusText").GetComponent<Text>();
+        print(textCooldownUp);
+        print(textCooldownDown);
 
         anim = gameObject.GetComponent<Animator>();
         spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
