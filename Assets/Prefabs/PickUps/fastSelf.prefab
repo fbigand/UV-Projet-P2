@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1804300452501595555}
   - component: {fileID: 9066752878670828529}
   - component: {fileID: 6873398058653799276}
-  - component: {fileID: 8413898753958120036}
   - component: {fileID: 4889649176690085153}
   m_Layer: 10
-  m_Name: fastgood
+  m_Name: fastSelf
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,22 +99,6 @@ CircleCollider2D:
   m_Offset: {x: 0.08454775, y: 0}
   serializedVersion: 2
   m_Radius: 1.5289493
---- !u!114 &8413898753958120036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6224839074503860853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbf7dee667cb7c429e5360665e76fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slowgood: 0
-  slowbad: 0
-  fastgood: 1
-  fastbad: 0
 --- !u!95 &4889649176690085153
 Animator:
   serializedVersion: 3

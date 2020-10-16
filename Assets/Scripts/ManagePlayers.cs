@@ -15,7 +15,6 @@ public class ManagePlayers : MonoBehaviour
     public string startMessage;
     public int startMessageDuration; // in seconds
 
-    private bool wasCalledStartCountdown;
     private GameObject[] activePlayers;
     // Start is called before the first frame update
     void Start()

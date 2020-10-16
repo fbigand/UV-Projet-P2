@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 7179784557158774056}
   - component: {fileID: 7179784557158774057}
   - component: {fileID: 8709013783385989386}
-  - component: {fileID: 976733409974310668}
   - component: {fileID: 1096333512053333558}
+  - component: {fileID: 6956150046269613108}
   m_Layer: 10
-  m_Name: slowgood
+  m_Name: slowSelf
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,22 +100,6 @@ CircleCollider2D:
   m_Offset: {x: 0.0857842, y: -0.00536104}
   serializedVersion: 2
   m_Radius: 1.5274081
---- !u!114 &976733409974310668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7179784557158774058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fbf7dee667cb7c429e5360665e76fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slowgood: 1
-  slowbad: 0
-  fastgood: 0
-  fastbad: 0
 --- !u!95 &1096333512053333558
 Animator:
   serializedVersion: 3
@@ -135,3 +119,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6956150046269613108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7179784557158774058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c9f58d39fac1b441a4640959ed96030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedUp: 1.2
+  speedDown: 0.8
+  countTime: 3
