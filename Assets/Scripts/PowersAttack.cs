@@ -15,7 +15,7 @@ public class PowersAttack : MonoBehaviour
     public int durationCooldownPowerDown; // in millis
     
 
-    public HudPlayer hudPlayer;
+    private HudPlayer hudPlayer;
 
     public GameObject rocketPrefab;
     private Animator anim;
@@ -27,6 +27,7 @@ public class PowersAttack : MonoBehaviour
         counterCooldownPrimary.Start();
         counterCooldownSecondary.Start();
 
+        hudPlayer = GetComponent<Player>().hudplayer;
         anim = gameObject.GetComponent<Animator>();
         spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
         controller = GetComponent<IController>();

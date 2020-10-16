@@ -16,9 +16,10 @@ public class HudPlayer : MonoBehaviour
         playerName = transform.Find("PlayerName").GetComponent<Text>();
     }
 
-    public void setNamePLayer(string name)
+    public void SetPlayer(string name, Color color)
     {
         playerName.text = name;
+        playerName.color = color;
     }
 
     public void SetTextBonus(string countDownPrimaryBonus, string countDownSecondaryBonus)

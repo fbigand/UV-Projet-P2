@@ -21,6 +21,8 @@ public class ManagePlayers : MonoBehaviour
     private static int[] scores;
     private int nbrPlayerDead = 0;
     private int nbrPointByRank = 10;
+    public GameObject HUD;
+    public HudPlayer hudPlayerPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +36,6 @@ public class ManagePlayers : MonoBehaviour
                 if (i < numberPlayers)
                 {
                     activePlayers[i] = usableSpaceships[i];
-                    usableSpaceships[i].gameObject.GetComponent<Player>().init(i,scores[i]);
                 }
                 else
                 {
@@ -42,6 +43,7 @@ public class ManagePlayers : MonoBehaviour
                 }
             }
             placePlayers();
+            associateHud();
             StartCoroutine(Countdown());
         }
     }
@@ -97,11 +99,31 @@ public class ManagePlayers : MonoBehaviour
         yield return null;
     }
 
-    private void StartGame()
+    private void associateHud()
     {
+        int posy = 279;
+        int incrPosY = -200;
         foreach (GameObject spaceship in activePlayers)
         {
-            spaceship.SetActive(true);
+            HudPlayer hudPlayer = Instantiate(hudPlayerPrefab) as HudPlayer;
+
+            hudPlayer.transform.SetParent(HUD.transform);
+            hudPlayer.transform.localScale = new Vector3(1, 1, 1);
+            hudPlayer.transform.localPosition = new Vector3(-1130, posy, -1f);
+            
+            
+            spaceship.GetComponent<Player>().hudplayer = hudPlayer;
+            posy += incrPosY;
+            //hudPlayer.transform.Translate(new Vector3(0f, -100f, 0f));
+        }
+    }
+
+    private void StartGame()
+    {
+        for (int i = 0; i < activePlayers.Length; i++)
+        {
+            activePlayers[i].SetActive(true);
+            activePlayers[i].gameObject.GetComponent<Player>().init(i, scores[i]);
         }
     }
 
