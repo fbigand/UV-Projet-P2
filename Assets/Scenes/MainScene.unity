@@ -345,13 +345,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   usablePickUps:
-  - {fileID: 6224839074503860853, guid: a49761a70a8c1824fb3275377d914d85, type: 3}
-  - {fileID: 1821361388810481042, guid: 79273c3ca77f79b4693b6efefdc5a269, type: 3}
-  - {fileID: 7179784557158774058, guid: e6b066c6d12dda641a100fb755bea5ef, type: 3}
-  - {fileID: 961650263844377623, guid: 143d251c91c4b70498ff918998b16ce7, type: 3}
+  - {fileID: 6956150046269613108, guid: e6b066c6d12dda641a100fb755bea5ef, type: 3}
+  - {fileID: -186359898232076443, guid: a49761a70a8c1824fb3275377d914d85, type: 3}
   activationPickUps: 1
   stopSpawning: 0
-  spawnDelay: 5
+  spawnDelay: 3
+  spawnTime: 2
 --- !u!114 &1338889529 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5477055260532245315, guid: 09e8edbeb26d9ea4db0fa64d0534587e,
@@ -419,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: countdownTime
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965267, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}

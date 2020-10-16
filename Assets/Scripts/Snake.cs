@@ -84,6 +84,10 @@ public class Snake : MonoBehaviour
         {
             Die();
         }
+        if (collision.CompareTag("PickUp"))
+        {
+            collision.GetComponent<PickUps>().ActivatePickUp(gameObject);
+        }
         else if (collision.CompareTag("Tail"))
         {
             collideTail(collision.GetComponent<Tail>());

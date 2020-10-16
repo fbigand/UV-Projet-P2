@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
 {
-    public float speed = 0.01f;
+    public float speed = 1.3f;
     public float rotationAngle = 1f;
 
     private Controller controller;
@@ -17,6 +17,7 @@ public class ShipMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //print("tmps : " + Time.time + "Speed : "+ speed);
         float translationY = speed;
 
         float rotationZ = controller.GetRotation();

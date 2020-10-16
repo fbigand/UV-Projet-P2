@@ -8,13 +8,13 @@ using UnityEngine.UI;
 
 public class ManagePickUps : MonoBehaviour
 {
-    public List<GameObject> usablePickUps;
+    public List<PickUps> usablePickUps;
 
     public bool activationPickUps = true;
     public bool stopSpawning = false;
 
     public float spawnDelay;
-    private float spawnTime = 3f;
+    public float spawnTime = 3f;
     private float maplength = 8.7f;
 
     void Start()
@@ -28,9 +28,9 @@ public class ManagePickUps : MonoBehaviour
     public void SpawnPickUps()
     {
         int randomItem = Random.Range(0, usablePickUps.Count);
-        GameObject toSpawn = usablePickUps[randomItem];
+        PickUps toSpawn = usablePickUps[randomItem];
 
-        Vector3 pickUpsPosition = new Vector3(Random.Range(-0.4f, -0.4f + maplength), Random.Range(-4.35f, -4.35f + maplength), 0);
+        Vector3 pickUpsPosition = new Vector3(Random.Range(-0.4f, -0.4f + maplength), Random.Range(-4.35f, -4.35f + maplength), -1f);
         Instantiate(toSpawn, pickUpsPosition, Quaternion.identity);
 
         if (stopSpawning)
