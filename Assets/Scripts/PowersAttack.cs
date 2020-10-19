@@ -22,7 +22,7 @@ public class PowersAttack : MonoBehaviour
     private GameObject fire;
     private Animator anim;
     private CapsuleCollider2D spaceshipCollider;
-    private Controller controller;
+    private IController controller;
 
     private void Start()
     {
@@ -31,7 +31,7 @@ public class PowersAttack : MonoBehaviour
 
         anim = gameObject.GetComponent<Animator>();
         spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
-        controller = GetComponent<Controller>();
+        controller = GetComponent<IController>();
 
         fire = GameObject.Find("Fire");
     }
@@ -80,18 +80,18 @@ public class PowersAttack : MonoBehaviour
         anim.SetTrigger("Jump");
         anim.SetBool("OntheAir", true);
         spaceshipCollider.enabled = false;
-        StartCoroutine(WaitAndReset(0.5f));
+        StartCoroutine(WaitAndReset());
         gameObject.GetComponent<Snake>().isDrawingTail = false;
+        gameObject.GetComponent<Snake>().ResetLastDistance();
         fire.SetActive(false);
 
-        IEnumerator WaitAndReset(float waitTime)
+
+        IEnumerator WaitAndReset()
         {
-            yield return new WaitForSeconds(waitTime);
+            yield return new WaitForSeconds(GetComponent<Snake>().distanceBreakInTail* Time.fixedDeltaTime / gameObject.GetComponent<ShipMovement>().speed);
             anim.SetBool("OntheAir", false);
             spaceshipCollider.enabled = true;
             fire.SetActive(true);
-            gameObject.GetComponent<Snake>().createTail();
-            gameObject.GetComponent<Snake>().isDrawingTail = true;
             
         }
     }

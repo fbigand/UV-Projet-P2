@@ -7,16 +7,17 @@ public class ShipMovement : MonoBehaviour
     public float speed = 1.3f;
     public float rotationAngle = 1f;
 
-    private Controller controller;
+    private IController controller;
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<Controller>();
+        controller = GetComponent<IController>();
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+
         float translationY = speed;
 
         float rotationZ = controller.GetRotation();
@@ -28,8 +29,8 @@ public class ShipMovement : MonoBehaviour
             rotationZ = -0.5f * Mathf.Sign(rotationZ) ;
         }
 
-        transform.Rotate(0f, 0f, rotationZ * rotationAngle * Time.deltaTime);
-        transform.Translate(0f, translationY * Time.deltaTime, 0f);
+        transform.Rotate(0f, 0f, rotationZ * rotationAngle );
+        transform.Translate(0f, translationY , 0f);
     }
 
     public void Die()
