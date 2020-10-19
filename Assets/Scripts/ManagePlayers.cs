@@ -18,7 +18,6 @@ public class ManagePlayers : MonoBehaviour
     private GameObject[] activePlayers;
 
     //Manage scores
-    private static int[] scores;
     private int nbrPlayerDead = 0;
     private int nbrPointByRank = 10;
     public GameObject HUD;
@@ -27,7 +26,6 @@ public class ManagePlayers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scores = new int[numberPlayers];
         activePlayers = new GameObject[numberPlayers];
         if(usableSpaceships != null && usableSpaceships.Length > 0)
         {
@@ -43,8 +41,8 @@ public class ManagePlayers : MonoBehaviour
                 }
             }
             placePlayers();
-            associateHud();
             StartCoroutine(Countdown());
+            associateHud();
         }
     }
 
@@ -122,15 +120,19 @@ public class ManagePlayers : MonoBehaviour
     {
         for (int i = 0; i < activePlayers.Length; i++)
         {
+            if (i >= Scores.scores.Count)
+            {
+                Scores.scores.Add(0);
+            }
             activePlayers[i].SetActive(true);
-            activePlayers[i].gameObject.GetComponent<Player>().init(i, scores[i]);
+            activePlayers[i].gameObject.GetComponent<Player>().init(i, Scores.scores[i]);
         }
     }
 
     public int playerFinishGame(int id)
     {
-        scores[id] += nbrPointByRank * nbrPlayerDead;
+        Scores.scores[id] += nbrPointByRank * nbrPlayerDead;
         nbrPlayerDead++;
-        return scores[id];
+        return Scores.scores[id];
     }
 }

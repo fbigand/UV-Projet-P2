@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     {
         this.score = score;
         this.id = id;
-        hudplayer.SetPlayer("Player:" + id, color);
+        hudplayer.SetPlayer("Player:" + id, color,score.ToString());
     }
 
     public void finishRound()
