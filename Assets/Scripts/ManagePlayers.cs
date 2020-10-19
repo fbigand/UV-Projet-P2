@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ManagePlayers : MonoBehaviour
@@ -127,12 +126,33 @@ public class ManagePlayers : MonoBehaviour
             activePlayers[i].SetActive(true);
             activePlayers[i].gameObject.GetComponent<Player>().init(i, Scores.scores[i]);
         }
+
     }
+
 
     public int playerFinishGame(int id)
     {
         Scores.scores[id] += nbrPointByRank * nbrPlayerDead;
         nbrPlayerDead++;
+
+        if(nbrPlayerDead == numberPlayers - 1)
+        {
+            for (int i = 0; i < activePlayers.Length; i++)
+            {
+                Player player = activePlayers[i].gameObject.GetComponent<Player>();
+                if (player.isAlive)
+                {
+                    Scores.scores[player.id] += nbrPointByRank * nbrPlayerDead;
+                    StartCoroutine(loadNextRound());
+                }
+            }            
+        }
         return Scores.scores[id];
+    }
+
+    private IEnumerator loadNextRound()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(1);
     }
 }

@@ -101,9 +101,9 @@ public class Snake : MonoBehaviour
     void Die()
     {
         GameObject effect = Instantiate(dieAnimation, transform.position, Quaternion.identity);
-        GetComponent<Player>().finishRound();
         Destroy(effect, 0.3f);
-        Destroy(gameObject);
+        GetComponent<Player>().finishRound();
+        gameObject.SetActive(false);
     }
 
     private void CollideTail(Tail collidedTail)
