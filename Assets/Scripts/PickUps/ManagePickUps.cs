@@ -13,8 +13,8 @@ public class ManagePickUps : MonoBehaviour
     public bool activationPickUps = true;
     public bool stopSpawning = false;
 
-    public float spawnDelay = 4f;
-    public float spawnTime = 3f;
+    public float spawnDelay = 6f;
+    public float spawnTime = 4f;
     private float maplength = 8.7f;
 
     void Start()

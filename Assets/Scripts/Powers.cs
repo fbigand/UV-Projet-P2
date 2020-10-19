@@ -5,7 +5,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowersAttack : MonoBehaviour
+public class Powers : MonoBehaviour
 { 
     public Transform shootPoint;
 

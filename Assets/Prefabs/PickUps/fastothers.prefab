@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1961903106888134451}
   - component: {fileID: 440602514531199795}
   - component: {fileID: 5085970514592310314}
+  - component: {fileID: 1520088125349538556}
   m_Layer: 10
-  m_Name: fastothers
+  m_Name: fastOthers
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,3 +119,16 @@ CircleCollider2D:
   m_Offset: {x: 0.07848144, y: -0.019620411}
   serializedVersion: 2
   m_Radius: 1.5291106
+--- !u!114 &1520088125349538556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821361388810481042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02098606fac42b14a9cc87b5fa7deecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedModif: 0.005
