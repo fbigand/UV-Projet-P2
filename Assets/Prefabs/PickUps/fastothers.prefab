@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5085970514592310314}
   - component: {fileID: 1520088125349538556}
   m_Layer: 10
-  m_Name: fastOthers
+  m_Name: fastothers
   m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,4 +131,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02098606fac42b14a9cc87b5fa7deecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedModif: 0.005
+  speedModif: 0.01
+  activePlayers: []
