@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class FastSelf : PickUps
 {
+
+    private void Awake()
+    {
+        
+    }
     override public void ActivatePickUp(GameObject ship)
     {        
         Destroy(gameObject);
@@ -15,6 +20,5 @@ public class FastSelf : PickUps
     {
         yield return new WaitForSeconds(3);
         shipmov.speed -= speedModif;
-        yield return null;
     }
 }    

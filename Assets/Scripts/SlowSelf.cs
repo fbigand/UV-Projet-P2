@@ -10,7 +10,6 @@ public class SlowSelf : PickUps
     override public void ActivatePickUp(GameObject ship)
     {
         Destroy(gameObject);
-        print("Activate");
         ship.GetComponent<ShipMovement>().speed -= speedModif;
         StartCoroutine(WaitAndReset(ship.GetComponent<ShipMovement>()));
     }
@@ -19,6 +18,5 @@ public class SlowSelf : PickUps
     {
         yield return new WaitForSeconds(3);
         shipmov.speed += speedModif;
-        yield return null;
     }             
 }

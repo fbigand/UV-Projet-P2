@@ -17,7 +17,6 @@ public class ShipMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //print("tmps : " + Time.time + "Speed : "+ speed);
         float translationY = speed;
 
         float rotationZ = controller.GetRotation();
