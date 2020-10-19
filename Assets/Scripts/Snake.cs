@@ -8,7 +8,7 @@ public class Snake : MonoBehaviour
     public Tail queuePrefab;
     private List<Tail> listQueue;
     private Tail currentTail;
-    public Color colorTail;
+    private Color colorTail;
     //determine si on est sur un trou ou si on dessine la queue
     public bool isDrawingTail;
     public Transform positionHotSpotEnd;
@@ -29,6 +29,7 @@ public class Snake : MonoBehaviour
 
     void Start()
     {
+        colorTail = GetComponent<Player>().color;
         anim = gameObject.GetComponent<Animator>();
         isDrawingTail = true;
         listQueue = new List<Tail>();
@@ -105,7 +106,8 @@ public class Snake : MonoBehaviour
     {
         GameObject effect = Instantiate(dieAnimation, transform.position, Quaternion.identity);
         Destroy(effect, 0.3f);
-        Destroy(gameObject);
+        GetComponent<Player>().finishRound();
+        gameObject.SetActive(false);
     }
 
     private void CollideTail(Tail collidedTail)

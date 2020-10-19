@@ -1,8 +1,7 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ManagePlayers : MonoBehaviour
@@ -16,6 +15,13 @@ public class ManagePlayers : MonoBehaviour
     public int startMessageDuration; // in seconds
 
     private GameObject[] activePlayers;
+
+    //Manage scores
+    private int nbrPlayerDead = 0;
+    private int nbrPointByRank = 10;
+    public GameObject HUD;
+    public HudPlayer hudPlayerPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +41,7 @@ public class ManagePlayers : MonoBehaviour
             }
             placePlayers();
             StartCoroutine(Countdown());
+            associateHud();
         }
     }
 
@@ -89,11 +96,63 @@ public class ManagePlayers : MonoBehaviour
         yield return null;
     }
 
-    private void StartGame()
+    private void associateHud()
     {
+        int posy = 279;
+        int incrPosY = -200;
         foreach (GameObject spaceship in activePlayers)
         {
-            spaceship.SetActive(true);
+            HudPlayer hudPlayer = Instantiate(hudPlayerPrefab) as HudPlayer;
+
+            hudPlayer.transform.SetParent(HUD.transform);
+            hudPlayer.transform.localScale = new Vector3(1, 1, 1);
+            hudPlayer.transform.localPosition = new Vector3(-1130, posy, -1f);
+            
+            
+            spaceship.GetComponent<Player>().hudplayer = hudPlayer;
+            posy += incrPosY;
+            //hudPlayer.transform.Translate(new Vector3(0f, -100f, 0f));
         }
+    }
+
+    private void StartGame()
+    {
+        for (int i = 0; i < activePlayers.Length; i++)
+        {
+            if (i >= Scores.scores.Count)
+            {
+                Scores.scores.Add(0);
+            }
+            activePlayers[i].SetActive(true);
+            activePlayers[i].gameObject.GetComponent<Player>().init(i, Scores.scores[i]);
+        }
+
+    }
+
+
+    public int playerFinishGame(int id)
+    {
+        Scores.scores[id] += nbrPointByRank * nbrPlayerDead;
+        nbrPlayerDead++;
+
+        if(nbrPlayerDead == numberPlayers - 1)
+        {
+            for (int i = 0; i < activePlayers.Length; i++)
+            {
+                Player player = activePlayers[i].gameObject.GetComponent<Player>();
+                if (player.isAlive)
+                {
+                    Scores.scores[player.id] += nbrPointByRank * nbrPlayerDead;
+                    StartCoroutine(loadNextRound());
+                }
+            }            
+        }
+        return Scores.scores[id];
+    }
+
+    private IEnumerator loadNextRound()
+    {
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(1);
     }
 }

@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - Tail
   - Rocket
+  - GameManager
   - PickUp
   layers:
   - Default

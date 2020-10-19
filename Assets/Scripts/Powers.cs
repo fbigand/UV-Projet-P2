@@ -9,14 +9,14 @@ public class Powers : MonoBehaviour
 { 
     public Transform shootPoint;
 
-    private Stopwatch counterCooldownUp = new Stopwatch();
-    private Stopwatch counterCooldownDown = new Stopwatch();
+    private Stopwatch counterCooldownPrimary = new Stopwatch();
+    private Stopwatch counterCooldownSecondary = new Stopwatch();
 
     public int durationCooldownPowerUp; // in millis
     public int durationCooldownPowerDown; // in millis
+    
 
-    public Text textCooldownUp;
-    public Text textCooldownDown;
+    private HudPlayer hudPlayer;
 
     public GameObject rocketPrefab;
     private GameObject fire;
@@ -26,9 +26,10 @@ public class Powers : MonoBehaviour
 
     private void Start()
     {
-        counterCooldownUp.Start();
-        counterCooldownDown.Start();
+        counterCooldownPrimary.Start();
+        counterCooldownSecondary.Start();
 
+        hudPlayer = GetComponent<Player>().hudplayer;
         anim = gameObject.GetComponent<Animator>();
         spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
         controller = GetComponent<IController>();
@@ -38,34 +39,31 @@ public class Powers : MonoBehaviour
 
     void Update()
     {
-        int remainingCooldownUp = durationCooldownPowerUp - counterCooldownUp.Elapsed.Seconds;
-        int remainingCooldownDown = durationCooldownPowerDown - counterCooldownDown.Elapsed.Seconds;
+        int remainingCooldownPrimary = durationCooldownPowerUp - counterCooldownPrimary.Elapsed.Seconds;
+        int remainingCooldownSecondary = durationCooldownPowerDown - counterCooldownSecondary.Elapsed.Seconds;
 
-        bool upIsReady = remainingCooldownUp <= 0;
-        bool downIsReady = remainingCooldownDown <= 0;
+        hudPlayer.SetTextBonus(remainingCooldownPrimary.ToString(), remainingCooldownSecondary.ToString());
 
-        textCooldownUp.text = remainingCooldownUp.ToString();
-        textCooldownDown.text = remainingCooldownDown.ToString();
-
-        if (upIsReady)
+        if (remainingCooldownPrimary <= 0)
         {
-            textCooldownUp.text = "Ready";
+            hudPlayer.SetPrimaryToReady();
 
             if (controller.IsUsingPrimaryBonus())
             {
                 LaunchRocket();
-                counterCooldownUp.Restart();
+                counterCooldownPrimary.Restart();
             }
         }
 
-        if (downIsReady)
+        if (remainingCooldownSecondary <= 0)
         {
-            textCooldownDown.text = "Ready";
+
+            hudPlayer.SetSecondaryToReady();
 
             if (controller.IsUsingSecondaryBonus())
             {
                 Jump();
-                counterCooldownDown.Restart();
+                counterCooldownSecondary.Restart();
             }
         }
     }
