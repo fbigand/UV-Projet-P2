@@ -27,18 +27,13 @@ public class Rocket : MonoBehaviour
     {
         if (collision.CompareTag("Wall") || collision.CompareTag("Rocket"))
         {
-            Die();
+            Destroy(gameObject);
         }
 
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<ShipMovement>().Die();
-            Die();
+            collision.GetComponent<Snake>().Die();
+            Destroy(gameObject);
         }
-    }
-
-    private void Die()
-    {
-        Destroy(gameObject);
     }
 }

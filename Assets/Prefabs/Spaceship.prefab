@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 837037984596119346}
   - component: {fileID: 7876728479809958156}
   - component: {fileID: 629428120803242758}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Spaceship
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -164,7 +164,7 @@ MonoBehaviour:
   isDrawingTail: 0
   positionHotSpotEnd: {fileID: 4475309868540062162}
   maxDistanceTail: 15
-  distanceBreakInTail: 1.5
+  distanceBreakInTail: 0.8
   positionHotSpotFront: {fileID: 4475309868173804219}
   dieAnimation: {fileID: 8399138910015373975, guid: f21a769d319876e4bb36db6848c4ae5b,
     type: 3}
@@ -227,7 +227,7 @@ GameObject:
   - component: {fileID: 837037985391666201}
   - component: {fileID: 837037985391666203}
   - component: {fileID: 837037985391666202}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4979,7 +4979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4475309868173804219}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: HotSpotFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5009,7 +5009,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4475309868540062162}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: HotSpotEnd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
