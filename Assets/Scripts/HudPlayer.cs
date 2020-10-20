@@ -12,7 +12,7 @@ public class HudPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textBonusSecondary = transform.Find("DownBonusText").gameObject.GetComponent<Text>();
+        textBonusSecondary = transform.Find("DownBonusText").GetComponent<Text>();
         textBonusPrimary = transform.Find("UpBonusText").GetComponent<Text>();
         playerName = transform.Find("PlayerName").GetComponent<Text>();
         scoreText = transform.Find("ScoreText").GetComponent <Text>();

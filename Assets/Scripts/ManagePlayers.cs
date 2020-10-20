@@ -22,10 +22,15 @@ public class ManagePlayers : MonoBehaviour
     public GameObject HUD;
     public HudPlayer hudPlayerPrefab;
 
+    //Show scores
+    public GameObject roundResults;
+    public HudScore hudScorePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
         activePlayers = new GameObject[numberPlayers];
+
         if(usableSpaceships != null && usableSpaceships.Length > 0)
         {
             for(int i = 0; i< usableSpaceships.Length; i++)
@@ -43,6 +48,11 @@ public class ManagePlayers : MonoBehaviour
             StartCoroutine(Countdown());
             associateHud();
         }
+    }
+
+    private void Update()
+    {
+
     }
 
     private void placePlayers()
@@ -82,6 +92,7 @@ public class ManagePlayers : MonoBehaviour
 
     private IEnumerator Countdown()
     {
+        countdownText.gameObject.SetActive(true);
         while (countdownTime > 0)
         {
             countdownText.text = countdownTime.ToString();
@@ -98,7 +109,7 @@ public class ManagePlayers : MonoBehaviour
 
     private void associateHud()
     {
-        int posy = 279;
+        int posy = 350;
         int incrPosY = -200;
         foreach (GameObject spaceship in activePlayers)
         {
@@ -106,16 +117,32 @@ public class ManagePlayers : MonoBehaviour
 
             hudPlayer.transform.SetParent(HUD.transform);
             hudPlayer.transform.localScale = new Vector3(1, 1, 1);
-            hudPlayer.transform.localPosition = new Vector3(-1130, posy, -1f);
-            
+            hudPlayer.transform.localPosition = new Vector3(-700, posy, -1f);
             
             spaceship.GetComponent<Player>().hudplayer = hudPlayer;
             posy += incrPosY;
-            //hudPlayer.transform.Translate(new Vector3(0f, -100f, 0f));
+
         }
     }
 
-    private void StartGame()
+    private void showScore()
+    {
+        int posy = 65;
+        int incrPosY = -40;
+
+        foreach (GameObject spaceship in activePlayers)
+        {
+            HudScore hudScore = Instantiate(hudScorePrefab) as HudScore;
+            hudScore.transform.SetParent(roundResults.transform);
+            hudScore.transform.localScale = new Vector3(1, 1, 1);
+            hudScore.transform.localPosition = new Vector3(0, posy, -1f);
+            posy += incrPosY;
+        }
+
+
+    }
+
+        private void StartGame()
     {
         for (int i = 0; i < activePlayers.Length; i++)
         {
@@ -140,19 +167,26 @@ public class ManagePlayers : MonoBehaviour
             for (int i = 0; i < activePlayers.Length; i++)
             {
                 Player player = activePlayers[i].gameObject.GetComponent<Player>();
-                if (player.isAlive)
+                if (player.isAlive )
                 {
                     Scores.scores[player.id] += nbrPointByRank * nbrPlayerDead;
                     StartCoroutine(loadNextRound());
                 }
             }            
+        }else if(nbrPlayerDead == numberPlayers)
+        {
+            StartCoroutine(loadNextRound());
         }
         return Scores.scores[id];
     }
 
     private IEnumerator loadNextRound()
     {
-        yield return new WaitForSeconds(1);
+        roundResults.SetActive(true);
+ //       showScore();
+
+        yield return new WaitForSeconds(5);
+        roundResults.SetActive(false);
         SceneManager.LoadScene(1);
     }
 }
