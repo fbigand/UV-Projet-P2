@@ -184,7 +184,6 @@ public class ManagePlayers : MonoBehaviour
     {
         roundResults.SetActive(true);
  //       showScore();
-
         yield return new WaitForSeconds(5);
         roundResults.SetActive(false);
         SceneManager.LoadScene(1);
