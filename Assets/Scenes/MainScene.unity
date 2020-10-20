@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: numberPlayers
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
@@ -630,6 +630,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usablePickUps:
   - {fileID: 1520088125349538556, guid: 79273c3ca77f79b4693b6efefdc5a269, type: 3}
+  - {fileID: 4648263334321272485, guid: 143d251c91c4b70498ff918998b16ce7, type: 3}
+  - {fileID: -186359898232076443, guid: a49761a70a8c1824fb3275377d914d85, type: 3}
+  - {fileID: 6956150046269613108, guid: e6b066c6d12dda641a100fb755bea5ef, type: 3}
   activationPickUps: 1
   stopSpawning: 0
   spawnDelay: 6
@@ -660,6 +663,11 @@ PrefabInstance:
         type: 3}
       propertyPath: hudPlayer
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 629428120803242758, guid: c5ff2fe6fc457684aa8222886f8db0e3,
+        type: 3}
+      propertyPath: durationCooldownPowerUp
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 837037984596119345, guid: c5ff2fe6fc457684aa8222886f8db0e3,
         type: 3}

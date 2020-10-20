@@ -102,7 +102,7 @@ public class Snake : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         GameObject effect = Instantiate(dieAnimation, transform.position, Quaternion.identity);
         Destroy(effect, 0.3f);
