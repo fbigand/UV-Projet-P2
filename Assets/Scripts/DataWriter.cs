@@ -28,24 +28,35 @@ public class DataWriter : MonoBehaviour
     public void Start()
     {
         listToWrite = new Queue<string>();
-        sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
-
-
+       // sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
     }
 
-    public void Update()
+    /*public void Update()
     {
         if (listToWrite.Count > 0)
         {
             sw.Write(listToWrite.Dequeue());
             sw.Flush();
         }
+    }*/
+
+    private void write(string text)
+    {
+        print(text);
+        using (sw = new StreamWriter(Application.dataPath + "/Data/" + fileName))
+        {
+            sw.WriteLine(text);
+        }
 
     }
 
-
     public void writePos(Vector2 pos)
     {
-        listToWrite.Enqueue(pos.x + "," + pos.y+",");
+        write(pos.x + "," + pos.y);
+    }
+
+    public void writeDecisionPlayer(float decision)
+    {
+       write(decision.ToString());
     }
 }

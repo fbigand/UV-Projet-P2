@@ -22,8 +22,6 @@ public class ShipMovement : MonoBehaviour
 
         float rotationZ = controller.GetRotation();
 
-        DataWriter.instance.writePos(transform.position);
-
         //The player want to turn
         if(rotationZ != 0)
         {
