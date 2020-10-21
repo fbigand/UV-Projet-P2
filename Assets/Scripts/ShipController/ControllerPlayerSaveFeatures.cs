@@ -2,13 +2,6 @@
 
 public class ControllerPlayerSaveFeatures : ControllerPlayer
 {
-    private ShipMovement shipToObserve;
-
-    public void Start()
-    {
-        shipToObserve = GetComponent<ShipMovement>();
-    }
-
     //return -1 for left, 1 for right and 0 equals forward
     override public float GetRotation()
     {
@@ -19,7 +12,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
         }
 
         DataWriter.instance.writeDecisionPlayer(input);
-        DataWriter.instance.writePos(shipToObserve.transform.position);
+        DataWriter.instance.writePos(transform.position);
 
         return input;
     }

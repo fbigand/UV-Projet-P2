@@ -5,9 +5,7 @@ using UnityEngine;
 
 public class DataWriter : MonoBehaviour
 {
-    Queue<string> listToWrite;
     private string fileName = "data.csv";
-    private int id_message = 0;
     private StreamWriter sw;
 
     public static DataWriter instance = null;
@@ -28,7 +26,6 @@ public class DataWriter : MonoBehaviour
 
     public void Start()
     {
-        listToWrite = new Queue<string>();
         if (sw != null)
         {
             sw.Flush();
