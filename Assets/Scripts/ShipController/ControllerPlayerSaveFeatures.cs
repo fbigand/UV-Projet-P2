@@ -20,7 +20,8 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     private void Start()
     {
         result = new RaycastHit2D[nbrMaxResultNByRayCast];
-        differenceAngleBetweenRay = (angleCastingRayCast*Mathf.PI/ 180 )/ nbrRayCasts;
+        float nbrDivision = nbrRayCasts > 1 ? nbrRayCasts - 1 : 1;
+        differenceAngleBetweenRay = (angleCastingRayCast*Mathf.PI/ 180 )/ nbrDivision;
         countBetweenCapture=  1/(frqceSaveDataHz*Time.fixedDeltaTime);
         player = GetComponent<Player>();
         managePlayers = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>();
