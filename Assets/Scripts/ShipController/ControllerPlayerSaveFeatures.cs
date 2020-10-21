@@ -5,6 +5,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 {
     private Player player;
     private ManagePlayers managePlayers;
+    private Transform positionHead;
 
     public float frqceSaveDataHz = 5f;
     private float countBetweenCapture;
@@ -19,9 +20,10 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private void Start()
     {
+        positionHead = GetComponent<Snake>().positionHotSpotFront;
         result = new RaycastHit2D[nbrMaxResultNByRayCast];
         float nbrDivision = nbrRayCasts > 1 ? nbrRayCasts - 1 : 1;
-        differenceAngleBetweenRay = (angleCastingRayCast*Mathf.PI/ 180 )/ nbrDivision;
+        differenceAngleBetweenRay = angleCastingRayCast/ nbrDivision;
         countBetweenCapture=  1/(frqceSaveDataHz*Time.fixedDeltaTime);
         player = GetComponent<Player>();
         managePlayers = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>();
@@ -56,7 +58,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     private string SaveRayCasts()
     {
         string resultHits = "";
-        float originAngle = nbrRayCasts > 1 ? -0.5f* (angleCastingRayCast * Mathf.PI / 180) : 0;
+        float originAngle = nbrRayCasts > 1 ? -0.5f* angleCastingRayCast : 0;
         Vector2 direction;
         for (int i = 0; i< nbrRayCasts; i++)
         {
@@ -70,15 +72,14 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private string RunRayCast(Vector2 direction)
     {
-        Debug.DrawRay(transform.position, direction, Color.green, 1/frqceSaveDataHz);
-        Physics2D.Raycast(transform.position, direction, (new ContactFilter2D()).NoFilter(), result, Mathf.Infinity);
+        Debug.DrawRay(positionHead.position, direction, Color.green, 1/frqceSaveDataHz);
+        Physics2D.Raycast(positionHead.position, direction, (new ContactFilter2D()).NoFilter(), result, Mathf.Infinity);
 
         RaycastHit2D hit = result[0];
         return hit.distance + ";"+ hit.normal.x + ";" + hit.normal.y;
     }
 
-    private Vector2 Rotate(Vector2 v, float rad) {
-        float degrees = rad * 180 / Mathf.PI;
+    private Vector2 Rotate(Vector2 v, float degrees) {
         float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
         float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
          

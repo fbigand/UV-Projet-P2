@@ -143,7 +143,7 @@ MonoBehaviour:
   attackAxis: Power1
   frqceSaveDataHz: 5
   nbrMaxResultNByRayCast: 1
-  nbrRayCasts: 4
+  nbrRayCasts: 3
   angleCastingRayCast: 90
 --- !u!1 &21352593 stripped
 GameObject:
