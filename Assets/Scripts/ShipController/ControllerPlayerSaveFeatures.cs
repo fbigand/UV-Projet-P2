@@ -1,9 +1,7 @@
 ﻿using UnityEngine;
 
-public class ControllerPlayerSaveFeatures : MonoBehaviour, IController
+public class ControllerPlayerSaveFeatures : ControllerPlayer
 {
-    public string moveAxis;
-    public string attackAxis;
     private ShipMovement shipToObserve;
 
     public void Start()
@@ -12,7 +10,7 @@ public class ControllerPlayerSaveFeatures : MonoBehaviour, IController
     }
 
     //return -1 for left, 1 for right and 0 equals forward
-    float IController.GetRotation()
+    override public float GetRotation()
     {
         float input = Input.GetAxis(moveAxis);
         if (input != 0)
@@ -24,15 +22,5 @@ public class ControllerPlayerSaveFeatures : MonoBehaviour, IController
         DataWriter.instance.writePos(shipToObserve.transform.position);
 
         return input;
-    }
-
-    bool IController.IsUsingPrimaryBonus()
-    {
-        return Input.GetAxis(attackAxis) > 0;
-    }
-
-    bool IController.IsUsingSecondaryBonus()
-    {
-        return Input.GetAxis(attackAxis) < 0;
     }
 }

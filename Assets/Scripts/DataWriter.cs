@@ -7,10 +7,11 @@ public class DataWriter : MonoBehaviour
 {
     Queue<string> listToWrite;
     private string fileName = "data.csv";
-
+    private int id_message = 0;
     private StreamWriter sw;
 
     public static DataWriter instance = null;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -28,35 +29,26 @@ public class DataWriter : MonoBehaviour
     public void Start()
     {
         listToWrite = new Queue<string>();
-       // sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
-    }
-
-    /*public void Update()
-    {
-        if (listToWrite.Count > 0)
+        if (sw != null)
         {
-            sw.Write(listToWrite.Dequeue());
             sw.Flush();
         }
-    }*/
+       sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
+    }
 
     private void write(string text)
     {
-        print(text);
-        using (sw = new StreamWriter(Application.dataPath + "/Data/" + fileName))
-        {
-            sw.WriteLine(text);
-        }
-
+        sw.Write(text);
+        sw.Flush();
     }
 
     public void writePos(Vector2 pos)
     {
-        write(pos.x + "," + pos.y);
+        write(pos.x + ";" + pos.y + ";");
     }
 
     public void writeDecisionPlayer(float decision)
     {
-       write(decision.ToString());
+       write(decision.ToString()+"\n");
     }
 }

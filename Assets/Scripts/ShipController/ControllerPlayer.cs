@@ -6,17 +6,17 @@ public class ControllerPlayer : MonoBehaviour, IController
     public string attackAxis;
 
     //return -1 for left, 1 for right and 0 equals forward
-    float IController.GetRotation()
+    virtual public float GetRotation()
     {
         return Input.GetAxis(moveAxis);
     }
 
-    bool IController.IsUsingPrimaryBonus()
+    public bool IsUsingPrimaryBonus()
     {
         return Input.GetAxis(attackAxis) > 0;
     }
 
-    bool IController.IsUsingSecondaryBonus()
+    public bool IsUsingSecondaryBonus()
     {
         return Input.GetAxis(attackAxis) < 0;
     }
