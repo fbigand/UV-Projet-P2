@@ -55,13 +55,13 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     private string SaveRayCasts()
     {
         string resultHits = "";
-        float originAngle = -0.5f* (angleCastingRayCast * Mathf.PI / 180);
-        Vector2 direction = transform.up;
+        float originAngle = nbrRayCasts > 1 ? -0.5f* (angleCastingRayCast * Mathf.PI / 180) : 0;
+        Vector2 direction;
         for (int i = 0; i< nbrRayCasts; i++)
         {
-            resultHits += originAngle +";"+RunRayCast(direction);
+            direction = Rotate(transform.up, originAngle);
+            resultHits += "["+originAngle +";"+RunRayCast(direction)+"]";
             originAngle += differenceAngleBetweenRay;
-            direction = Rotate(transform.up,originAngle);
         }
 
         return resultHits;
@@ -69,20 +69,11 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private string RunRayCast(Vector2 direction)
     {
-        Debug.DrawRay(transform.position, direction, Color.green);
+        Debug.DrawRay(transform.position, direction, Color.green, 1/frqceSaveDataHz);
         Physics2D.Raycast(transform.position, direction, (new ContactFilter2D()).NoFilter(), result, Mathf.Infinity);
 
         RaycastHit2D hit = result[0];
-        return "[" + hit.distance + ";"+ hit.normal.x + ";" + hit.normal.y+ "]";
-    }
-
-    Vector2 TranslateTransformUpByAngle(float radians)
-    {
-        float vectorAngle = Mathf.Atan(transform.up.y / transform.up.x) + radians;
-        return new Vector2(
-            Mathf.Cos(vectorAngle),
-            Mathf.Sin(vectorAngle)
-        );
+        return hit.distance + ";"+ hit.normal.x + ";" + hit.normal.y;
     }
 
     private Vector2 Rotate(Vector2 v, float rad) {

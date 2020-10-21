@@ -141,9 +141,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveAxis: Move1
   attackAxis: Power1
-  frqceSaveDataHz: 3
+  frqceSaveDataHz: 5
   nbrMaxResultNByRayCast: 1
-  nbrRayCasts: 20
+  nbrRayCasts: 3
   angleCastingRayCast: 90
 --- !u!1 &21352593 stripped
 GameObject:
