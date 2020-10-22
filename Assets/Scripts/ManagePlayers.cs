@@ -14,10 +14,11 @@ public class ManagePlayers : MonoBehaviour
     public string startMessage;
     public int startMessageDuration; // in seconds
 
-    private GameObject[] activePlayers;
+    [HideInInspector]
+    public GameObject[] activePlayers;
 
     //Manage scores
-    private int nbrPlayerDead = 0;
+    public int nbrPlayerDead = 0;
     private int nbrPointByRank = 10;
     public GameObject HUD;
     public HudPlayer hudPlayerPrefab;

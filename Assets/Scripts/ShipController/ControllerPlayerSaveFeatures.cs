@@ -11,15 +11,19 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     private float countBetweenCapture;
     private float countSinceLastCapture = 0f;
 
+    private bool isSavingData;
+
     //RayCast
     private RaycastHit2D[] result;
     public int nbrMaxResultNByRayCast = 1; 
     public int nbrRayCasts = 50;
     public float angleCastingRayCast = 300f;
     private float differenceAngleBetweenRay;
+    private float secondsNotSavedBeforeDeath = 3f;
 
     private void Start()
     {
+        isSavingData = true;
         positionHead = GetComponent<Snake>().positionHotSpotFront;
         result = new RaycastHit2D[nbrMaxResultNByRayCast];
         float nbrDivision = nbrRayCasts > 1 ? nbrRayCasts - 1 : 1;
@@ -32,13 +36,19 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     //return -1 for left, 1 for right and 0 equals forward
     override public float GetRotation()
     {
+        if(managePlayers.nbrPlayerDead > 0)
+        {
+            isSavingData = false;
+            float nbrLinesToDelete = secondsNotSavedBeforeDeath / countBetweenCapture * Time.fixedDeltaTime;
+        }
+
         float input = Input.GetAxis(moveAxis);
         if (input != 0)
         {
             input = 1f*Mathf.Sign(input);
         }
 
-        if (countSinceLastCapture > countBetweenCapture)
+        if (countSinceLastCapture > countBetweenCapture && isSavingData)
         {
             SaveData(input);
             countSinceLastCapture = 0;
@@ -52,7 +62,42 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private void SaveData(float decision)
     {
-        DataWriter.instance.writeInfoSpaceship(transform.position, transform.eulerAngles.z, SaveRayCasts(),decision);
+        DataWriter.instance.writeInfoSpaceship(SaveInfoShip(transform), SaveRayCasts(),SaveOtherShipsInfo(),decision);
+    }
+
+    private string SaveOtherShipsInfo()
+    {
+        string res="";
+        for(int i = 0;i < managePlayers.usableSpaceships.Length;i++)
+        {
+            if( i != player.id)
+            {
+                res += "[";
+                if(i < managePlayers.activePlayers.Length)
+                {
+                    res += SaveInfoShip(managePlayers.activePlayers[i].transform);
+                }
+                else
+                {
+                    res += SaveInfoShip();
+                }
+                res += "]";
+            }
+        }
+
+        return res;
+    }
+
+    private string SaveInfoShip(Transform spaceship = null)
+    {
+        if(spaceship == null)
+        {
+            return "0;0;0";
+        }
+        else
+        {
+            return spaceship.position.x + ";" + spaceship.position.y + ";" + spaceship.rotation.eulerAngles.z;
+        }
     }
 
     private string SaveRayCasts()

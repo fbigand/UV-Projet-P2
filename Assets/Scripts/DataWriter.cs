@@ -39,8 +39,12 @@ public class DataWriter : MonoBehaviour
         sw.Flush();
     }
 
-    public void writeInfoSpaceship(Vector2 pos, float angle, string rayCasts, float decision)
+    public void writeInfoSpaceship(string infoShip, string rayCasts, string otherShipsInfo, float decision)
     {
-        write(pos.x + ";" + pos.y + ";"+angle+";[["+rayCasts+"]];"+decision+"\n");
+        write(infoShip+";["+rayCasts+"];["+otherShipsInfo+ "];"+decision+"\n");
+    }
+
+    public void DeleteLastLines()
+    {
     }
 }
