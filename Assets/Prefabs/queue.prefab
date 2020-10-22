@@ -47,7 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   line: {fileID: 0}
   color: {r: 0, g: 0, b: 0, a: 0}
+  listPointsEdgeCollider: []
   widthLine: 0.1
+  edgeCollider: {fileID: 0}
 --- !u!120 &809645585716053733
 LineRenderer:
   m_ObjectHideFlags: 0

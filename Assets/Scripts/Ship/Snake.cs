@@ -91,6 +91,10 @@ public class Snake : MonoBehaviour
         {
             Die();
         }
+        if (collision.CompareTag("PickUp"))
+        {
+            collision.GetComponent<PickUps>().ActivatePickUp(gameObject);
+        }
         else if (collision.CompareTag("Tail"))
         {
             CollideTail(collision.GetComponent<Tail>());
@@ -98,7 +102,7 @@ public class Snake : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         GameObject effect = Instantiate(dieAnimation, transform.position, Quaternion.identity);
         Destroy(effect, 0.3f);

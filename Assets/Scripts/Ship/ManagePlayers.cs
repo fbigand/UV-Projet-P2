@@ -14,7 +14,7 @@ public class ManagePlayers : MonoBehaviour
     public string startMessage;
     public int startMessageDuration; // in seconds
 
-    private GameObject[] activePlayers;
+    public GameObject[] activePlayers;
 
     //Manage scores
     private int nbrPlayerDead = 0;
