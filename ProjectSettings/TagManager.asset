@@ -8,6 +8,7 @@ TagManager:
   - Tail
   - Rocket
   - GameManager
+  - PickUp
   layers:
   - Default
   - TransparentFX

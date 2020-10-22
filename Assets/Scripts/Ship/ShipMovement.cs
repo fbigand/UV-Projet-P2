@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour
 {
-    public float speed = 0.01f;
+    public float speed = 1.3f;
     public float rotationAngle = 1f;
 
     private IController controller;
@@ -32,10 +32,4 @@ public class ShipMovement : MonoBehaviour
         transform.Rotate(0f, 0f, rotationZ * rotationAngle );
         transform.Translate(0f, translationY , 0f);
     }
-
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
-
 }

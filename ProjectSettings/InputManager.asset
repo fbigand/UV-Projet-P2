@@ -105,8 +105,8 @@ InputManager:
     m_Name: Move4
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: i
-    positiveButton: p
+    negativeButton: k
+    positiveButton: m
     altNegativeButton: 
     altPositiveButton: 
     gravity: 1000

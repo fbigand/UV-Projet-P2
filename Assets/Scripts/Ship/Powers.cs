@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PowersAttack : MonoBehaviour
+public class Powers : MonoBehaviour
 { 
     public Transform shootPoint;
 
@@ -18,6 +19,7 @@ public class PowersAttack : MonoBehaviour
     private HudPlayer hudPlayer;
 
     public GameObject rocketPrefab;
+    private GameObject fire;
     private Animator anim;
     private CapsuleCollider2D spaceshipCollider;
     private IController controller;
@@ -31,7 +33,8 @@ public class PowersAttack : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
         spaceshipCollider = gameObject.GetComponent<CapsuleCollider2D>();
         controller = GetComponent<IController>();
-       
+
+        fire = GameObject.Find("Fire");
     }
 
     void Update()
@@ -78,6 +81,7 @@ public class PowersAttack : MonoBehaviour
         StartCoroutine(WaitAndReset());
         gameObject.GetComponent<Snake>().isDrawingTail = false;
         gameObject.GetComponent<Snake>().ResetLastDistance();
+        fire.SetActive(false);
 
 
         IEnumerator WaitAndReset()
@@ -85,6 +89,8 @@ public class PowersAttack : MonoBehaviour
             yield return new WaitForSeconds(GetComponent<Snake>().distanceBreakInTail* Time.fixedDeltaTime / gameObject.GetComponent<ShipMovement>().speed);
             anim.SetBool("OntheAir", false);
             spaceshipCollider.enabled = true;
+            fire.SetActive(true);
+            
         }
     }
 }
