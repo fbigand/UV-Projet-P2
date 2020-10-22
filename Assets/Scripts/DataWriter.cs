@@ -6,6 +6,7 @@ using UnityEngine;
 public class DataWriter : MonoBehaviour
 {
     private string fileName = "data.csv";
+    private string fileNameBeforeDeath = "data_before_death.csv";
     private StreamWriter sw;
 
     public static DataWriter instance = null;
@@ -37,6 +38,8 @@ public class DataWriter : MonoBehaviour
     {
         sw.Write(text);
         sw.Flush();
+       
+        
     }
 
     public void writeInfoSpaceship(string infoShip, string rayCasts, string otherShipsInfo, float decision)
@@ -44,7 +47,30 @@ public class DataWriter : MonoBehaviour
         write(infoShip+";["+rayCasts+"];["+otherShipsInfo+ "];"+decision+"\n");
     }
 
-    public void DeleteLastLines()
+    public void DeleteLastLines(int nbrLineToDelete)
     {
+        sw.Flush();
+        sw.Dispose();
+        sw.Close();
+        int nbrLineToKeep = File.ReadLines(Application.dataPath + "/Data/" + fileName).Count() - nbrLineToDelete;
+        string line;
+        int nbrCurrentLine=0;
+        using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileName))
+        {
+            using (StreamWriter writer = new StreamWriter(Application.dataPath + "/Data/" + fileNameBeforeDeath))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    nbrCurrentLine++;
+
+                    if (nbrCurrentLine >= nbrLineToKeep)
+                    {
+                        break;
+                    }
+
+                    writer.WriteLine(line);
+                }
+            }
+        }
     }
 }

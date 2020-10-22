@@ -36,11 +36,6 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     //return -1 for left, 1 for right and 0 equals forward
     override public float GetRotation()
     {
-        if(managePlayers.nbrPlayerDead > 0)
-        {
-            isSavingData = false;
-            float nbrLinesToDelete = secondsNotSavedBeforeDeath / countBetweenCapture * Time.fixedDeltaTime;
-        }
 
         float input = Input.GetAxis(moveAxis);
         if (input != 0)
@@ -48,10 +43,19 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
             input = 1f*Mathf.Sign(input);
         }
 
-        if (countSinceLastCapture > countBetweenCapture && isSavingData)
+        if (isSavingData)
         {
-            SaveData(input);
-            countSinceLastCapture = 0;
+            if (managePlayers.nbrPlayerDead > 0)
+            {
+                isSavingData = false;
+                float nbrLinesToDelete = secondsNotSavedBeforeDeath /( countBetweenCapture * Time.fixedDeltaTime);
+                DataWriter.instance.DeleteLastLines((int)nbrLinesToDelete);
+            }
+            else if (countSinceLastCapture > countBetweenCapture)
+            {
+                SaveData(input);
+                countSinceLastCapture = 0;
+            }
         }
 
         countSinceLastCapture++;

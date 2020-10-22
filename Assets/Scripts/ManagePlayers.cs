@@ -153,7 +153,7 @@ public class ManagePlayers : MonoBehaviour
 
     private IEnumerator loadNextRound()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(10);
         SceneManager.LoadScene(1);
     }
 }
