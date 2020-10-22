@@ -14,14 +14,12 @@ public class ControllerAlgo : ControllerAbstract
 
     public override float GetRotation()
     {
-        Debug.DrawRay(start: raycastStartPosition.position, dir: transform.up, color: Color.green, duration: Time.deltaTime);
 
         List<RaycastHit2D[]> raycastList = new List<RaycastHit2D[]>();
         float angleStep = Mathf.PI / (raycastNumber - 1);
         for (float angle = Mathf.PI / 2; raycastList.Count < raycastNumber; angle -= angleStep)
         {
             Vector2 translatedVector = Trigonometry.VectorTranslatedByAngle(transform.up, angle);
-            Debug.DrawRay(start: raycastStartPosition.position, dir: translatedVector, color: Color.red, duration: Time.deltaTime);
 
             RaycastHit2D[] result = new RaycastHit2D[1];
             Physics2D.Raycast(
