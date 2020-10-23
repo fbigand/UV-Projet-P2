@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Snake : MonoBehaviour
@@ -45,7 +44,7 @@ public class Snake : MonoBehaviour
         if (isDrawingTail)
         {
             currentTail.UpdateTailVertex(positionHotSpotEnd.position);
-            if(lastDistance > maxDistanceTail)
+            if (lastDistance > maxDistanceTail)
             {
                 isDrawingTail = false;
                 gameObject.GetComponent<CapsuleCollider2D>().enabled = false;
@@ -87,7 +86,7 @@ public class Snake : MonoBehaviour
      */
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall")||collision.CompareTag("Player"))
+        if (collision.CompareTag("Wall") || collision.CompareTag("Player"))
         {
             Die();
         }
@@ -120,7 +119,7 @@ public class Snake : MonoBehaviour
         Tail partBeforeHole = Instantiate(queuePrefab) as Tail;
         partBeforeHole.SetColor(collidedTail.color);
         int i = 0;
-        while(i < listPointsCollidedTail.Length)
+        while (i < listPointsCollidedTail.Length)
         {
             Vector2 currentPoint = listPointsCollidedTail[i];
             // on parcours les points et on les ajoute à la ligne tant qu'on arrive pas au trou
@@ -136,7 +135,7 @@ public class Snake : MonoBehaviour
         }
 
         //s'il n'y avait pas de points avant l'explosion on detruit la queue prevue pour ça
-        if(i == 0)
+        if (i == 0)
         {
             partBeforeHole.gameObject.SetActive(false);
         }
