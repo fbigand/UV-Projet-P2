@@ -135,7 +135,7 @@ public class ManagePlayers : MonoBehaviour
             hudScore.transform.SetParent(roundResults.transform);
             hudScore.transform.localScale = new Vector3(1, 1, 1);
             hudScore.transform.localPosition = new Vector3(posx, posy, -1f);
-            hudScore.SetPlayer(rankedPLayers[i], i);
+            hudScore.SetPlayer(rankedPLayers[i], i+1);
             posy += incrPosY;
         }
     }

@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
         this.id = id;
         this.pseudo = "Player" + (id + 1).ToString();
         this.isAlive = true;
-        hudplayer.SetPlayer(pseudo, color,score.ToString());
+        hudplayer.SetPlayer("Player:" + id, color,score.ToString());
     }
 
     public void finishRound()
