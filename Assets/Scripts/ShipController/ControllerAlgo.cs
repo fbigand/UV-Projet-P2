@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Transactions;
 using UnityEngine;
-using UnityEngine.Diagnostics;
 
 public class ControllerAlgo : ControllerAbstract
 {
-    public Transform raycastStartPosition;
+    private Transform raycastStartPosition;
     public int raycastNumber;
+
+    private void Start()
+    {
+        raycastStartPosition = gameObject.transform.Find("HotSpotFront");
+    }
 
     public override float GetRotation()
     {
