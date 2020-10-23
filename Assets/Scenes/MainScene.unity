@@ -337,7 +337,7 @@ PrefabInstance:
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: numberPlayers
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
@@ -353,12 +353,12 @@ PrefabInstance:
         type: 3}
       propertyPath: usableSpaceships.Array.data[2]
       value: 
-      objectReference: {fileID: 549698732}
+      objectReference: {fileID: 894355399}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: usableSpaceships.Array.data[3]
       value: 
-      objectReference: {fileID: 894355399}
+      objectReference: {fileID: 549698732}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: countdownText
