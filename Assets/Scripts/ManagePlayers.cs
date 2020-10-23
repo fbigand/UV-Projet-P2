@@ -50,11 +50,6 @@ public class ManagePlayers : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-
-    }
-
     private void placePlayers()
     {
         float rayon = 4;
@@ -129,13 +124,13 @@ public class ManagePlayers : MonoBehaviour
     {
         int posy = 65;
         int incrPosY = -40;
-
         foreach (GameObject spaceship in activePlayers)
         {
             HudScore hudScore = Instantiate(hudScorePrefab) as HudScore;
             hudScore.transform.SetParent(roundResults.transform);
             hudScore.transform.localScale = new Vector3(1, 1, 1);
             hudScore.transform.localPosition = new Vector3(0, posy, -1f);
+            hudScore.SetPlayer(spaceship.GetComponent<Player>());
             posy += incrPosY;
         }
 
@@ -157,9 +152,10 @@ public class ManagePlayers : MonoBehaviour
     }
 
 
-    public int playerFinishGame(int id)
+    public void playerFinishGame(Player playerDead)
     {
-        Scores.scores[id] += nbrPointByRank * nbrPlayerDead;
+        Scores.scores[playerDead.id] += nbrPointByRank * nbrPlayerDead;
+        playerDead.score = Scores.scores[playerDead.id];
         nbrPlayerDead++;
 
         if(nbrPlayerDead == numberPlayers - 1)
@@ -170,6 +166,7 @@ public class ManagePlayers : MonoBehaviour
                 if (player.isAlive )
                 {
                     Scores.scores[player.id] += nbrPointByRank * nbrPlayerDead;
+                    player.score = Scores.scores[player.id];
                     StartCoroutine(loadNextRound());
                 }
             }            
@@ -177,13 +174,12 @@ public class ManagePlayers : MonoBehaviour
         {
             StartCoroutine(loadNextRound());
         }
-        return Scores.scores[id];
     }
 
     private IEnumerator loadNextRound()
     {
         roundResults.SetActive(true);
- //       showScore();
+        showScore();
         yield return new WaitForSeconds(5);
         roundResults.SetActive(false);
         SceneManager.LoadScene(1);

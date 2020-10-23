@@ -11,7 +11,7 @@ public class HudScore : MonoBehaviour
     private Text scoreText;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rankText = transform.Find("RankText").GetComponent<Text>();
         gainLevel = transform.Find("GainLevel").GetComponent<Text>();
@@ -19,22 +19,10 @@ public class HudScore : MonoBehaviour
         scoreText = transform.Find("ScoreText").GetComponent<Text>();
     }
 
-    public void SetPlayer(string name, Color color, string score)
+    public void SetPlayer(Player player)
     {
-        playerName.text = name;
-        playerName.color = color;
-        scoreText.text = score;
+        playerName.text = player.pseudo;
+        playerName.color = player.color;
+        scoreText.text = player.score.ToString();
     }
-
-    public void SetTextScore(string score, string gain)
-    {
-        gainLevel.text = gain;
-        scoreText.text = score;
-    }
-
-    public void SetRank(string rank)
-    {
-        rankText.text = rank;
-    }
-
 }
