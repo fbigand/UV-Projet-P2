@@ -15,7 +15,7 @@ public class ControllerAlgo : ControllerAbstract
     public override float GetRotation()
     {
 
-        List<RaycastHit2D[]> raycastList = new List<RaycastHit2D[]>();
+        List<RaycastHit2D> raycastList = new List<RaycastHit2D>();
         float angleStep = Mathf.PI / (raycastNumber - 1);
         for (float angle = Mathf.PI / 2; raycastList.Count < raycastNumber; angle -= angleStep)
         {
@@ -29,15 +29,15 @@ public class ControllerAlgo : ControllerAbstract
                 results: result,
                 distance: 20
             );
-            raycastList.Add(result);
+            raycastList.Add(result[0]);
         }
 
-        RaycastHit2D closest = raycastList.First()[0];
-        foreach (RaycastHit2D[] raycastArr in raycastList)
+        RaycastHit2D closest = raycastList.First();
+        foreach (RaycastHit2D raycastArr in raycastList)
         {
-            if (raycastArr[0].distance < closest.distance)
+            if (raycastArr.distance < closest.distance)
             {
-                closest = raycastArr[0];
+                closest = raycastArr;
             }
         }
 
