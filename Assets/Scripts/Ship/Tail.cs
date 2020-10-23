@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Tail : MonoBehaviour
@@ -26,12 +25,12 @@ public class Tail : MonoBehaviour
     {
         listPointsEdgeCollider = new List<Vector2>();
         line = GetComponent<LineRenderer>();
-        
+
         line.positionCount = 0;
         line.startWidth = widthLine;
         line.endWidth = widthLine;
         edgeCollider = GetComponent<EdgeCollider2D>();
-        
+
     }
 
     //a chaque fois qu'on a un nouveau point à ajouter à la ligne
@@ -42,7 +41,7 @@ public class Tail : MonoBehaviour
         line.SetPosition(line.positionCount - 1, position);
 
         //on ajoute le point à notre liste de point pour le collider de la ligne
-        listPointsEdgeCollider.Add(new Vector2(position.x,position.y));
+        listPointsEdgeCollider.Add(new Vector2(position.x, position.y));
 
         //et si on a plus d'un seul point
         if (line.positionCount > 1)

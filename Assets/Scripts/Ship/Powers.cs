@@ -1,12 +1,9 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Powers : MonoBehaviour
-{ 
+{
     public Transform shootPoint;
 
     private Stopwatch counterCooldownPrimary = new Stopwatch();
@@ -14,7 +11,7 @@ public class Powers : MonoBehaviour
 
     public int durationCooldownPowerUp; // in millis
     public int durationCooldownPowerDown; // in millis
-    
+
 
     private HudPlayer hudPlayer;
 
@@ -70,7 +67,7 @@ public class Powers : MonoBehaviour
 
     void LaunchRocket()
     {
-        GameObject rocket = Instantiate(rocketPrefab, shootPoint.transform.position, shootPoint.transform.rotation) as GameObject;        
+        GameObject rocket = Instantiate(rocketPrefab, shootPoint.transform.position, shootPoint.transform.rotation) as GameObject;
     }
 
     void Jump()
@@ -86,11 +83,11 @@ public class Powers : MonoBehaviour
 
         IEnumerator WaitAndReset()
         {
-            yield return new WaitForSeconds(GetComponent<Snake>().distanceBreakInTail* Time.fixedDeltaTime / gameObject.GetComponent<ShipMovement>().speed);
+            yield return new WaitForSeconds(GetComponent<Snake>().distanceBreakInTail * Time.fixedDeltaTime / gameObject.GetComponent<ShipMovement>().speed);
             anim.SetBool("OntheAir", false);
             spaceshipCollider.enabled = true;
             fire.SetActive(true);
-            
+
         }
     }
 }

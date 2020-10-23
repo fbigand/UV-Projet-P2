@@ -15,7 +15,7 @@ public class HudPlayer : MonoBehaviour
         textBonusSecondary = transform.Find("DownBonusText").gameObject.GetComponent<Text>();
         textBonusPrimary = transform.Find("UpBonusText").GetComponent<Text>();
         playerName = transform.Find("PlayerName").GetComponent<Text>();
-        scoreText = transform.Find("ScoreText").GetComponent <Text>();
+        scoreText = transform.Find("ScoreText").GetComponent<Text>();
     }
 
     public void SetPlayer(string name, Color color, string score)
