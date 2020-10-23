@@ -1,5 +1,4 @@
-﻿using System.Runtime.Versioning;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ControllerPlayerSaveFeatures : ControllerPlayer
 {
@@ -15,9 +14,9 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     //RayCast
     private RaycastHit2D[] result;
-    public int nbrMaxResultNByRayCast = 1; 
+    public int nbrMaxResultByRayCast = 1;
     public int nbrRayCasts = 50;
-    public float angleCastingRayCast = 300f;
+    public float angleCastingRayCastDegrees = 300f;
     private float differenceAngleBetweenRay;
     private float secondsNotSavedBeforeDeath = 3f;
 
@@ -25,10 +24,10 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     {
         isSavingData = true;
         positionHead = GetComponent<Snake>().positionHotSpotFront;
-        result = new RaycastHit2D[nbrMaxResultNByRayCast];
+        result = new RaycastHit2D[nbrMaxResultByRayCast];
         float nbrDivision = nbrRayCasts > 1 ? nbrRayCasts - 1 : 1;
-        differenceAngleBetweenRay = angleCastingRayCast/ nbrDivision;
-        countBetweenCapture=  1/(frqceSaveDataHz*Time.fixedDeltaTime);
+        differenceAngleBetweenRay = angleCastingRayCastDegrees / nbrDivision;
+        countBetweenCapture = 1 / (frqceSaveDataHz * Time.fixedDeltaTime);
         player = GetComponent<Player>();
         managePlayers = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>();
     }
@@ -40,7 +39,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
         float input = Input.GetAxis(moveAxis);
         if (input != 0)
         {
-            input = 1f*Mathf.Sign(input);
+            input = Mathf.Sign(input);
         }
 
         if (isSavingData)
@@ -48,7 +47,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
             if (managePlayers.nbrPlayerDead > 0)
             {
                 isSavingData = false;
-                float nbrLinesToDelete = secondsNotSavedBeforeDeath /( countBetweenCapture * Time.fixedDeltaTime);
+                float nbrLinesToDelete = secondsNotSavedBeforeDeath / (countBetweenCapture * Time.fixedDeltaTime);
                 DataWriter.instance.DeleteLastLines((int)nbrLinesToDelete);
             }
             else if (countSinceLastCapture > countBetweenCapture)
@@ -66,18 +65,18 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private void SaveData(float decision)
     {
-        DataWriter.instance.writeInfoSpaceship(SaveInfoShip(transform), SaveRayCasts(),SaveOtherShipsInfo(),decision);
+        DataWriter.instance.writeInfoSpaceship(SaveInfoShip(transform), SaveRayCasts(), SaveOtherShipsInfo(), decision);
     }
 
     private string SaveOtherShipsInfo()
     {
-        string res="";
-        for(int i = 0;i < managePlayers.usableSpaceships.Length;i++)
+        string res = "";
+        for (int i = 0; i < managePlayers.usableSpaceships.Length; i++)
         {
-            if( i != player.id)
+            if (i != player.id)
             {
                 res += "[";
-                if(i < managePlayers.activePlayers.Length)
+                if (i < managePlayers.activePlayers.Length)
                 {
                     res += SaveInfoShip(managePlayers.activePlayers[i].transform);
                 }
@@ -94,7 +93,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private string SaveInfoShip(Transform spaceship = null)
     {
-        if(spaceship == null)
+        if (spaceship == null)
         {
             return "0;0;0";
         }
@@ -107,12 +106,12 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     private string SaveRayCasts()
     {
         string resultHits = "";
-        float originAngle = nbrRayCasts > 1 ? -0.5f* angleCastingRayCast : 0;
+        float originAngle = nbrRayCasts > 1 ? -0.5f * angleCastingRayCastDegrees : 0;
         Vector2 direction;
-        for (int i = 0; i< nbrRayCasts; i++)
+        for (int i = 0; i < nbrRayCasts; i++)
         {
             direction = Rotate(transform.up, originAngle);
-            resultHits += "["+originAngle +";"+RunRayCast(direction)+"]";
+            resultHits += "[" + originAngle + ";" + RunRayCast(direction) + "]";
             originAngle += differenceAngleBetweenRay;
         }
 
@@ -121,17 +120,18 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private string RunRayCast(Vector2 direction)
     {
-        Debug.DrawRay(positionHead.position, direction, Color.green, 1/frqceSaveDataHz);
+        Debug.DrawRay(positionHead.position, direction, Color.green, 1 / frqceSaveDataHz);
         Physics2D.Raycast(positionHead.position, direction, (new ContactFilter2D()).NoFilter(), result, Mathf.Infinity);
 
         RaycastHit2D hit = result[0];
-        return hit.distance + ";"+ hit.normal.x + ";" + hit.normal.y;
+        return hit.distance + ";" + hit.normal.x + ";" + hit.normal.y;
     }
 
-    private Vector2 Rotate(Vector2 v, float degrees) {
+    private Vector2 Rotate(Vector2 v, float degrees)
+    {
         float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
         float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
-         
+
         float tx = v.x;
         float ty = v.y;
         v.x = (cos * tx) - (sin * ty);

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FastSelf : PickUps
@@ -18,4 +17,4 @@ public class FastSelf : PickUps
         shipmov.speed -= speedModif;
         Destroy(gameObject);
     }
-}    
+}

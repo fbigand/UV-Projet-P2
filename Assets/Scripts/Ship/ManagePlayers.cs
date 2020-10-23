@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -27,9 +26,9 @@ public class ManagePlayers : MonoBehaviour
     void Start()
     {
         activePlayers = new GameObject[numberPlayers];
-        if(usableSpaceships != null && usableSpaceships.Length > 0)
+        if (usableSpaceships != null && usableSpaceships.Length > 0)
         {
-            for(int i = 0; i< usableSpaceships.Length; i++)
+            for (int i = 0; i < usableSpaceships.Length; i++)
             {
                 if (i < numberPlayers)
                 {
@@ -49,7 +48,7 @@ public class ManagePlayers : MonoBehaviour
     private void placePlayers()
     {
         float rayon = 4;
-        Vector2 center= new Vector2(4, 0);
+        Vector2 center = new Vector2(4, 0);
         float incrArc = 2 * Mathf.PI * rayon / numberPlayers;
         float longueurArc = 0;
 
@@ -59,12 +58,12 @@ public class ManagePlayers : MonoBehaviour
 
         for (int i = 0; i < activePlayers.Length; i++)
         {
-            
-            angle = longueurArc  /  rayon;
-            posX = rayon * Mathf.Cos(angle) +center.x;
+
+            angle = longueurArc / rayon;
+            posX = rayon * Mathf.Cos(angle) + center.x;
             posY = rayon * Mathf.Sin(angle) + center.y;
 
-          
+
             activePlayers[i].transform.position = new Vector3(posX, posY, -0.1f);
             orientateSpaceship(activePlayers[i].transform, center);
 
@@ -74,7 +73,7 @@ public class ManagePlayers : MonoBehaviour
 
     private void orientateSpaceship(Transform spaceship, Vector2 lookPoint)
     {
-        Vector3 diff = lookPoint - new Vector2(spaceship.position.x,spaceship.position.y);
+        Vector3 diff = lookPoint - new Vector2(spaceship.position.x, spaceship.position.y);
         diff.Normalize();
 
         float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
@@ -108,8 +107,8 @@ public class ManagePlayers : MonoBehaviour
             hudPlayer.transform.SetParent(HUD.transform);
             hudPlayer.transform.localScale = new Vector3(1, 1, 1);
             hudPlayer.transform.localPosition = new Vector3(-1130, posy, -1f);
-            
-            
+
+
             spaceship.GetComponent<Player>().hudplayer = hudPlayer;
             posy += incrPosY;
             //hudPlayer.transform.Translate(new Vector3(0f, -100f, 0f));
@@ -136,7 +135,7 @@ public class ManagePlayers : MonoBehaviour
         Scores.scores[id] += nbrPointByRank * nbrPlayerDead;
         nbrPlayerDead++;
 
-        if(nbrPlayerDead == numberPlayers - 1)
+        if (nbrPlayerDead == numberPlayers - 1)
         {
             for (int i = 0; i < activePlayers.Length; i++)
             {
@@ -146,7 +145,7 @@ public class ManagePlayers : MonoBehaviour
                     Scores.scores[player.id] += nbrPointByRank * nbrPlayerDead;
                     StartCoroutine(loadNextRound());
                 }
-            }            
+            }
         }
         return Scores.scores[id];
     }

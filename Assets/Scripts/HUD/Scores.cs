@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Scores : ScriptableObject
@@ -10,5 +9,5 @@ public class Scores : ScriptableObject
     {
         scores.Clear();
     }
-    
+
 }

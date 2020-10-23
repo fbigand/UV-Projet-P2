@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -31,20 +30,20 @@ public class DataWriter : MonoBehaviour
         {
             sw.Flush();
         }
-       sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
+        sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
     }
 
     private void write(string text)
     {
         sw.Write(text);
         sw.Flush();
-       
-        
+
+
     }
 
     public void writeInfoSpaceship(string infoShip, string rayCasts, string otherShipsInfo, float decision)
     {
-        write(infoShip+";["+rayCasts+"];["+otherShipsInfo+ "];"+decision+"\n");
+        write(infoShip + ";[" + rayCasts + "];[" + otherShipsInfo + "];" + decision + "\n");
     }
 
     public void DeleteLastLines(int nbrLineToDelete)
@@ -54,7 +53,7 @@ public class DataWriter : MonoBehaviour
         sw.Close();
         int nbrLineToKeep = File.ReadLines(Application.dataPath + "/Data/" + fileName).Count() - nbrLineToDelete;
         string line;
-        int nbrCurrentLine=0;
+        int nbrCurrentLine = 0;
         using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileName))
         {
             using (StreamWriter writer = new StreamWriter(Application.dataPath + "/Data/" + fileNameBeforeDeath))

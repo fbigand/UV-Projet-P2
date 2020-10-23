@@ -1,9 +1,4 @@
-﻿using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
-using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -20,7 +15,7 @@ public class Player : MonoBehaviour
         this.score = score;
         this.id = id;
         this.isAlive = true;
-        hudplayer.SetPlayer("Player:" + id, color,score.ToString());
+        hudplayer.SetPlayer("Player:" + id, color, score.ToString());
     }
 
     public void finishRound()
