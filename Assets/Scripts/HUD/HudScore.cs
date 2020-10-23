@@ -19,10 +19,12 @@ public class HudScore : MonoBehaviour
         scoreText = transform.Find("ScoreText").GetComponent<Text>();
     }
 
-    public void SetPlayer(Player player)
+    public void SetPlayer(Player player, int rank)
     {
         playerName.text = player.pseudo;
         playerName.color = player.color;
         scoreText.text = player.score.ToString();
+        gainLevel.text = "+"+player.gain.ToString();
+        rankText.text = rank.ToString();
     }
 }

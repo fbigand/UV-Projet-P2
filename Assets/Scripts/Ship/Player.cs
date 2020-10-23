@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public int id;
     public int score;
+    public int gain;
     [HideInInspector]
     public HudPlayer hudplayer;
     public Color color;
@@ -30,4 +31,5 @@ public class Player : MonoBehaviour
         isAlive = false;
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>().playerFinishGame(this);
     }
+
 }

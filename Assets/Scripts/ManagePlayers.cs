@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,6 +14,7 @@ public class ManagePlayers : MonoBehaviour
     public Text countdownText;
     public string startMessage;
     public int startMessageDuration; // in seconds
+    private bool isGameRunning;
 
     public GameObject[] activePlayers;
 
@@ -29,6 +31,7 @@ public class ManagePlayers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isGameRunning = true;
         activePlayers = new GameObject[numberPlayers];
 
         if(usableSpaceships != null && usableSpaceships.Length > 0)
@@ -122,19 +125,33 @@ public class ManagePlayers : MonoBehaviour
 
     private void showScore()
     {
-        int posy = 65;
-        int incrPosY = -40;
-        foreach (GameObject spaceship in activePlayers)
+        Player[] rankedPLayers = getPlayersInRankOrdered();
+        int posx = -373;
+        int posy = 120;
+        int incrPosY = -90;
+
+        for(int i =0; i < rankedPLayers.Length; i++)
         {
             HudScore hudScore = Instantiate(hudScorePrefab) as HudScore;
             hudScore.transform.SetParent(roundResults.transform);
             hudScore.transform.localScale = new Vector3(1, 1, 1);
-            hudScore.transform.localPosition = new Vector3(0, posy, -1f);
-            hudScore.SetPlayer(spaceship.GetComponent<Player>());
+            hudScore.transform.localPosition = new Vector3(posx, posy, -1f);
+            hudScore.SetPlayer(rankedPLayers[i], i);
             posy += incrPosY;
         }
+    }
 
+    private Player[] getPlayersInRankOrdered()
+    {
+        Player[] players = new Player[activePlayers.Length];
+        for(int i = 0; i < activePlayers.Length; i++)
+        {
+            players[i] = activePlayers[i].GetComponent<Player>();
+        }
 
+        Array.Sort(players, (player1, player2) => player2.score - player1.score);
+
+        return players;
     }
 
         private void StartGame()
@@ -154,8 +171,12 @@ public class ManagePlayers : MonoBehaviour
 
     public void playerFinishGame(Player playerDead)
     {
-        Scores.scores[playerDead.id] += nbrPointByRank * nbrPlayerDead;
-        playerDead.score = Scores.scores[playerDead.id];
+        if (!isGameRunning)
+        {
+            return;
+        }
+
+        SaveScoreToPlayer(playerDead);
         nbrPlayerDead++;
 
         if(nbrPlayerDead == numberPlayers - 1)
@@ -165,8 +186,7 @@ public class ManagePlayers : MonoBehaviour
                 Player player = activePlayers[i].gameObject.GetComponent<Player>();
                 if (player.isAlive )
                 {
-                    Scores.scores[player.id] += nbrPointByRank * nbrPlayerDead;
-                    player.score = Scores.scores[player.id];
+                    SaveScoreToPlayer(player);
                     StartCoroutine(loadNextRound());
                 }
             }            
@@ -176,8 +196,17 @@ public class ManagePlayers : MonoBehaviour
         }
     }
 
+    private void SaveScoreToPlayer(Player player)
+    {
+        int gain = nbrPointByRank * nbrPlayerDead;
+        Scores.scores[player.id] += gain;
+        player.score = Scores.scores[player.id];
+        player.gain = gain;
+    }
+
     private IEnumerator loadNextRound()
     {
+        isGameRunning = false;
         roundResults.SetActive(true);
         showScore();
         yield return new WaitForSeconds(5);
