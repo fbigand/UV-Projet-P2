@@ -33,36 +33,34 @@ public class DataWriter : MonoBehaviour
         sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
     }
 
-    private void write(string text)
+    private void Write(string text)
     {
         sw.Write(text);
         sw.Flush();
-
-
     }
 
-    public void writeInfoSpaceship(string infoShip, string rayCasts, string otherShipsInfo, float decision)
+    public void WriteInfoSpaceship(string infoShip, string raycasts, string otherShipsInfo, float decision)
     {
-        write(infoShip + ";[" + rayCasts + "];[" + otherShipsInfo + "];" + decision + "\n");
+        Write(infoShip + ";[" + raycasts + "];[" + otherShipsInfo + "];" + decision + "\n");
     }
 
-    public void DeleteLastLines(int nbrLineToDelete)
+    public void DeleteLastLines(int nbLineToDelete)
     {
         sw.Flush();
         sw.Dispose();
         sw.Close();
-        int nbrLineToKeep = File.ReadLines(Application.dataPath + "/Data/" + fileName).Count() - nbrLineToDelete;
+        int nbLineToKeep = File.ReadLines(Application.dataPath + "/Data/" + fileName).Count() - nbLineToDelete;
         string line;
-        int nbrCurrentLine = 0;
+        int currentLine = 0;
         using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileName))
         {
             using (StreamWriter writer = new StreamWriter(Application.dataPath + "/Data/" + fileNameBeforeDeath))
             {
                 while ((line = reader.ReadLine()) != null)
                 {
-                    nbrCurrentLine++;
+                    currentLine++;
 
-                    if (nbrCurrentLine >= nbrLineToKeep)
+                    if (currentLine >= nbLineToKeep)
                     {
                         break;
                     }

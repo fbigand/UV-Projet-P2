@@ -19,7 +19,7 @@ public class ControllerAlgo : ControllerAbstract
         float angleStep = Mathf.PI / (raycastNumber - 1);
         for (float angle = Mathf.PI / 2; raycastList.Count < raycastNumber; angle -= angleStep)
         {
-            Vector2 translatedVector = Trigonometry.VectorTranslatedByAngle(transform.up, angle);
+            Vector2 translatedVector = Trigonometry.RotateVector(transform.up, angle);
 
             RaycastHit2D[] result = new RaycastHit2D[1];
             Physics2D.Raycast(

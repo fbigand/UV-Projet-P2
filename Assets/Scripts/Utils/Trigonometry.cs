@@ -3,7 +3,7 @@
 public class Trigonometry
 {
     // Get vector translated by an angle in radians
-    public static Vector2 VectorTranslatedByAngle(Vector2 v, float radians)
+    public static Vector2 RotateVector(Vector2 v, float radians)
     {
         float vectorAngle = Mathf.Atan(v.y / v.x) + radians;
         if (v.x < 0)

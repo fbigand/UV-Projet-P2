@@ -4,9 +4,9 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 {
     private Player player;
     private ManagePlayers managePlayers;
-    private Transform positionHead;
+    private Transform headPosition;
 
-    public float frqceSaveDataHz = 5f;
+    public float dataSavingFrequence = 5f; // in number of frame
     private float countBetweenCapture;
     private float countSinceLastCapture = 0f;
 
@@ -14,20 +14,20 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     //RayCast
     private RaycastHit2D[] result;
-    public int nbrMaxResultByRayCast = 1;
-    public int nbrRayCasts = 50;
-    public float angleCastingRayCastDegrees = 300f;
-    private float differenceAngleBetweenRay;
-    private float secondsNotSavedBeforeDeath = 3f;
+    public int nbMaxResultsByRaycast = 1;
+    public int nbRaycasts = 50;
+    public float angleShipFieldview = 300f; // in degrees
+    private float angleDiffBetweenRaycast; // in degrees
+    private float timeNotSavedBeforeDeath = 3f; // in seconds
 
     private void Start()
     {
         isSavingData = true;
-        positionHead = GetComponent<Snake>().positionHotSpotFront;
-        result = new RaycastHit2D[nbrMaxResultByRayCast];
-        float nbrDivision = nbrRayCasts > 1 ? nbrRayCasts - 1 : 1;
-        differenceAngleBetweenRay = angleCastingRayCastDegrees / nbrDivision;
-        countBetweenCapture = 1 / (frqceSaveDataHz * Time.fixedDeltaTime);
+        headPosition = GetComponent<Snake>().positionHotSpotFront;
+        result = new RaycastHit2D[nbMaxResultsByRaycast];
+        float nbDivision = nbRaycasts > 1 ? nbRaycasts - 1 : 1;
+        angleDiffBetweenRaycast = angleShipFieldview / nbDivision;
+        countBetweenCapture = 1 / (dataSavingFrequence * Time.fixedDeltaTime);
         player = GetComponent<Player>();
         managePlayers = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>();
     }
@@ -35,7 +35,6 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     //return -1 for left, 1 for right and 0 equals forward
     override public float GetRotation()
     {
-
         float input = Input.GetAxis(moveAxis);
         if (input != 0)
         {
@@ -47,8 +46,8 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
             if (managePlayers.nbrPlayerDead > 0)
             {
                 isSavingData = false;
-                float nbrLinesToDelete = secondsNotSavedBeforeDeath / (countBetweenCapture * Time.fixedDeltaTime);
-                DataWriter.instance.DeleteLastLines((int)nbrLinesToDelete);
+                float nbLinesToDelete = timeNotSavedBeforeDeath / (countBetweenCapture * Time.fixedDeltaTime);
+                DataWriter.instance.DeleteLastLines((int)nbLinesToDelete);
             }
             else if (countSinceLastCapture > countBetweenCapture)
             {
@@ -56,16 +55,31 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
                 countSinceLastCapture = 0;
             }
         }
-
         countSinceLastCapture++;
-
 
         return input;
     }
 
     private void SaveData(float decision)
     {
-        DataWriter.instance.writeInfoSpaceship(SaveInfoShip(transform), SaveRayCasts(), SaveOtherShipsInfo(), decision);
+        DataWriter.instance.WriteInfoSpaceship(
+            infoShip: SaveInfoShip(transform),
+            raycasts: SaveRaycasts(),
+            otherShipsInfo: SaveOtherShipsInfo(),
+            decision: decision
+        );
+    }
+
+    private string SaveInfoShip(Transform spaceship = null)
+    {
+        if (spaceship == null)
+        {
+            return "0;0;0";
+        }
+        else
+        {
+            return spaceship.position.x + ";" + spaceship.position.y + ";" + spaceship.rotation.eulerAngles.z;
+        }
     }
 
     private string SaveOtherShipsInfo()
@@ -91,51 +105,27 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
         return res;
     }
 
-    private string SaveInfoShip(Transform spaceship = null)
+    private string SaveRaycasts()
     {
-        if (spaceship == null)
-        {
-            return "0;0;0";
-        }
-        else
-        {
-            return spaceship.position.x + ";" + spaceship.position.y + ";" + spaceship.rotation.eulerAngles.z;
-        }
-    }
-
-    private string SaveRayCasts()
-    {
-        string resultHits = "";
-        float originAngle = nbrRayCasts > 1 ? -0.5f * angleCastingRayCastDegrees : 0;
+        string hitResults = "";
+        float raycastAngle = nbRaycasts > 1 ? -0.5f * angleShipFieldview : 0;
         Vector2 direction;
-        for (int i = 0; i < nbrRayCasts; i++)
+        for (int i = 0; i < nbRaycasts; i++)
         {
-            direction = Rotate(transform.up, originAngle);
-            resultHits += "[" + originAngle + ";" + RunRayCast(direction) + "]";
-            originAngle += differenceAngleBetweenRay;
+            direction = Trigonometry.RotateVector(transform.up, raycastAngle * Mathf.Deg2Rad);
+            hitResults += "[" + raycastAngle + ";" + RunRaycast(direction) + "]";
+            raycastAngle += angleDiffBetweenRaycast;
         }
 
-        return resultHits;
+        return hitResults;
     }
 
-    private string RunRayCast(Vector2 direction)
+    private string RunRaycast(Vector2 direction)
     {
-        Debug.DrawRay(positionHead.position, direction, Color.green, 1 / frqceSaveDataHz);
-        Physics2D.Raycast(positionHead.position, direction, (new ContactFilter2D()).NoFilter(), result, Mathf.Infinity);
+        Debug.DrawRay(headPosition.position, direction, Color.green, 1 / dataSavingFrequence);
+        Physics2D.Raycast(headPosition.position, direction, (new ContactFilter2D()).NoFilter(), result, Mathf.Infinity);
 
         RaycastHit2D hit = result[0];
         return hit.distance + ";" + hit.normal.x + ";" + hit.normal.y;
-    }
-
-    private Vector2 Rotate(Vector2 v, float degrees)
-    {
-        float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
-        float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
-
-        float tx = v.x;
-        float ty = v.y;
-        v.x = (cos * tx) - (sin * ty);
-        v.y = (sin * tx) + (cos * ty);
-        return v;
     }
 }
