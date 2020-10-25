@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using UnityEditor;
@@ -15,8 +15,6 @@ public class MainMenu : MonoBehaviour
     {
         ReadDropDown();
         ReadInputField();
-//       print("index :" + GameSettings.instance.indexController);
-//        print("playerName :" + GameSettings.instance.PlayerName);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
@@ -42,5 +40,3 @@ public class MainMenu : MonoBehaviour
         }
     }
 }
-
-
