@@ -1,8 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.Threading;
 using UnityEngine;
-using UnityEngine.WSA;
 
 public class SlowSelf : PickUps
 {
@@ -19,5 +16,5 @@ public class SlowSelf : PickUps
         yield return new WaitForSeconds(5);
         shipmov.speed += speedModif;
         Destroy(gameObject);
-    }             
+    }
 }
