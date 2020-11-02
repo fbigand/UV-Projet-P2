@@ -28,7 +28,11 @@ public class ToggleUI : MonoBehaviour
         {
             GameSettings.instance.nbPlayers -= 1;
         }
+    }
 
- //       print(GameSettings.instance.nbPlayers);
+    public void Toggle_PickUps(bool value)
+    {
+        GameSettings.instance.pickUp = value;
+        print(GameSettings.instance.pickUp);
     }
 }
