@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class DataWriter : MonoBehaviour
 {
-    private string fileName = "data.csv";
-    private string fileNameBeforeDeath = "data_before_death.csv";
-    private StreamWriter sw;
+    private string fileNameAllData = "data.csv";
+    List<string> SavedData = new List<string>();
 
     public static DataWriter instance = null;
 
@@ -25,66 +24,48 @@ public class DataWriter : MonoBehaviour
         }
     }
 
-    public void Start()
-    {
-        if (sw != null)
-        {
-            sw.Flush();
-        }
-        sw = new StreamWriter(Application.dataPath + "/Data/" + fileName);
-    }
-
     private void Write(string text)
     {
-        sw.Write(text);
-        sw.Flush();
+        SavedData.Add(text);
     }
 
     public void WriteInfoSpaceship(string infoShip, string raycasts, string otherShipsInfo, float decision)
     {
-        Write(infoShip + ";" + raycasts + otherShipsInfo + ";" + decision + "\n");
+        Write(infoShip + ";" + raycasts + otherShipsInfo + ";" + decision);
     }
 
     public void DeleteLastLines(int nbLineToDelete)
     {
-        List<string> linesToCopy = new List<string>();
-        sw.Flush();
-        sw.Dispose();
-        sw.Close();
-        int nbLineToKeep = File.ReadLines(Application.dataPath + "/Data/" + fileName).Count() - nbLineToDelete;
+       
         string line;
-        int currentLine = 0;
-        
-        using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileName))
+
+        if (SavedData.Count > nbLineToDelete)
+        {
+            SavedData.RemoveRange(SavedData.Count - nbLineToDelete, nbLineToDelete);
+        }
+        else
+        {
+            SavedData.Clear();
+        }
+
+
+        using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileNameAllData))
         {
             while ((line = reader.ReadLine()) != null)
             {
-                currentLine++;
-
-                if (currentLine >= nbLineToKeep)
-                {
-                    break;
-                }
-
-                linesToCopy.Add(line);
+                SavedData.Add(line);
             }
         }
 
-        using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileNameBeforeDeath))
+        using (StreamWriter writer = new StreamWriter(Application.dataPath + "/Data/" + fileNameAllData))
         {
-            while ((line = reader.ReadLine()) != null)
+            foreach(string lineSaved in SavedData)
             {
-                linesToCopy.Add(line);
+                writer.WriteLine(lineSaved);
             }
         }
 
-        using (StreamWriter writer = new StreamWriter(Application.dataPath + "/Data/" + fileNameBeforeDeath))
-        {
-            foreach(string lineRead in linesToCopy)
-            {
-                writer.WriteLine(lineRead);
-            }
-        }
+        SavedData.Clear();
 
     }
 }
