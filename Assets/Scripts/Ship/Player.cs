@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public void FinishRound()
     {
         isAlive = false;
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>().playerFinishGame(this);
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>().PlayerFinishGame(this);
     }
 
 }

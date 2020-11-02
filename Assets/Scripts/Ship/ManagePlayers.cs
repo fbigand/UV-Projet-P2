@@ -46,13 +46,13 @@ public class ManagePlayers : MonoBehaviour
                     Destroy(usableSpaceships[i].gameObject);
                 }
             }
-            placePlayers();
+            PlacePlayers();
             StartCoroutine(Countdown());
-            associateHud();
+            AssociateHud();
         }
     }
 
-    private void placePlayers()
+    private void PlacePlayers()
     {
         float rayon = 4;
         Vector2 center = new Vector2(4, 0);
@@ -72,13 +72,13 @@ public class ManagePlayers : MonoBehaviour
 
 
             activePlayers[i].transform.position = new Vector3(posX, posY, -0.1f);
-            orientateSpaceship(activePlayers[i].transform, center);
+            OrientateSpaceship(activePlayers[i].transform, center);
 
             longueurArc += incrArc;
         }
     }
 
-    private void orientateSpaceship(Transform spaceship, Vector2 lookPoint)
+    private void OrientateSpaceship(Transform spaceship, Vector2 lookPoint)
     {
         Vector3 diff = lookPoint - new Vector2(spaceship.position.x, spaceship.position.y);
         diff.Normalize();
@@ -104,7 +104,7 @@ public class ManagePlayers : MonoBehaviour
         yield return null;
     }
 
-    private void associateHud()
+    private void AssociateHud()
     {
         int posy = 350;
         int incrPosY = -200;
@@ -122,9 +122,9 @@ public class ManagePlayers : MonoBehaviour
         }
     }
 
-    private void showScore()
+    private void ShowScore()
     {
-        Player[] rankedPLayers = getPlayersInRankOrdered();
+        Player[] rankedPLayers = GetPlayersRankOrdered();
         int posx = -373;
         int posy = 120;
         int incrPosY = -90;
@@ -140,7 +140,7 @@ public class ManagePlayers : MonoBehaviour
         }
     }
 
-    private Player[] getPlayersInRankOrdered()
+    private Player[] GetPlayersRankOrdered()
     {
         Player[] players = new Player[activePlayers.Length];
         for(int i = 0; i < activePlayers.Length; i++)
@@ -168,7 +168,7 @@ public class ManagePlayers : MonoBehaviour
     }
 
 
-    public void playerFinishGame(Player playerDead)
+    public void PlayerFinishGame(Player playerDead)
     {
         if (!isGameRunning)
         {
@@ -186,12 +186,12 @@ public class ManagePlayers : MonoBehaviour
                 if (player.isAlive )
                 {
                     SaveScoreToPlayer(player);
-                    StartCoroutine(loadNextRound());
+                    StartCoroutine(LoadNextRound());
                 }
             }            
         }else if(nbrPlayerDead == numberPlayers)
         {
-            StartCoroutine(loadNextRound());
+            StartCoroutine(LoadNextRound());
         }
     }
 
@@ -203,11 +203,11 @@ public class ManagePlayers : MonoBehaviour
         player.gain = gain;
     }
 
-    private IEnumerator loadNextRound()
+    private IEnumerator LoadNextRound()
     {
         isGameRunning = false;
         roundResults.SetActive(true);
-        showScore();
+        ShowScore();
         yield return new WaitForSeconds(5);
         roundResults.SetActive(false);
         SceneManager.LoadScene(1);
