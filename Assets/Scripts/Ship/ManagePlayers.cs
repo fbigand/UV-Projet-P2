@@ -8,7 +8,7 @@ public class ManagePlayers : MonoBehaviour
 {
     public GameObject[] usableSpaceships;
 
-    public int numberPlayers = 1;
+    private int numberPlayers;
     public int countdownTime; // in seconds
     public Text countdownText;
     public string startMessage;
@@ -28,10 +28,13 @@ public class ManagePlayers : MonoBehaviour
     public GameObject roundResults;
     public HudScore hudScorePrefab;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
         isGameRunning = true;
+        numberPlayers = GameSettings.instance.nbPlayers;
         activePlayers = new GameObject[numberPlayers];
         if (usableSpaceships != null && usableSpaceships.Length > 0)
         {
@@ -46,9 +49,38 @@ public class ManagePlayers : MonoBehaviour
                     Destroy(usableSpaceships[i].gameObject);
                 }
             }
+            GiveControllerToShips();
             PlacePlayers();
             StartCoroutine(Countdown());
             AssociateHud();
+        }
+    }
+
+    private void GiveControllerToShips()
+    {
+        for (int i = 0; i < GameSettings.instance.indexController.Count; i++)
+        {
+            switch (GameSettings.instance.indexController[i])
+            {
+                case 0: // Player
+                    ControllerPlayerSaveFeatures player = usableSpaceships[i].AddComponent<ControllerPlayerSaveFeatures>();
+                    player.moveAxis = "Move" + (i + 1).ToString();
+                    player.attackAxis = "Power" + (i + 1).ToString();
+                    break;
+                case 1: // AI Easy
+                    usableSpaceships[i].AddComponent<ControllerRandom>();
+                    break;
+                case 2: // AI Medium
+                    ControllerAlgo medium = usableSpaceships[i].AddComponent<ControllerAlgo>();
+                    medium.raycastNumber = 9;
+                    break;
+                case 3: // AI Hard
+                    // TODO: ADD IA HARD WHEN IT IS READY
+                    break;
+                default: // Consider AI Easy
+                    usableSpaceships[i].AddComponent<ControllerRandom>();
+                    break;
+            }
         }
     }
 
@@ -161,8 +193,13 @@ public class ManagePlayers : MonoBehaviour
             {
                 Scores.scores.Add(0);
             }
+            
             activePlayers[i].SetActive(true);
-            activePlayers[i].gameObject.GetComponent<Player>().Init(i, Scores.scores[i]);
+            activePlayers[i].gameObject.GetComponent<Player>().Init(
+                id: i, 
+                score: Scores.scores[i],
+                pseudo: GameSettings.instance.playerPseudos[i]
+            );
         }
 
     }

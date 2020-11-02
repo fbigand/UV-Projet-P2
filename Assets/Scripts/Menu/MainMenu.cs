@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public List<Toggle> toggles;
     public List<Dropdown> dropdown;
     public List<InputField> inputfield;
 
@@ -28,7 +29,10 @@ public class MainMenu : MonoBehaviour
     {
         for (int i = 0; i < dropdown.Count; i++)
         {
-            GameSettings.instance.indexController.Add(dropdown[i].value);
+            if (toggles[i].isOn)
+            {
+                GameSettings.instance.indexController.Add(dropdown[i].value);
+            }
         }
     }
 
@@ -36,7 +40,10 @@ public class MainMenu : MonoBehaviour
     {
         for (int i = 0; i < inputfield.Count; i++)
         {
-            GameSettings.instance.playerPseudos.Add(inputfield[i].text);
+            if (toggles[i].isOn)
+            {
+                GameSettings.instance.playerPseudos.Add(inputfield[i].text);
+            }
         }
     }
 }

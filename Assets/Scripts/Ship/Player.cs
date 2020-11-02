@@ -10,13 +10,13 @@ public class Player : MonoBehaviour
     internal bool isAlive;
     internal string pseudo;
 
-    public void Init(int id, int score, string pseudo=null)
+    public void Init(int id, int score, string pseudo)
     {
-        this.score = score;
         this.id = id;
-        this.pseudo = pseudo ?? "Player" + (id + 1).ToString();
         this.isAlive = true;
-        hudplayer.SetPlayer(this.pseudo, color,score.ToString());
+        this.score = score;
+        this.pseudo = pseudo != "" ? pseudo : "Player " + (id + 1).ToString();
+        hudplayer.SetPlayer(this.pseudo, color, score.ToString());
     }
 
     public void FinishRound()
@@ -24,5 +24,4 @@ public class Player : MonoBehaviour
         isAlive = false;
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>().PlayerFinishGame(this);
     }
-
 }
