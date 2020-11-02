@@ -27,16 +27,16 @@ public class MainMenu : MonoBehaviour
     public void ReadDropDown()
     {
         for (int i = 0; i < dropdown.Count; i++)
-            {
-                GameSettings.instance.indexController.Add(dropdown[i].value);
-            }
+        {
+            GameSettings.instance.indexController.Add(dropdown[i].value);
+        }
     }
 
     public void ReadInputField()
     {
         for (int i = 0; i < inputfield.Count; i++)
         {
-            GameSettings.instance.PlayerName.Add(inputfield[i].text);
+            GameSettings.instance.playerPseudos.Add(inputfield[i].text);
         }
     }
 }
