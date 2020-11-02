@@ -89,7 +89,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
         {
             if (i != player.id)
             {
-                res += "[";
+                res += ";";
                 if (i < managePlayers.activePlayers.Length)
                 {
                     res += SaveInfoShip(managePlayers.activePlayers[i].transform);
@@ -98,7 +98,6 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
                 {
                     res += SaveInfoShip();
                 }
-                res += "]";
             }
         }
 
@@ -112,8 +111,12 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
         Vector2 direction;
         for (int i = 0; i < nbRaycasts; i++)
         {
+            if(i != 0) 
+            {
+                hitResults += ";";
+            }
             direction = Trigonometry.RotateVector(transform.up, raycastAngle * Mathf.Deg2Rad);
-            hitResults += "[" + raycastAngle + ";" + RunRaycast(direction) + "]";
+            hitResults += raycastAngle + ";" + RunRaycast(direction);
             raycastAngle += angleDiffBetweenRaycast;
         }
 

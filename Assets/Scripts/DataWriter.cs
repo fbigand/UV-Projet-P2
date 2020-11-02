@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -41,33 +42,49 @@ public class DataWriter : MonoBehaviour
 
     public void WriteInfoSpaceship(string infoShip, string raycasts, string otherShipsInfo, float decision)
     {
-        Write(infoShip + ";[" + raycasts + "];[" + otherShipsInfo + "];" + decision + "\n");
+        Write(infoShip + ";" + raycasts + otherShipsInfo + ";" + decision + "\n");
     }
 
     public void DeleteLastLines(int nbLineToDelete)
     {
+        List<string> linesToCopy = new List<string>();
         sw.Flush();
         sw.Dispose();
         sw.Close();
         int nbLineToKeep = File.ReadLines(Application.dataPath + "/Data/" + fileName).Count() - nbLineToDelete;
         string line;
         int currentLine = 0;
+        
         using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileName))
         {
-            using (StreamWriter writer = new StreamWriter(Application.dataPath + "/Data/" + fileNameBeforeDeath))
+            while ((line = reader.ReadLine()) != null)
             {
-                while ((line = reader.ReadLine()) != null)
+                currentLine++;
+
+                if (currentLine >= nbLineToKeep)
                 {
-                    currentLine++;
-
-                    if (currentLine >= nbLineToKeep)
-                    {
-                        break;
-                    }
-
-                    writer.WriteLine(line);
+                    break;
                 }
+
+                linesToCopy.Add(line);
             }
         }
+
+        using (StreamReader reader = File.OpenText(Application.dataPath + "/Data/" + fileNameBeforeDeath))
+        {
+            while ((line = reader.ReadLine()) != null)
+            {
+                linesToCopy.Add(line);
+            }
+        }
+
+        using (StreamWriter writer = new StreamWriter(Application.dataPath + "/Data/" + fileNameBeforeDeath))
+        {
+            foreach(string lineRead in linesToCopy)
+            {
+                writer.WriteLine(lineRead);
+            }
+        }
+
     }
 }
