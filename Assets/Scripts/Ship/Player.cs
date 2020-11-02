@@ -2,26 +2,24 @@
 
 public class Player : MonoBehaviour
 {
-    [HideInInspector]
-    public int id;
-    public int score;
-    public int gain;
-    [HideInInspector]
-    public HudPlayer hudplayer;
+    internal int id;
+    internal int score;
+    internal int gain;
+    internal HudPlayer hudplayer;
     public Color color;
-    public bool isAlive;
-    public string pseudo;
+    internal bool isAlive;
+    internal string pseudo;
 
-    public void init(int id, int score)
+    public void Init(int id, int score, string pseudo=null)
     {
         this.score = score;
         this.id = id;
-        this.pseudo = "Player" + (id + 1).ToString();
+        this.pseudo = pseudo ?? "Player" + (id + 1).ToString();
         this.isAlive = true;
         hudplayer.SetPlayer(this.pseudo, color,score.ToString());
     }
 
-    public void finishRound()
+    public void FinishRound()
     {
         isAlive = false;
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>().playerFinishGame(this);

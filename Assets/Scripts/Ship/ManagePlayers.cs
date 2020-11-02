@@ -162,7 +162,7 @@ public class ManagePlayers : MonoBehaviour
                 Scores.scores.Add(0);
             }
             activePlayers[i].SetActive(true);
-            activePlayers[i].gameObject.GetComponent<Player>().init(i, Scores.scores[i]);
+            activePlayers[i].gameObject.GetComponent<Player>().Init(i, Scores.scores[i]);
         }
 
     }
