@@ -5,7 +5,7 @@ public class HUD : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(0);
         Scores.reset();
     }
 }
