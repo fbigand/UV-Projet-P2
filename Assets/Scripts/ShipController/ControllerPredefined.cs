@@ -2,7 +2,7 @@
 using Unity.Mathematics;
 using UnityEngine;
 
-public class ControllerPredefined : ControllerAbstract
+public class ControllerPredefined : ControllerIA
 {
     private Vector3 startPosition;
     private Stopwatch time = new Stopwatch();

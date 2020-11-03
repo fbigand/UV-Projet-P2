@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-public class ControllerAlgo : ControllerAbstract
+public class ControllerIAMedium : ControllerIA
 {
     private Transform raycastStartPosition;
     public int raycastNumber;

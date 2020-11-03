@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public abstract class ControllerAbstract : MonoBehaviour, IController
+public abstract class ControllerIA : MonoBehaviour, IController
 {
     protected float TurnLeft()
     {
