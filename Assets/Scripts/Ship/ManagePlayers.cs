@@ -35,6 +35,7 @@ public class ManagePlayers : MonoBehaviour
     {
         isGameRunning = true;
         numberPlayers = GameSettings.instance.GetNumberPlayers();
+        Debug.Log(numberPlayers);
         activePlayers = new GameObject[numberPlayers];
         if (usableSpaceships != null && usableSpaceships.Length > 0)
         {
@@ -147,7 +148,7 @@ public class ManagePlayers : MonoBehaviour
             hudPlayer.transform.SetParent(HUD.transform);
             hudPlayer.transform.localScale = new Vector3(1, 1, 1);
             hudPlayer.transform.localPosition = new Vector3(-700, posy, -1f);
-            
+
             spaceship.GetComponent<Player>().hudplayer = hudPlayer;
             posy += incrPosY;
 
@@ -161,13 +162,13 @@ public class ManagePlayers : MonoBehaviour
         int posy = 120;
         int incrPosY = -90;
 
-        for(int i =0; i < rankedPLayers.Length; i++)
+        for (int i = 0; i < rankedPLayers.Length; i++)
         {
             HudScore hudScore = Instantiate(hudScorePrefab) as HudScore;
             hudScore.transform.SetParent(roundResults.transform);
             hudScore.transform.localScale = new Vector3(1, 1, 1);
             hudScore.transform.localPosition = new Vector3(posx, posy, -1f);
-            hudScore.SetPlayer(rankedPLayers[i], i+1);
+            hudScore.SetPlayer(rankedPLayers[i], i + 1);
             posy += incrPosY;
         }
     }
@@ -175,7 +176,7 @@ public class ManagePlayers : MonoBehaviour
     private Player[] GetPlayersRankOrdered()
     {
         Player[] players = new Player[activePlayers.Length];
-        for(int i = 0; i < activePlayers.Length; i++)
+        for (int i = 0; i < activePlayers.Length; i++)
         {
             players[i] = activePlayers[i].GetComponent<Player>();
         }
@@ -185,7 +186,7 @@ public class ManagePlayers : MonoBehaviour
         return players;
     }
 
-        private void StartGame()
+    private void StartGame()
     {
         for (int i = 0; i < activePlayers.Length; i++)
         {
@@ -193,10 +194,10 @@ public class ManagePlayers : MonoBehaviour
             {
                 Scores.scores.Add(0);
             }
-            
+
             activePlayers[i].SetActive(true);
             activePlayers[i].gameObject.GetComponent<Player>().Init(
-                id: i, 
+                id: i,
                 score: Scores.scores[i],
                 pseudo: GameSettings.instance.playerPseudos[i]
             );
@@ -220,13 +221,14 @@ public class ManagePlayers : MonoBehaviour
             for (int i = 0; i < activePlayers.Length; i++)
             {
                 Player player = activePlayers[i].gameObject.GetComponent<Player>();
-                if (player.isAlive )
+                if (player.isAlive)
                 {
                     SaveScoreToPlayer(player);
                     StartCoroutine(LoadNextRound());
                 }
-            }            
-        }else if(nbrPlayerDead == numberPlayers)
+            }
+        }
+        else if (nbrPlayerDead == numberPlayers)
         {
             StartCoroutine(LoadNextRound());
         }
