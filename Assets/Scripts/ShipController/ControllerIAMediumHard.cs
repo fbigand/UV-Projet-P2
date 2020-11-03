@@ -9,7 +9,7 @@ public class ControllerIAMediumHard : ControllerIA
     public int distanceCaptureRay;
     private ScannerRay scannerRay;
     private float angleScannedRadian = (float)Math.PI;
-    private bool isInDanger = false;
+    private bool usePower = false;
 
     void Start()
     {
@@ -40,12 +40,15 @@ public class ControllerIAMediumHard : ControllerIA
         }
 
         ZoneScanRay zoneDecision = scannerRay.SafestZone();
-        if (zoneDecision.danger >= 170)
+
+        if (zoneDecision.danger >= 500)
         {
-            print(zoneDecision.danger);
-            isInDanger = true;
+            usePower = true;
         }
+       
         return zoneDecision.associatedDecision;
+        
+        
         
     }
 
@@ -56,14 +59,37 @@ public class ControllerIAMediumHard : ControllerIA
 
     public override bool IsUsingSecondaryBonus()
     {
-        if (isInDanger)
+        if (usePower)
         {
-            isInDanger = false;
+            usePower = false;
             return true;
         }
         else
         {
             return false;
+        }
+    }
+
+    private float InCaseOfGreatDanger(RaycastHit2D closest)
+    {
+        float detectionDistance = 0.4f;
+
+        if (closest.distance > detectionDistance)
+        {
+            return KeepForward();
+        }
+        else
+        {
+            Vector2 recommendedTrajectory = (Vector2)transform.up + closest.normal;
+            float angleTrajectory = Vector2.SignedAngle(transform.up, recommendedTrajectory);
+            if (angleTrajectory < 0)
+            {
+                return TurnRight();
+            }
+            else
+            {
+                return TurnLeft();
+            }
         }
     }
 }

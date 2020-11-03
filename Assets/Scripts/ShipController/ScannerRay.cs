@@ -60,4 +60,19 @@ public class ScannerRay
         }
     }
 
+    public RaycastHit2D findClosest()
+    {
+        RaycastHit2D closest = leftZone.findClosest();
+        foreach (ZoneScanRay zone in listZones)
+        {
+            RaycastHit2D currentZoneClosest = zone.findClosest();
+            if (currentZoneClosest.distance < closest.distance)
+            {
+                closest = currentZoneClosest;
+            }
+        }
+
+        return closest;
+    }
+
 }
