@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ScannerRay : ScriptableObject
+public class ScannerRay
 {
     private ZoneScanRay leftZone;
     private ZoneScanRay frontZone;
@@ -20,7 +20,7 @@ public class ScannerRay : ScriptableObject
         this.sizeAngleZoneRadian = angleWatchedRadian/3;
         leftZone = new ZoneScanRay((x) => -0.5f * x + 4,-1);
         rightZone = new ZoneScanRay((x) => -0.5f * x + 4,1);
-        frontZone = new ZoneScanRay((x) => x*0.1f,0);
+        frontZone = new ZoneScanRay((x) => 1f/x, 0);
         listZones.Add(leftZone);
         listZones.Add(frontZone);
         listZones.Add(rightZone);
@@ -28,17 +28,20 @@ public class ScannerRay : ScriptableObject
 
     public void AddRay(RaycastHit2D rayToAdd, float rayAngleRadian)
     {
-        if(rayAngleRadian < angleStartRadian+sizeAngleZoneRadian)
+        if (rayAngleRadian < 0)
         {
             leftZone.AddRay(rayToAdd);
-        }else if(rayAngleRadian < angleStartRadian + 2 * sizeAngleZoneRadian)
-        {
-            frontZone.AddRay(rayToAdd);
         }
         else
         {
             rightZone.AddRay(rayToAdd);
         }
+
+        if (rayAngleRadian >= angleStartRadian + sizeAngleZoneRadian && rayAngleRadian <= angleStartRadian + 2 * sizeAngleZoneRadian)
+        {
+            frontZone.AddRay(rayToAdd);
+        }
+       
     }
 
     public int takeDecision()
