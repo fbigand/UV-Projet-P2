@@ -2891,7 +2891,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 540540503}
-        m_MethodName: Toggle_Changed
+        m_MethodName: ToggleChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4036,7 +4036,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 217063431}
-        m_MethodName: Toggle_Changed
+        m_MethodName: ToggleChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4376,7 +4376,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 237206335}
-        m_MethodName: Toggle_Changed
+        m_MethodName: ToggleChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6477,7 +6477,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1876410655}
-        m_MethodName: Toggle_Changed
+        m_MethodName: ToggleChanged
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6812,7 +6812,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 217063431}
-        m_MethodName: Toggle_PickUps
+        m_MethodName: TogglePickups
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
