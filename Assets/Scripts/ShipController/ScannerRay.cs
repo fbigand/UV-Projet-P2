@@ -11,14 +11,14 @@ public class ScannerRay
     private ZoneScanRay rightZone;
     private List<ZoneScanRay> listZones;
 
-    private float sizeAngleZoneRadian;
+    private float sizeFrontZone;
     private float angleStartRadian;
 
     public ScannerRay(float angleWatchedRadian)
     {
         listZones = new List<ZoneScanRay>();
-        this.angleStartRadian = 0 - angleWatchedRadian / 2;
-        this.sizeAngleZoneRadian = angleWatchedRadian/3;
+        this.angleStartRadian = - angleWatchedRadian / 3;
+        this.sizeFrontZone = angleWatchedRadian*5/9;
         leftZone = new ZoneScanRay(ZoneScanRay.computeRaySide,-1);
         rightZone = new ZoneScanRay(ZoneScanRay.computeRaySide, 1);
         frontZone = new ZoneScanRay(ZoneScanRay.computeRayFront, 0);
@@ -30,16 +30,16 @@ public class ScannerRay
     public void AddRay(RaycastHit2D rayToAdd, float rayAngleRadian)
     {
         
-        if (rayAngleRadian < 0)
+        if (rayAngleRadian < -sizeFrontZone/2)
         {
             rightZone.AddRay(rayToAdd,rayAngleRadian);
         }
-        else
+        else if(rayAngleRadian > sizeFrontZone / 2)
         {
             leftZone.AddRay(rayToAdd, rayAngleRadian);
         }
 
-        if (rayAngleRadian >= angleStartRadian + sizeAngleZoneRadian && rayAngleRadian <= angleStartRadian + 2 * sizeAngleZoneRadian)
+        else 
         {
             frontZone.AddRay(rayToAdd, rayAngleRadian);
         }
