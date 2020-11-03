@@ -14,6 +14,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame()
     {
+        GameSettings.instance.Clear();
         ReadDropDown();
         ReadInputField();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -25,7 +26,7 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void ReadDropDown()
+    private void ReadDropDown()
     {
         for (int i = 0; i < dropdown.Count; i++)
         {
@@ -36,7 +37,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void ReadInputField()
+    private void ReadInputField()
     {
         for (int i = 0; i < inputfield.Count; i++)
         {

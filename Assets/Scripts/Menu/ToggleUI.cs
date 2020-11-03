@@ -15,22 +15,13 @@ public class ToggleUI : MonoBehaviour
         inputfield = gameObject.GetComponentInChildren<InputField>();
     }
 
-    public void Toggle_Changed(bool value)
+    public void ToggleChanged(bool value)
     {
         dropdown.interactable = value;
         inputfield.interactable = value;
-
-        if (value == true)
-        {
-            GameSettings.instance.nbPlayers += 1;
-        }
-        else
-        {
-            GameSettings.instance.nbPlayers -= 1;
-        }
     }
 
-    public void Toggle_PickUps(bool value)
+    public void TogglePickups(bool value)
     {
         GameSettings.instance.pickUp = value;
     }

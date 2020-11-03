@@ -7,13 +7,11 @@ public class GameSettings : MonoBehaviour
     public bool pickUp = true;
     public List<int> indexController = new List<int>();
     public List<string> playerPseudos = new List<string>();
-    internal int nbPlayers;
 
     public static GameSettings instance;
 
     private void Start()
     {
-        nbPlayers = playerPseudos.Count;
         if (instance != null)
         {
             Destroy(gameObject);
@@ -23,5 +21,16 @@ public class GameSettings : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    internal int GetNumberPlayers()
+    {
+        return playerPseudos.Count;
+    }
+
+    internal void Clear()
+    {
+        indexController.Clear();
+        playerPseudos.Clear();
     }
 }
