@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,17 +8,20 @@ public class ControllerIAMediumHard : ControllerIA
 {
     private Transform raycastStartPosition;
     public int raycastNumber;
+    private ScannerRay scannerRay;
+    private float angleScannedRadian = (float)Math.PI;
 
     void Start()
     {
+        scannerRay = new ScannerRay(angleScannedRadian);
         raycastStartPosition = gameObject.transform.Find("HotSpotFront");
     }
 
     public override float GetRotation()
     {
-        List<RaycastHit2D> raycastList = new List<RaycastHit2D>();
-        float angleStep = Mathf.PI / (raycastNumber - 1);
-        for (float angle = Mathf.PI / 2; raycastList.Count < raycastNumber; angle -= angleStep)
+        scannerRay.Clear();
+        float angleStep = angleScannedRadian / (raycastNumber - 1);
+        for (float angle = -angleScannedRadian / 2; angle < angleScannedRadian/2; angle += angleStep)
         {
             Vector2 translatedVector = Trigonometry.RotateVector(transform.up, angle);
 
@@ -29,37 +33,13 @@ public class ControllerIAMediumHard : ControllerIA
                 results: result,
                 distance: 20
             );
-            raycastList.Add(result[0]);
+            scannerRay.AddRay(result[0],angle);
         }
 
-        RaycastHit2D closest = raycastList.First();
-        foreach (RaycastHit2D raycastArr in raycastList)
-        {
-            if (raycastArr.distance < closest.distance)
-            {
-                closest = raycastArr;
-            }
-        }
 
-        float detectionDistance = 0.4f;
 
-        if (closest.distance > detectionDistance)
-        {
-            return KeepForward();
-        }
-        else
-        {
-            Vector2 recommendedTrajectory = (Vector2)transform.up + closest.normal;
-            float angleTrajectory = Vector2.SignedAngle(transform.up, recommendedTrajectory);
-            if (angleTrajectory < 0)
-            {
-                return TurnRight();
-            }
-            else
-            {
-                return TurnLeft();
-            }
-        }
+        return scannerRay.takeDecision();
+        
     }
 
     public override bool IsUsingPrimaryBonus()
@@ -70,14 +50,5 @@ public class ControllerIAMediumHard : ControllerIA
     public override bool IsUsingSecondaryBonus()
     {
         return false;
-    }
-
-    // Start is called before the first frame update
-  
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

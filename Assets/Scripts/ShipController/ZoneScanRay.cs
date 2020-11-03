@@ -10,17 +10,19 @@ public class ZoneScanRay : ScriptableObject
     private Func<float,float> fonctionDistance;
     private Func<Vector2,float> fonctionNormale;
     private float poidsTotal;
+    public int associatedDecision;
 
-    private List<RaycastHit> listRays;
+    private List<RaycastHit2D> listRays;
 
-    public ZoneScanRay(Func<float, float> fonctionDistance)
+    public ZoneScanRay(Func<float, float> fonctionDistance, int associatedDecision)
     {
-        listRays = new List<RaycastHit>();
+        this.associatedDecision = associatedDecision;
+        listRays = new List<RaycastHit2D>();
         this.fonctionDistance = fonctionDistance;
         //this.fonctionNormale = fonctionNormale;
     }
 
-    public void AddRay(RaycastHit rayToAdd)
+    public void AddRay(RaycastHit2D rayToAdd)
     {
         listRays.Add(rayToAdd);
     }
@@ -39,11 +41,17 @@ public class ZoneScanRay : ScriptableObject
     private float Compute()
     {
         poidsTotal = 0;
-        foreach(RaycastHit ray in listRays)
+        foreach(RaycastHit2D ray in listRays)
         {
             poidsTotal += fonctionDistance.Invoke(ray.distance);
             //poidsTotal += fonctionNormale.Invoke(ray.normal);
         }
         return poidsTotal;
+    }
+
+    public void Clear()
+    {
+        listRays.Clear();
+        poidsTotal = 0;
     }
 }
