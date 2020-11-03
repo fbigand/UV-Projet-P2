@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 104361058}
   - component: {fileID: 104361057}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Dropdown2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1689,7 +1689,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.13750002, y: 1}
-  m_AnchoredPosition: {x: 36.6, y: -5.2}
+  m_AnchoredPosition: {x: 36.6, y: -5.199999}
   m_SizeDelta: {x: 139.27777, y: 17.833511}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299006869
@@ -2083,10 +2083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab20e73b3c5b90243baa816c0900e358, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nbPlayers: 0
   pickUp: 1
   indexController: 
-  PlayerName: []
+  playerPseudos: []
 --- !u!1 &371034486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2656,6 +2655,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e056a677fbfd4ee40bf403714b3f6883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggles:
+  - {fileID: 815404678}
+  - {fileID: 1405651202}
+  - {fileID: 893202347}
+  - {fileID: 583717419}
   dropdown:
   - {fileID: 1673585128}
   - {fileID: 1028725941}
@@ -3239,7 +3243,7 @@ GameObject:
   - component: {fileID: 673236460}
   - component: {fileID: 673236459}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputField3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4507,7 +4511,7 @@ GameObject:
   - component: {fileID: 1028725942}
   - component: {fileID: 1028725941}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Dropdown1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5417,7 +5421,7 @@ GameObject:
   - component: {fileID: 1248096919}
   - component: {fileID: 1248096918}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputField2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5709,7 +5713,7 @@ GameObject:
   - component: {fileID: 1313326669}
   - component: {fileID: 1313326668}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputField0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6832,7 +6836,7 @@ GameObject:
   - component: {fileID: 1512794559}
   - component: {fileID: 1512794558}
   m_Layer: 5
-  m_Name: InputField
+  m_Name: InputField1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7888,7 +7892,7 @@ GameObject:
   - component: {fileID: 1673585129}
   - component: {fileID: 1673585128}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Dropdown0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9390,7 +9394,7 @@ GameObject:
   - component: {fileID: 2119491806}
   - component: {fileID: 2119491805}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: Dropdown3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

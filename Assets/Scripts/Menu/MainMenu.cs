@@ -8,11 +8,13 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    public List<Toggle> toggles;
     public List<Dropdown> dropdown;
     public List<InputField> inputfield;
 
     public void PlayGame()
     {
+        GameSettings.instance.Clear();
         ReadDropDown();
         ReadInputField();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -24,19 +26,25 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
-    public void ReadDropDown()
+    private void ReadDropDown()
     {
         for (int i = 0; i < dropdown.Count; i++)
+        {
+            if (toggles[i].isOn)
             {
                 GameSettings.instance.indexController.Add(dropdown[i].value);
             }
+        }
     }
 
-    public void ReadInputField()
+    private void ReadInputField()
     {
         for (int i = 0; i < inputfield.Count; i++)
         {
-            GameSettings.instance.PlayerName.Add(inputfield[i].text);
+            if (toggles[i].isOn)
+            {
+                GameSettings.instance.playerPseudos.Add(inputfield[i].text);
+            }
         }
     }
 }

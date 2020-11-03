@@ -105,7 +105,7 @@ public class Snake : MonoBehaviour
     {
         GameObject effect = Instantiate(dieAnimation, transform.position, Quaternion.identity);
         Destroy(effect, 0.3f);
-        GetComponent<Player>().finishRound();
+        GetComponent<Player>().FinishRound();
         gameObject.SetActive(false);
     }
 
