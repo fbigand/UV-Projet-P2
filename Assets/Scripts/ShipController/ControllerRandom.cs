@@ -1,27 +1,31 @@
 ﻿using UnityEngine;
 
-public class ControllerRandom : MonoBehaviour, IController
+public class ControllerRandom : ControllerAbstract
 {
-    float IController.GetRotation()
+    public override float GetRotation()
     {
-        float res = Random.Range(0,3);
-        if(res == 2)
+        float res = Random.Range(0, 3);
+        if (res == 2)
         {
-            res = 1;
+            return TurnLeft();
 
-        }else if (res == 1)
-        {
-            res = -1;
         }
-        return  res ;
+        else if (res == 1)
+        {
+            return KeepForward();
+        }
+        else
+        {
+            return KeepForward();
+        }
     }
 
-    bool IController.IsUsingPrimaryBonus()
+    public override bool IsUsingPrimaryBonus()
     {
         return false;
     }
 
-    bool IController.IsUsingSecondaryBonus()
+    public override bool IsUsingSecondaryBonus()
     {
         return false;
     }
