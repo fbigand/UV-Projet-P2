@@ -46,10 +46,10 @@ public class ScannerRay
        
     }
 
-    public int takeDecision()
+    public ZoneScanRay SafestZone()
     {
         float lessDanger = listZones.Min(zone => zone.GetValueZone());
-        return listZones.Find(zone => zone.GetValueZone() == lessDanger).associatedDecision;
+        return listZones.Find(zone => zone.GetValueZone() == lessDanger);
     }
 
     public void Clear()

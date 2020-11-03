@@ -9,7 +9,7 @@ public class ZoneScanRay
     // Start is called before the first frame update
 
     private Func<StoreRay, float> fonctionDistance;
-    private float poidsTotal;
+    public float danger;
     public int associatedDecision;
 
     private List<StoreRay> listRays;
@@ -28,9 +28,9 @@ public class ZoneScanRay
 
     public float GetValueZone()
     {
-        if (poidsTotal != 0)
+        if (danger != 0)
         {
-            return poidsTotal;
+            return danger;
         } else
         {
             return Compute();
@@ -39,32 +39,30 @@ public class ZoneScanRay
 
     private float Compute()
     {
-        poidsTotal = 0;
+        danger = 0;
         foreach (StoreRay ray in listRays)
         {
-            poidsTotal += fonctionDistance.Invoke(ray);
+            danger += fonctionDistance.Invoke(ray);
         }
-        return poidsTotal;
+        return danger;
     }
 
     public void Clear()
     {
         listRays.Clear();
-        poidsTotal = 0;
+        danger = 0;
     }
 
     public static float computeRayFront(StoreRay ray)
     {
         // plus c'est proche plus ça donne des points de danger
         float x = ray.ray.distance;
-        float danger = 3f * Mathf.Clamp((-3f * x + 10) / (x * 8f), 0, 50);
+        float importanceRay = Mathf.Clamp(-4 * Mathf.Abs(ray.angle) - 3, 1, 3);
+
+        float danger = 4f * Mathf.Clamp((-3f * x + 5) / (x * 8f), 0, 50);
 
         //plus l'angle est droit devant plus ça donne des points danger
-        x = 5f* Mathf.Abs(ray.angle);
-        float facteur = -4 * x + 3;
-
-        danger *= facteur;
-
+       
         return danger;
     }
 
@@ -75,10 +73,10 @@ public class ZoneScanRay
         float danger = Mathf.Clamp((-0.8f * x + 4) / (x * 10f), 0f, 50f);
 
         //plus l'angle est droit devant plus ça donne des points danger
-        x = Mathf.Abs(ray.angle);
+        /*x = Mathf.Abs(ray.angle);
         float facteur = Mathf.Clamp(-4 * x - 3, 1, 3);
 
-        danger *= facteur;
+        danger *= facteur;*/
 
         return danger;
     }
