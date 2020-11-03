@@ -295,11 +295,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 549698732}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c90225aa68c0cb4fadf566ee08ea9fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 568fdac0d72be47459ff55a777ad1c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveAxis: Move4
-  attackAxis: Power4
+  raycastNumber: 500
+  distanceCaptureRay: 100
 --- !u!1 &894355399 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
@@ -377,7 +377,7 @@ PrefabInstance:
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: numberPlayers
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
@@ -393,12 +393,12 @@ PrefabInstance:
         type: 3}
       propertyPath: usableSpaceships.Array.data[2]
       value: 
-      objectReference: {fileID: 1834023}
+      objectReference: {fileID: 549698732}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: usableSpaceships.Array.data[3]
       value: 
-      objectReference: {fileID: 549698732}
+      objectReference: {fileID: 1834023}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: countdownText

@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class ScannerRay
@@ -18,9 +19,9 @@ public class ScannerRay
         listZones = new List<ZoneScanRay>();
         this.angleStartRadian = 0 - angleWatchedRadian / 2;
         this.sizeAngleZoneRadian = angleWatchedRadian/3;
-        leftZone = new ZoneScanRay((x) => (-0.8f * x + 4)/(x*10f),-1);
-        rightZone = new ZoneScanRay((x) => (-0.8f * x + 4)/(x*10f),1);
-        frontZone = new ZoneScanRay((x) => (-3f * x +10) /(x*8f), 0);
+        leftZone = new ZoneScanRay(ZoneScanRay.computeRaySide,-1);
+        rightZone = new ZoneScanRay(ZoneScanRay.computeRaySide, 1);
+        frontZone = new ZoneScanRay(ZoneScanRay.computeRayFront, 0);
         listZones.Add(leftZone);
         listZones.Add(frontZone);
         listZones.Add(rightZone);
@@ -28,18 +29,19 @@ public class ScannerRay
 
     public void AddRay(RaycastHit2D rayToAdd, float rayAngleRadian)
     {
+        
         if (rayAngleRadian < 0)
         {
-            rightZone.AddRay(rayToAdd);
+            rightZone.AddRay(rayToAdd,rayAngleRadian);
         }
         else
         {
-            leftZone.AddRay(rayToAdd);
+            leftZone.AddRay(rayToAdd, rayAngleRadian);
         }
 
         if (rayAngleRadian >= angleStartRadian + sizeAngleZoneRadian && rayAngleRadian <= angleStartRadian + 2 * sizeAngleZoneRadian)
         {
-            frontZone.AddRay(rayToAdd);
+            frontZone.AddRay(rayToAdd, rayAngleRadian);
         }
        
     }

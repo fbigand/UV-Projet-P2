@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+
 using UnityEngine;
 
 public class ControllerIAMediumHard : ControllerIA
@@ -39,6 +37,7 @@ public class ControllerIAMediumHard : ControllerIA
             Debug.DrawRay(raycastStartPosition.transform.position, translatedVector, Color.green);
 
             scannerRay.AddRay(result[0],angle);
+           
         }
 
 
