@@ -8,6 +8,7 @@ public class ControllerIAMediumHard : ControllerIA
 {
     private Transform raycastStartPosition;
     public int raycastNumber;
+    public int distanceCaptureRay;
     private ScannerRay scannerRay;
     private float angleScannedRadian = (float)Math.PI;
 
@@ -32,7 +33,7 @@ public class ControllerIAMediumHard : ControllerIA
                 direction: translatedVector,
                 contactFilter: new ContactFilter2D().NoFilter(),
                 results: result,
-                distance: 10
+                distance: distanceCaptureRay
             );
             nbrRayCasted++;
             Debug.DrawRay(raycastStartPosition.transform.position, translatedVector, Color.green);

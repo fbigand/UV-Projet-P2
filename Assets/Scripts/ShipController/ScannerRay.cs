@@ -18,9 +18,9 @@ public class ScannerRay
         listZones = new List<ZoneScanRay>();
         this.angleStartRadian = 0 - angleWatchedRadian / 2;
         this.sizeAngleZoneRadian = angleWatchedRadian/3;
-        leftZone = new ZoneScanRay((x) => -0.5f * x + 4,-1);
-        rightZone = new ZoneScanRay((x) => -0.5f * x + 4,1);
-        frontZone = new ZoneScanRay((x) => 1f/x, 0);
+        leftZone = new ZoneScanRay((x) => (-0.8f * x + 4)/(x*10f),-1);
+        rightZone = new ZoneScanRay((x) => (-0.8f * x + 4)/(x*10f),1);
+        frontZone = new ZoneScanRay((x) => (-3f * x +10) /(x*8f), 0);
         listZones.Add(leftZone);
         listZones.Add(frontZone);
         listZones.Add(rightZone);
