@@ -30,11 +30,11 @@ public class ScannerRay
     {
         if (rayAngleRadian < 0)
         {
-            leftZone.AddRay(rayToAdd);
+            rightZone.AddRay(rayToAdd);
         }
         else
         {
-            rightZone.AddRay(rayToAdd);
+            leftZone.AddRay(rayToAdd);
         }
 
         if (rayAngleRadian >= angleStartRadian + sizeAngleZoneRadian && rayAngleRadian <= angleStartRadian + 2 * sizeAngleZoneRadian)

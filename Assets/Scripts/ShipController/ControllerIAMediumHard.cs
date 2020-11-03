@@ -21,7 +21,8 @@ public class ControllerIAMediumHard : ControllerIA
     {
         scannerRay.Clear();
         float angleStep = angleScannedRadian / (raycastNumber - 1);
-        for (float angle = angleScannedRadian / 2; angle >= -angleScannedRadian/2; angle -= angleStep)
+        int nbrRayCasted = 0;
+        for (float angle = -angleScannedRadian / 2; nbrRayCasted < raycastNumber; angle += angleStep)
         {
             Vector2 translatedVector = Trigonometry.RotateVector(transform.up, angle);
 
@@ -33,7 +34,9 @@ public class ControllerIAMediumHard : ControllerIA
                 results: result,
                 distance: 10
             );
+            nbrRayCasted++;
             Debug.DrawRay(raycastStartPosition.transform.position, translatedVector, Color.green);
+
             scannerRay.AddRay(result[0],angle);
         }
 
