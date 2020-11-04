@@ -12,7 +12,7 @@ public class ControllerRandom : ControllerAbstract
         }
         else if (res == 1)
         {
-            return KeepForward();
+            return TurnRight();
         }
         else
         {
