@@ -36,7 +36,7 @@ public class ControllerIAMediumHard : ControllerIA
             );
             nbrRayCasted++;
 
-            scannerRay.AddRay(result[0],angle);
+            scannerRay.AddRay(result[0], angle);
         }
 
         ZoneScanRay zoneDecision = scannerRay.SafestZone();
@@ -45,11 +45,9 @@ public class ControllerIAMediumHard : ControllerIA
         {
             usePower = true;
         }
-       
-        return zoneDecision.associatedDecision;
-        
-        
-        
+
+        return zoneDecision.decision;
+
     }
 
     public override bool IsUsingPrimaryBonus()
@@ -70,26 +68,4 @@ public class ControllerIAMediumHard : ControllerIA
         }
     }
 
-    private float InCaseOfGreatDanger(RaycastHit2D closest)
-    {
-        float detectionDistance = 0.4f;
-
-        if (closest.distance > detectionDistance)
-        {
-            return KeepForward();
-        }
-        else
-        {
-            Vector2 recommendedTrajectory = (Vector2)transform.up + closest.normal;
-            float angleTrajectory = Vector2.SignedAngle(transform.up, recommendedTrajectory);
-            if (angleTrajectory < 0)
-            {
-                return TurnRight();
-            }
-            else
-            {
-                return TurnLeft();
-            }
-        }
-    }
 }

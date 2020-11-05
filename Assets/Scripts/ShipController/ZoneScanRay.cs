@@ -9,17 +9,17 @@ public class ZoneScanRay
 {
     // Start is called before the first frame update
 
-    private Func<StoreRay, float> fonctionDistance;
+    private Func<StoreRay, float> functionDetermineDangerRay;
     public float danger;
-    public int associatedDecision;
+    public int decision;
 
     private List<StoreRay> listRays;
 
     public ZoneScanRay(Func<StoreRay, float> fonctionDistance, int associatedDecision)
     {
-        this.associatedDecision = associatedDecision;
+        this.decision = associatedDecision;
         listRays = new List<StoreRay>();
-        this.fonctionDistance = fonctionDistance;
+        this.functionDetermineDangerRay = fonctionDistance;
     }
 
     public void AddRay(RaycastHit2D rayToAdd, float angle)
@@ -43,7 +43,7 @@ public class ZoneScanRay
         danger = 0;
         foreach (StoreRay ray in listRays)
         {
-            danger += fonctionDistance.Invoke(ray);
+            danger += functionDetermineDangerRay.Invoke(ray);
         }
         return danger;
     }
@@ -54,21 +54,7 @@ public class ZoneScanRay
         danger = 0;
     }
 
-    public RaycastHit2D findClosest()
-    {
-        RaycastHit2D closest = listRays.First().ray;
-        foreach (StoreRay raycastArr in listRays)
-        {
-            if (raycastArr.ray.distance < closest.distance)
-            {
-                closest = raycastArr.ray;
-            }
-        }
-
-        return closest;
-    }
-
-    public static float computeRayFront(StoreRay ray)
+    public static float ComputeRayFront(StoreRay ray)
     {
         if (ray.ray.collider.CompareTag("PickUp"))
         {
@@ -84,7 +70,7 @@ public class ZoneScanRay
         return danger;
     }
 
-    public static float computeRaySide(StoreRay ray)
+    public static float ComputeRaySide(StoreRay ray)
     {
         if (ray.ray.collider.CompareTag("PickUp"))
         {

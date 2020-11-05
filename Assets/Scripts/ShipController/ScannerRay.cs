@@ -19,9 +19,9 @@ public class ScannerRay
         listZones = new List<ZoneScanRay>();
         this.angleStartRadian = - angleWatchedRadian / 3;
         this.sizeFrontZone = angleWatchedRadian*5/9;
-        leftZone = new ZoneScanRay(ZoneScanRay.computeRaySide,-1);
-        rightZone = new ZoneScanRay(ZoneScanRay.computeRaySide, 1);
-        frontZone = new ZoneScanRay(ZoneScanRay.computeRayFront, 0);
+        leftZone = new ZoneScanRay(ZoneScanRay.ComputeRaySide,-1);
+        rightZone = new ZoneScanRay(ZoneScanRay.ComputeRaySide, 1);
+        frontZone = new ZoneScanRay(ZoneScanRay.ComputeRayFront, 0);
         listZones.Add(leftZone);
         listZones.Add(frontZone);
         listZones.Add(rightZone);
@@ -38,7 +38,6 @@ public class ScannerRay
         {
             leftZone.AddRay(rayToAdd, rayAngleRadian);
         }
-
         else 
         {
             frontZone.AddRay(rayToAdd, rayAngleRadian);
@@ -60,19 +59,5 @@ public class ScannerRay
         }
     }
 
-    public RaycastHit2D findClosest()
-    {
-        RaycastHit2D closest = leftZone.findClosest();
-        foreach (ZoneScanRay zone in listZones)
-        {
-            RaycastHit2D currentZoneClosest = zone.findClosest();
-            if (currentZoneClosest.distance < closest.distance)
-            {
-                closest = currentZoneClosest;
-            }
-        }
-
-        return closest;
-    }
-
+    
 }
