@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ControllerRandom : ControllerAbstract
+public class ControllerRandom : ControllerIA
 {
     public override float GetRotation()
     {
