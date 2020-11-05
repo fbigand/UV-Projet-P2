@@ -127,44 +127,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1910411198}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1834024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1834023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a98faadd8d665ab4e92f7e822c8be0b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAxis: Move1
-  attackAxis: Power1
-  dataSavingFrequence: 5
-  nbMaxResultsByRaycast: 1
-  nbRaycasts: 50
-  angleShipFieldview: 200
 --- !u!1 &21352593 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
     type: 3}
   m_PrefabInstance: {fileID: 1978846258}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &21352594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 21352593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 568fdac0d72be47459ff55a777ad1c87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastNumber: 800
-  distanceCaptureRay: 100
 --- !u!1 &248305095 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8051490801274304669, guid: ff0f5603156bfe14fb5b952b3977db02,
@@ -286,39 +254,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1942420365}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &549698733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549698732}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 568fdac0d72be47459ff55a777ad1c87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastNumber: 500
-  distanceCaptureRay: 100
 --- !u!1 &894355399 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 837037984596119351, guid: c5ff2fe6fc457684aa8222886f8db0e3,
     type: 3}
   m_PrefabInstance: {fileID: 1962814627}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &894355400
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 894355399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01fb668e2c8a78643a1915f201747c8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastNumber: 100
 --- !u!1 &1083811571
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +324,7 @@ PrefabInstance:
         type: 3}
       propertyPath: usableSpaceships.Array.data[0]
       value: 
-      objectReference: {fileID: 894355399}
+      objectReference: {fileID: 1834023}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: usableSpaceships.Array.data[1]
@@ -393,12 +334,12 @@ PrefabInstance:
         type: 3}
       propertyPath: usableSpaceships.Array.data[2]
       value: 
-      objectReference: {fileID: 549698732}
+      objectReference: {fileID: 894355399}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: usableSpaceships.Array.data[3]
       value: 
-      objectReference: {fileID: 1834023}
+      objectReference: {fileID: 549698732}
     - target: {fileID: 2174080881887965266, guid: 034d1985ad73d5e4788ace0786adebbf,
         type: 3}
       propertyPath: countdownText
