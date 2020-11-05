@@ -72,11 +72,13 @@ public class ManagePlayers : MonoBehaviour
                     usableSpaceships[i].AddComponent<ControllerRandom>();
                     break;
                 case 2: // AI Medium
-                    ControllerAlgo medium = usableSpaceships[i].AddComponent<ControllerAlgo>();
+                    ControllerIAMedium medium = usableSpaceships[i].AddComponent<ControllerIAMedium>();
                     medium.raycastNumber = 9;
                     break;
                 case 3: // AI Hard
-                    // TODO: ADD IA HARD WHEN IT IS READY
+                    ControllerIAMediumHard hard = usableSpaceships[i].AddComponent<ControllerIAMediumHard>();
+                    hard.distanceCaptureRay = 100;
+                    hard.raycastNumber = 700;
                     break;
                 default: // Consider AI Easy
                     usableSpaceships[i].AddComponent<ControllerRandom>();
