@@ -5,8 +5,8 @@ public class ManagePickUps : MonoBehaviour
 {
     public List<PickUps> usablePickUps;
 
-    public bool activationPickUps = true;
-    public bool stopSpawning = false;
+    internal bool activationPickUps;
+    internal bool stopSpawning = false;
 
     public float spawnDelay = 6f;
     public float spawnTime = 4f;
@@ -14,9 +14,10 @@ public class ManagePickUps : MonoBehaviour
 
     void Start()
     {
+        activationPickUps = GameSettings.instance.pickUp;
         if (activationPickUps)
         {
-            InvokeRepeating("SpawnPickUps", spawnTime, spawnDelay);
+            InvokeRepeating(nameof(SpawnPickUps), spawnTime, spawnDelay);
         }
     }
 
