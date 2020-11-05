@@ -80,6 +80,15 @@ public class ManagePlayers : MonoBehaviour
                     hard.distanceCaptureRay = 100;
                     hard.raycastNumber = 700;
                     break;
+                case 4: // Save Data Player
+                    ControllerPlayerSaveFeatures playerSaveFeatures = usableSpaceships[i].AddComponent<ControllerPlayerSaveFeatures>();
+                    playerSaveFeatures.angleShipFieldview = 200;
+                    playerSaveFeatures.dataSavingFrequence = 5;
+                    playerSaveFeatures.nbRaycasts = 50;
+                    playerSaveFeatures.nbMaxResultsByRaycast = 1;
+                    playerSaveFeatures.moveAxis = "Move" + (i + 1).ToString();
+                    playerSaveFeatures.attackAxis = "Power" + (i + 1).ToString();
+                    break;
                 default: // Consider AI Easy
                     usableSpaceships[i].AddComponent<ControllerRandom>();
                     break;

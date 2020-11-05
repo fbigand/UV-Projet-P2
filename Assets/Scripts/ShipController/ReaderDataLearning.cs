@@ -30,7 +30,7 @@ public class ReaderDataLearning : Object
 
     public string Read()
     {
-        return SaveInfoShip(transformShipPlayer) + ";" + SaveRaycasts() + SaveOtherShipsInfo();
+        return SaveInfoShip(transformShipPlayer) + SaveRaycasts() + SaveOtherShipsInfo();
     }
 
     private string SaveInfoShip(Transform spaceship = null)

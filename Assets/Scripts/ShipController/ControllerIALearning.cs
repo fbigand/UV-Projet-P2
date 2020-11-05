@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using System.Diagnostics;
 using System.IO;
-using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEditor.UIElements;
+
 using UnityEngine;
 
-public class ControllerIALearning : ControllerAbstract
+public class ControllerIALearning : ControllerIA
 {
     // Start is called before the first frame update
 
