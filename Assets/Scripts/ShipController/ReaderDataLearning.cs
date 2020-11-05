@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class SaveDataLearning : Object
+public class ReaderDataLearning : Object
 {
     private Transform transformShipPlayer;
     // Start is called before the first frame update
@@ -15,7 +15,7 @@ public class SaveDataLearning : Object
     private Player player;
     private RaycastHit2D[] result;
 
-    public SaveDataLearning(Transform transformShipPlayer, ManagePlayers managePlayers, float angleShipFieldview, int nbRaycasts, Transform headPosition, Player player)
+    public ReaderDataLearning(Transform transformShipPlayer, ManagePlayers managePlayers, float angleShipFieldview, int nbRaycasts, Transform headPosition, Player player)
     {
         this.transformShipPlayer = transformShipPlayer;
         this.managePlayers = managePlayers;
@@ -28,20 +28,20 @@ public class SaveDataLearning : Object
         angleDiffBetweenRaycast = angleShipFieldview / nbDivision;
     }
 
-    public string Save()
+    public string Read()
     {
-        return SaveInfoShip(transformShipPlayer) + ";" + SaveRaycasts() + SaveOtherShipsInfo() + ";";
+        return SaveInfoShip(transformShipPlayer) + ";" + SaveRaycasts() + SaveOtherShipsInfo();
     }
 
     private string SaveInfoShip(Transform spaceship = null)
     {
         if (spaceship == null)
         {
-            return "0;0;0";
+            return "0;0;0;";
         }
         else
         {
-            return spaceship.position.x + ";" + spaceship.position.y + ";" + spaceship.rotation.eulerAngles.z;
+            return spaceship.position.x + ";" + spaceship.position.y + ";" + spaceship.rotation.eulerAngles.z+";";
         }
     }
 
@@ -52,7 +52,7 @@ public class SaveDataLearning : Object
         {
             if (i != player.id)
             {
-                res += ";";
+               
                 if (i < managePlayers.activePlayers.Length)
                 {
                     res += SaveInfoShip(managePlayers.activePlayers[i].transform);
@@ -74,12 +74,9 @@ public class SaveDataLearning : Object
         Vector2 direction;
         for (int i = 0; i < nbRaycasts; i++)
         {
-            if (i != 0)
-            {
-                hitResults += ";";
-            }
+           
             direction = Trigonometry.RotateVector(transformShipPlayer.up, raycastAngle * Mathf.Deg2Rad);
-            hitResults += raycastAngle + ";" + RunRaycast(direction);
+            hitResults += RunRaycast(direction)+";";
             raycastAngle += angleDiffBetweenRaycast;
         }
 

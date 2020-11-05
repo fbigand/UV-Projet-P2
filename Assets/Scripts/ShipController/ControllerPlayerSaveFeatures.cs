@@ -16,14 +16,14 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
     public float angleShipFieldview = 300f; // in degrees
     private float timeNotSavedBeforeDeath = 3f; // in seconds
 
-    private SaveDataLearning saveDataGame;
+    private ReaderDataLearning readerDataGame;
 
     private void Start()
     {
         isSavingData = true;
         countBetweenCapture = 1 / (dataSavingFrequence * Time.fixedDeltaTime);
         managePlayers = GameObject.FindGameObjectWithTag("GameManager").GetComponent<ManagePlayers>();
-        saveDataGame = new SaveDataLearning(transform,managePlayers,angleShipFieldview,nbRaycasts, GetComponent<Snake>().positionHotSpotFront, GetComponent<Player>());
+        readerDataGame = new ReaderDataLearning(transform,managePlayers,angleShipFieldview,nbRaycasts, GetComponent<Snake>().positionHotSpotFront, GetComponent<Player>());
     }
 
     //return -1 for left, 1 for right and 0 equals forward
@@ -45,7 +45,7 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
             }
             else if (countSinceLastCapture > countBetweenCapture)
             {
-                DataWriter.instance.Write(saveDataGame.Save()+input);
+                DataWriter.instance.Write(readerDataGame.Read()+input);
                 countSinceLastCapture = 0;
             }
         }
