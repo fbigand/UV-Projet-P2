@@ -35,7 +35,6 @@ public class ManagePlayers : MonoBehaviour
     {
         isGameRunning = true;
         numberPlayers = GameSettings.instance.GetNumberPlayers();
-        Debug.Log(numberPlayers);
         activePlayers = new GameObject[numberPlayers];
         if (usableSpaceships != null && usableSpaceships.Length > 0)
         {
