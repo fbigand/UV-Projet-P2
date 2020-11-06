@@ -426,6 +426,10 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: AI Hard
       m_Image: {fileID: 0}
+    - m_Text: Player Save Features
+      m_Image: {fileID: 0}
+    - m_Text: "IA apprentissage supervis\xE9"
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1689,7 +1693,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.13750002, y: 1}
-  m_AnchoredPosition: {x: 38.7, y: -12.7}
+  m_AnchoredPosition: {x: 38.700005, y: -12.699999}
   m_SizeDelta: {x: 139.27777, y: 16.736755}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &299006869
@@ -4592,6 +4596,10 @@ MonoBehaviour:
     - m_Text: AI Medium
       m_Image: {fileID: 0}
     - m_Text: AI Hard
+      m_Image: {fileID: 0}
+    - m_Text: Player Save Features
+      m_Image: {fileID: 0}
+    - m_Text: "IA apprentissage supervis\xE9"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7974,7 +7982,9 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: AI Hard
       m_Image: {fileID: 0}
-    - m_Text: PlayerSaveFeatures
+    - m_Text: Player SaveFeatures
+      m_Image: {fileID: 0}
+    - m_Text: "IA apprentissage supervis\xE9"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -9477,6 +9487,10 @@ MonoBehaviour:
     - m_Text: AI Medium
       m_Image: {fileID: 0}
     - m_Text: AI Hard
+      m_Image: {fileID: 0}
+    - m_Text: Player Save features
+      m_Image: {fileID: 0}
+    - m_Text: "IA apprentissage supervis\xE9"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
