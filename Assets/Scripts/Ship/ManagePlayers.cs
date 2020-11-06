@@ -69,7 +69,7 @@ public class ManagePlayers : MonoBehaviour
                     player.attackAxis = "Power" + (i + 1).ToString();
                     break;
                 case 1: // AI Easy
-                    usableSpaceships[i].AddComponent<ControllerRandom>();
+                    usableSpaceships[i].AddComponent<ControllerIALearning>();
                     break;
                 case 2: // AI Medium
                     ControllerIAMedium medium = usableSpaceships[i].AddComponent<ControllerIAMedium>();
