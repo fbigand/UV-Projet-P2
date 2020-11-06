@@ -2,6 +2,7 @@
 
 using UnityEngine;
 
+//la classe qui décrit le comportement d'une IA à détection de zone de danger
 public class ControllerIAMediumHard : ControllerIA
 {
     private Transform raycastStartPosition;
@@ -20,6 +21,8 @@ public class ControllerIAMediumHard : ControllerIA
     public override float GetRotation()
     {
         scannerRay.Clear();
+
+        //on execute le scan des 3 zones autour de nous avec les raycasts
         float angleStep = angleScannedRadian / (raycastNumber - 1);
         int nbrRayCasted = 0;
         for (float angle = -angleScannedRadian / 2; nbrRayCasted < raycastNumber; angle += angleStep)
@@ -39,10 +42,13 @@ public class ControllerIAMediumHard : ControllerIA
             scannerRay.AddRay(result[0], angle);
         }
 
+        //on regarde quelle zone présente un danger le plus faible
         ZoneScanRay zoneDecision = scannerRay.SafestZone();
 
+        //si la zone choisie est tout de même très dangereuse
         if (zoneDecision.danger >= 500)
         {
+            //alors on utilise le pouvoir de saut
             usePower = true;
         }
 

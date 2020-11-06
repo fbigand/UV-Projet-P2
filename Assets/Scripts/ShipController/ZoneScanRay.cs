@@ -5,14 +5,18 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+//Pour l'ia a détection de zone de danger
+//Cette classe représente une zone
 public class ZoneScanRay
 {
-    // Start is called before the first frame update
-
+    //la fonction qui sera utilisée pour déterminer le danger d'un raycast
     private Func<StoreRay, float> functionDetermineDangerRay;
+    //contient la valeur de danger de la zone
     public float danger;
+    //La direction apprendre associé à la zone (-1 gauche, 1 droite, 0 tout droit)
     public int decision;
 
+    //la liste des rayons de cette zone
     private List<StoreRay> listRays;
 
     public ZoneScanRay(Func<StoreRay, float> fonctionDistance, int associatedDecision)
@@ -38,6 +42,7 @@ public class ZoneScanRay
         }
     }
 
+    //on calcule le danger de la zone
     private float Compute()
     {
         danger = 0;
@@ -54,6 +59,7 @@ public class ZoneScanRay
         danger = 0;
     }
 
+    //une methode pour calculer le danger des rayons d'une zone devant
     public static float ComputeRayFront(StoreRay ray)
     {
         if (ray.ray.collider.CompareTag("PickUp"))
@@ -70,6 +76,8 @@ public class ZoneScanRay
         return danger;
     }
 
+
+    // une methode pour calculer les rayons d'une zone latérale
     public static float ComputeRaySide(StoreRay ray)
     {
         if (ray.ray.collider.CompareTag("PickUp"))
@@ -90,6 +98,7 @@ public class ZoneScanRay
         return danger;
     }
 
+    //une classe qui représent un rayon et l'angle de ce rayon par rapport au vaisseau
     public class StoreRay
     {
         public RaycastHit2D ray;

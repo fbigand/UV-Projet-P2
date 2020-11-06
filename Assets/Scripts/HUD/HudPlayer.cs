@@ -2,8 +2,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+//Permet de faire le lien avec l'affichage des différents attributs du player
 public class HudPlayer : MonoBehaviour
 {
+    //les zones de textes affiliées aux différentes informations à afficher
     private Text textBonusPrimary;
     private Text textBonusSecondary;
     private Text playerName;
