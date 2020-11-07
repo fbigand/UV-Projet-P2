@@ -61,8 +61,11 @@ public class ControllerIAMediumHard : ControllerIA
         {
             usePrimaryBonus = true;
         }
+        else
+        {
+            usePrimaryBonus = false;
+        }
 
-        print(zoneDecision.decision);
         return zoneDecision.decision;
 
     }
@@ -71,6 +74,7 @@ public class ControllerIAMediumHard : ControllerIA
     {
         bool ret = usePrimaryBonus;
         usePrimaryBonus = false;
+
         return ret;
     }
 

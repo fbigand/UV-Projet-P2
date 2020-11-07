@@ -28,16 +28,15 @@ public class ScannerRay
     public void AddRay(RaycastHit2D rayToAdd, float rayAngleRadian)
     {
         
-        if (rayAngleRadian < 0)
+        if (rayAngleRadian < -sizeFrontZone / 2)
         {
             rightZone.AddRay(rayToAdd,rayAngleRadian);
         }
-        else 
+        else if(rayAngleRadian > sizeFrontZone / 2)
         {
             leftZone.AddRay(rayToAdd, rayAngleRadian);
-        }
-        
-        if(rayAngleRadian > -sizeFrontZone / 2 && rayAngleRadian < sizeFrontZone / 2)
+        } 
+        else
         {
             frontZone.AddRay(rayToAdd, rayAngleRadian);
         }
@@ -45,11 +44,6 @@ public class ScannerRay
 
     public ZoneScanRay SafestZone()
     {
-        
-        Debug.Log("Front"+frontZone.GetValueZone());
-        Debug.Log("Right"+rightZone.GetValueZone());
-        Debug.Log("Left"+leftZone.GetValueZone());
-
         if (frontZone.GetValueZone()==0)
         {
             return frontZone;
