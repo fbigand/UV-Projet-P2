@@ -10,7 +10,8 @@ public class ControllerIAMediumHard : ControllerIA
     public int distanceCaptureRay;
     private ScannerRay scannerRay;
     private float angleScannedRadian = (float)Math.PI;
-    private bool usePower = false;
+    private bool useSecondaryBonus = false;
+    private bool usePrimaryBonus = false;
 
     void Start()
     {
@@ -39,6 +40,10 @@ public class ControllerIAMediumHard : ControllerIA
             );
             nbrRayCasted++;
 
+            if (result[0].collider.CompareTag("Player"))
+            {
+                Debug.DrawRay(raycastStartPosition.transform.position, translatedVector, Color.green);
+            }
             scannerRay.AddRay(result[0], angle);
         }
 
@@ -49,23 +54,31 @@ public class ControllerIAMediumHard : ControllerIA
         if (zoneDecision.danger >= 500)
         {
             //alors on utilise le pouvoir de saut
-            usePower = true;
+            useSecondaryBonus = true;
         }
 
+        if (scannerRay.isEnnemyInFrontZone())
+        {
+            usePrimaryBonus = true;
+        }
+
+        print(zoneDecision.decision);
         return zoneDecision.decision;
 
     }
 
     public override bool IsUsingPrimaryBonus()
     {
-        return false;
+        bool ret = usePrimaryBonus;
+        usePrimaryBonus = false;
+        return ret;
     }
 
     public override bool IsUsingSecondaryBonus()
     {
-        if (usePower)
+        if (useSecondaryBonus)
         {
-            usePower = false;
+            useSecondaryBonus = false;
             return true;
         }
         else
