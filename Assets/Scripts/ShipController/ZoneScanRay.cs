@@ -77,8 +77,9 @@ public class ZoneScanRay
 
         // plus c'est proche plus ça donne des points de danger
         float x = ray.ray.distance;
-        float importanceRay = Mathf.Clamp(-36 * Mathf.Abs(ray.angle) +10, 1, 10);
-        danger += (3f+importanceRay) * Mathf.Clamp((-3f * x + 6) / (x * 8f), 0, 50);
+        float importanceRay = Mathf.Clamp(-36f * Mathf.Abs(ray.angle) +10f, 1, 10);
+        float porteeRay = Mathf.Clamp(-1.33f*Mathf.Abs(ray.angle)+2, 0, 2);
+        danger += (importanceRay+3f) * Mathf.Clamp((-1.3f * x + 4+porteeRay) / (x * 5f), 0, 50);
 
        
         return danger;
