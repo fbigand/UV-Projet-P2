@@ -28,15 +28,16 @@ public class ScannerRay
     public void AddRay(RaycastHit2D rayToAdd, float rayAngleRadian)
     {
         
-        if (rayAngleRadian < -sizeFrontZone / 2)
+        if (rayAngleRadian < 0)
         {
             rightZone.AddRay(rayToAdd,rayAngleRadian);
         }
-        else if(rayAngleRadian > sizeFrontZone / 2)
+        else if(rayAngleRadian > 0)
         {
             leftZone.AddRay(rayToAdd, rayAngleRadian);
-        } 
-        else
+        }
+        
+        if(rayAngleRadian > -sizeFrontZone / 2 && rayAngleRadian < sizeFrontZone / 2)
         {
             frontZone.AddRay(rayToAdd, rayAngleRadian);
         }
