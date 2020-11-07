@@ -12,12 +12,10 @@ public class ScannerRay
     private List<ZoneScanRay> listZones;
 
     private float sizeFrontZone;
-    private float angleStartRadian;
 
     public ScannerRay(float angleWatchedRadian)
     {
         listZones = new List<ZoneScanRay>();
-        this.angleStartRadian = - angleWatchedRadian / 3;
         this.sizeFrontZone = angleWatchedRadian*5/9;
         leftZone = new ZoneScanRay(ZoneScanRay.ComputeRaySide,-1);
         rightZone = new ZoneScanRay(ZoneScanRay.ComputeRaySide, 1);
@@ -43,19 +41,22 @@ public class ScannerRay
         {
             frontZone.AddRay(rayToAdd, rayAngleRadian);
         }
-       
     }
 
     public ZoneScanRay SafestZone()
     {
-        
-        if(frontZone.GetValueZone() == 0)
+        if (frontZone.GetValueZone()==0)
         {
             return frontZone;
         }
 
         float lessDanger = listZones.Min(zone => zone.GetValueZone());
         return listZones.Find(zone => zone.GetValueZone() == lessDanger);
+    }
+
+    public bool isEnnemyInFrontZone()
+    {
+        return frontZone.isFrontOfEnnemy;
     }
 
     public void Clear()

@@ -125,7 +125,6 @@ public class ControllerPlayerSaveFeatures : ControllerPlayer
 
     private string RunRaycast(Vector2 direction)
     {
-        Debug.DrawRay(headPosition.position, direction, Color.green, 1 / dataSavingFrequence);
         Physics2D.Raycast(headPosition.position, direction, (new ContactFilter2D()).NoFilter(), result, Mathf.Infinity);
 
         RaycastHit2D hit = result[0];

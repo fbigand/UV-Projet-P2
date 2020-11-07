@@ -3,14 +3,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 //Pour l'ia a détection de zone de danger
 //Cette classe représente une zone
 public class ZoneScanRay
 {
+    public bool isFrontOfEnnemy = false;
     //la fonction qui sera utilisée pour déterminer le danger d'un raycast
-    private Func<StoreRay, float> functionDetermineDangerRay;
+    private Func<StoreRay,ZoneScanRay, float> functionDetermineDangerRay;
     //contient la valeur de danger de la zone
     public float danger;
     //La direction apprendre associé à la zone (-1 gauche, 1 droite, 0 tout droit)
@@ -19,7 +21,7 @@ public class ZoneScanRay
     //la liste des rayons de cette zone
     private List<StoreRay> listRays;
 
-    public ZoneScanRay(Func<StoreRay, float> fonctionDistance, int associatedDecision)
+    public ZoneScanRay(Func<StoreRay, ZoneScanRay, float> fonctionDistance, int associatedDecision)
     {
         this.decision = associatedDecision;
         listRays = new List<StoreRay>();
@@ -48,7 +50,7 @@ public class ZoneScanRay
         danger = 0;
         foreach (StoreRay ray in listRays)
         {
-            danger += functionDetermineDangerRay.Invoke(ray);
+            danger += functionDetermineDangerRay.Invoke(ray,this);
         }
         return danger;
     }
@@ -56,21 +58,27 @@ public class ZoneScanRay
     public void Clear()
     {
         listRays.Clear();
+        isFrontOfEnnemy = false;
         danger = 0;
     }
 
     //une methode pour calculer le danger des rayons d'une zone devant
-    public static float ComputeRayFront(StoreRay ray)
+    public static float ComputeRayFront(StoreRay ray, ZoneScanRay zone)
     {
+        float danger = 0;
         if (ray.ray.collider.CompareTag("PickUp"))
         {
             return 0;
+        }
+        else if (ray.ray.collider.CompareTag("Player")&&ray.ray.distance < 3 && Mathf.Abs(ray.angle)<0.1f )
+        {
+            zone.isFrontOfEnnemy = true;
         }
 
         // plus c'est proche plus ça donne des points de danger
         float x = ray.ray.distance;
         float importanceRay = Mathf.Clamp(-36 * Mathf.Abs(ray.angle) +10, 1, 10);
-        float danger = (3f+importanceRay) * Mathf.Clamp((-3f * x + 6) / (x * 8f), 0, 50);
+        danger += (3f+importanceRay) * Mathf.Clamp((-3f * x + 6) / (x * 8f), 0, 50);
 
        
         return danger;
@@ -78,7 +86,7 @@ public class ZoneScanRay
 
 
     // une methode pour calculer les rayons d'une zone latérale
-    public static float ComputeRaySide(StoreRay ray)
+    public static float ComputeRaySide(StoreRay ray, ZoneScanRay zone)
     {
         if (ray.ray.collider.CompareTag("PickUp"))
         {
@@ -87,6 +95,8 @@ public class ZoneScanRay
 
         // plus c'est proche plus ça donne des points de danger
         float x = ray.ray.distance;
+
+        //float angleImportance = Mathf.Clamp(Mathf.Abs(ray.angle), 0, 1.5f);
         float danger = Mathf.Clamp((-0.8f * x + 4f) / (x * 10f), 0f, 50f);
 
         //plus l'angle est droit devant plus ça donne des points danger
