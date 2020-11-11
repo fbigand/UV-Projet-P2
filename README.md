@@ -57,13 +57,13 @@ A la fin de chaque manche, le HUD des points s’affiche pour présenter le gain
 
 -----------------------------------------------------------------------------------------
 
-**Architecture logicielle**
+**Aspect technique**
 
 *Le choix de l’environnement Unity*
 
 Unity est un moteur de jeu multiplateforme connu pour sa rapidité aux prototypages. Au travers de Scènes, vous placez des éléments “GameObjects” : environnements, obstacles et décorations. Le comportements des GameObject est défini par le biais de scripts C# .
 
-*Décomposition logicielle*
+*Architecture logicielle*
 
 Notre jeu possède deux scènes : MenuScene correspond au hall d’accueil (lobby) pour la paramétrisation des parties et MainScene où se déroule notre partie. La connexion entre les deux scènes se fait via une classe statique appelée GameSettings
 
@@ -77,7 +77,7 @@ Les scripts Controller permettent de transmettre les choix de directions aux aut
 
 **IA programmées algorithmiquement**
 
-*IA Aléatoire “Easy”*
+*IA à trajectoire aléatoire*
 
 Cette IA décide aléatoirement de tourner à gauche, droite ou rester tout droit. Cette IA peu intelligente nous a permis de réaliser des tests et d’intégrer le système d’IA à notre architecture d’application. 
 
