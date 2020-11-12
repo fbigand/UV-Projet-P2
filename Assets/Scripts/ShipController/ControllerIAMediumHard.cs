@@ -2,6 +2,7 @@
 
 using UnityEngine;
 
+//la classe qui décrit le comportement d'une IA à détection de zone de danger
 public class ControllerIAMediumHard : ControllerIA
 {
     private Transform raycastStartPosition;
@@ -9,7 +10,8 @@ public class ControllerIAMediumHard : ControllerIA
     public int distanceCaptureRay;
     private ScannerRay scannerRay;
     private float angleScannedRadian = (float)Math.PI;
-    private bool usePower = false;
+    private bool useSecondaryBonus = false;
+    private bool usePrimaryBonus = false;
 
     void Start()
     {
@@ -20,6 +22,8 @@ public class ControllerIAMediumHard : ControllerIA
     public override float GetRotation()
     {
         scannerRay.Clear();
+
+        //on execute le scan des 3 zones autour de nous avec les raycasts
         float angleStep = angleScannedRadian / (raycastNumber - 1);
         int nbrRayCasted = 0;
         for (float angle = -angleScannedRadian / 2; nbrRayCasted < raycastNumber; angle += angleStep)
@@ -36,14 +40,30 @@ public class ControllerIAMediumHard : ControllerIA
             );
             nbrRayCasted++;
 
+            if (result[0].collider.CompareTag("Player"))
+            {
+                Debug.DrawRay(raycastStartPosition.transform.position, translatedVector, Color.green);
+            }
             scannerRay.AddRay(result[0], angle);
         }
 
+        //on regarde quelle zone présente un danger le plus faible
         ZoneScanRay zoneDecision = scannerRay.SafestZone();
 
+        //si la zone choisie est tout de même très dangereuse
         if (zoneDecision.danger >= 500)
         {
-            usePower = true;
+            //alors on utilise le pouvoir de saut
+            useSecondaryBonus = true;
+        }
+
+        if (scannerRay.isEnnemyInFrontZone())
+        {
+            usePrimaryBonus = true;
+        }
+        else
+        {
+            usePrimaryBonus = false;
         }
 
         return zoneDecision.decision;
@@ -52,14 +72,17 @@ public class ControllerIAMediumHard : ControllerIA
 
     public override bool IsUsingPrimaryBonus()
     {
-        return false;
+        bool ret = usePrimaryBonus;
+        usePrimaryBonus = false;
+
+        return ret;
     }
 
     public override bool IsUsingSecondaryBonus()
     {
-        if (usePower)
+        if (useSecondaryBonus)
         {
-            usePower = false;
+            useSecondaryBonus = false;
             return true;
         }
         else
