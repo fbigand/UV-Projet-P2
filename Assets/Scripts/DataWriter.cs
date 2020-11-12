@@ -24,7 +24,7 @@ public class DataWriter : MonoBehaviour
         }
     }
 
-    private void Write(string text)
+    public void Write(string text)
     {
         SavedData.Add(text);
     }

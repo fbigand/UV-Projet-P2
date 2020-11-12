@@ -63,7 +63,7 @@ public class ManagePlayers : MonoBehaviour
             switch (GameSettings.instance.indexController[i])
             {
                 case 0: // Player
-                    ControllerPlayerSaveFeatures player = usableSpaceships[i].AddComponent<ControllerPlayerSaveFeatures>();
+                    ControllerPlayer player = usableSpaceships[i].AddComponent<ControllerPlayer>();
                     player.moveAxis = "Move" + (i + 1).ToString();
                     player.attackAxis = "Power" + (i + 1).ToString();
                     break;
@@ -78,6 +78,18 @@ public class ManagePlayers : MonoBehaviour
                     ControllerIAMediumHard hard = usableSpaceships[i].AddComponent<ControllerIAMediumHard>();
                     hard.distanceCaptureRay = 100;
                     hard.raycastNumber = 700;
+                    break;
+                case 4: // Save Data Player
+                    ControllerPlayerSaveFeatures playerSaveFeatures = usableSpaceships[i].AddComponent<ControllerPlayerSaveFeatures>();
+                    playerSaveFeatures.angleShipFieldview = 200;
+                    playerSaveFeatures.dataSavingFrequence = 5;
+                    playerSaveFeatures.nbRaycasts = 50;
+                    playerSaveFeatures.nbMaxResultsByRaycast = 1;
+                    playerSaveFeatures.moveAxis = "Move" + (i + 1).ToString();
+                    playerSaveFeatures.attackAxis = "Power" + (i + 1).ToString();
+                    break;
+                case 5:
+                    usableSpaceships[i].AddComponent<ControllerIALearning>();
                     break;
                 default: // Consider AI Easy
                     usableSpaceships[i].AddComponent<ControllerRandom>();
