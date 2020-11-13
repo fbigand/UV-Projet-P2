@@ -18,9 +18,11 @@ Nous avons testé le jeu avec la version 2019.4.11f1. L'utilisation de Untiy Hub
 
 1. Dans le fichier `Assets/Scripts/ShipController/ControllerIALearning.cs`, modifier la valeur de la variable `pathPythonExe` par le chemin d'accès de votre exécutable Python de votre machine. Nous n'avons pas encore modifié le fichier pour accéder à une variable d'environnement.
 
-1. Ouvrir le projet depuis Unity et charger la scène MenuScene (`Assets/Scenes/MainScene.unity`)
+1. Ouvrir le projet depuis Unity et charger la scène MainMenu (`Assets/Scenes/MainMenu.unity`)
 
 1. Lancer le jeu
+
+Détail : l'IA utilisant le modèle d'apprentissage n'est à ce jour que très peu performant (30 secondes de délai entre chaque frame). Nous déconseillons de l'utiliser, hormis par curiosité.
 
 <hr>
 
